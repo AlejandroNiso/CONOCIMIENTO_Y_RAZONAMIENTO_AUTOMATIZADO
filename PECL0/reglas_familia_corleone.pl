@@ -1,0 +1,38 @@
+%consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL0/reglas_familia_corleone.pl').
+:-consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL0/arbol_familia_corleone.pl').
+
+
+
+ancestro(X, Y) :- progenitor(X, Y).
+ancestro(X, Y) :- progenitor(X, Z), ancestro(Z, Y).
+
+descentiente(X,Y) :- progenitor(Y, X).
+descentiente(X,Y) :- progenitor(Z, X), progenitor(Y,Z).
+
+descentientes(Y,X) :- write(1), progenitor(N, X), write(N), [Y|N].
+descentientes(Y,X) :- write(2), progenitor(Z, X), progenitor(N,Z),write(N), [Y|N].
+
+%Alguien no puede ser hernamo de si mismo.
+hermano_de_madre(X, Y)  :- progenitor(Z,X), mujer(Z), progenitor(Z,Y), X\=Y.
+hermano_de_padre(X, Y)  :- progenitor(Z,X), hombre(Z), progenitor(Z,Y), X\=Y.
+hermano(X, Y) :- progenitor(Z,X), progenitor(Z,Y), X\=Y.
+
+% Podria haberse definido solo abuelo o solo hermano y hacer a una
+% depender de la otra, no obstante se ha decidido no hacerlo.
+abuelo(X, Y) :-progenitor(X, Z), progenitor(Z,Y).
+nieto(X, Y) :- progenitor(Z, X), progenitor(Y, Z).
+
+% Podria haberse definido solo tio o solo sobrino y hacer a una
+% depender de la otra, no obstante se ha decidido no hacerlo.
+tio(X, Y) :- hermano(X, Z), progenitor(Z, Y).
+sobrino(X, Y) :- progenitor(Z, X), hermano(Z, Y).
+
+suegro(X, Y) :- esposos(Z, Y), progenitor(X, Z).
+cuñado(X, Y) :- esposos(Z, Y), hermano(X, Z).
+
+%La diferencia entre yerno y nuera es el genero del esposo.
+yerno_o_nuera(X, Y) :- progenitor(Y, Z), esposos(X, Z).
+yerno(X, Y) :- yerno_o_nuera(X, Y), hombre(X).
+nuera(X, Y) :- yerno_o_nuera(X, Y), mujer(X).
+
+%relacion(X,Y,Z) :- call(..[Z,X,Y])).

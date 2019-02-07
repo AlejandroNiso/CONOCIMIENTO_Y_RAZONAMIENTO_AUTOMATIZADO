@@ -1,0 +1,14 @@
+%consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL0/prueba.pl').
+
+padre('juan', 'pedro').
+padre('fernando', 'pedro').
+madre('alonso', 'maria').
+
+hermano(X, Y) :- padre(X, Z), padre(Y, Z).
+
+
+
+list_longitud([_|Y], N):-list_longitud(Y, N1), N is N1 + 1.
+list_longitud([],N):- N is 0.
+
+write_list(X):- member(Y,X),write(Y),fail.
