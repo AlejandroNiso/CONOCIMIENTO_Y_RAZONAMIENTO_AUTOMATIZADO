@@ -6,11 +6,13 @@
 ancestro(X, Y) :- progenitor(X, Y).
 ancestro(X, Y) :- progenitor(X, Z), ancestro(Z, Y).
 
-descentiente(X,Y) :- progenitor(Y, X).
-descentiente(X,Y) :- progenitor(Z, X), progenitor(Y,Z).
+descendiente(X,Y) :- progenitor(Y, X).
+descendiente(X,Y) :- progenitor(Z, X), progenitor(Y,Z).
 
-descentientes(Y,X) :- write(1), progenitor(N, X), write(N), [Y|N].
-descentientes(Y,X) :- write(2), progenitor(Z, X), progenitor(N,Z),write(N), [Y|N].
+descendientes(X, Y) :- descendientesx(X, [], Y).
+descendientesx(X, Z, Y) :- descendiente(X1, X), not(member(X1, Z)), descendientesx(X, [X1|Z], Y),!.
+% Produce la unificacion de las listas para terminar la recursion
+descendientesx(_, X, X).
 
 %Alguien no puede ser hernamo de si mismo.
 hermano_de_madre(X, Y)  :- progenitor(Z,X), mujer(Z), progenitor(Z,Y), X\=Y.
@@ -35,4 +37,4 @@ yerno_o_nuera(X, Y) :- progenitor(Y, Z), esposos(X, Z).
 yerno(X, Y) :- yerno_o_nuera(X, Y), hombre(X).
 nuera(X, Y) :- yerno_o_nuera(X, Y), mujer(X).
 
-relacion(X,Y,Z) :- call(..[Z,X,Y])).
+%relacion(X,Y,Z) :- call(..[Z,X,Y])).
