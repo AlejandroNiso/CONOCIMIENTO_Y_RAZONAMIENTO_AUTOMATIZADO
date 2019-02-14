@@ -33,5 +33,8 @@
 * ES     Utilizado en la creación de videojuegos
 * ES     Para programar en tarjetads gráficas
 * TIENE  ; al final de sentencia
-
+* ES     tipado fuerte
+* TIENE  autotipado
+* TIENE  tipado dinámico
+* TIENE  lazzy memory
 
