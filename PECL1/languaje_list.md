@@ -13,6 +13,7 @@
 * Objetive-C++
 * C#
 * F#
+-----------------------
 * SQL
 * JavaScript
 * Ocalm
@@ -26,6 +27,7 @@
 * CSS3
 * R
 * Rust
+-----------------------
 * VisualBasic
 * Basic
 * Ada
