@@ -37,4 +37,8 @@
 * TIENE  autotipado
 * TIENE  tipado dinámico
 * TIENE  lazzy memory
-
+* TIENE  punteros
+* TIENE  recolector de basura
+* TIENE  Programación basada en agentes
+* ES     Transaccional
+* TIENE  GOTO

@@ -42,3 +42,29 @@
 * Mathlab
 * Assebly
 
+EXTRA:
+
+* Smalltalk
+* SNOBOL
+* Modula
+* AWK
+* Bash
+* Orwell
+* Miranda
+* Gofer
+* Algol
+* Groovy
+* Boo
+* Icon
+* Genie
+* ABC
+* B
+* D
+* EIFEL
+* FALCON
+* Oberon
+* Limbo
+* FORTH
+* CLOS
+* JULIA
+* DYLAN
