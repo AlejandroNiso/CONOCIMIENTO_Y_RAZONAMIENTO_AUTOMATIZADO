@@ -42,3 +42,5 @@
 * TIENE  Programación basada en agentes
 * ES     Transaccional
 * TIENE  GOTO
+* ES     Diseñado para menejar archivos y texto
+
