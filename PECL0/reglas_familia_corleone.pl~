@@ -38,4 +38,4 @@ yerno(X, Y) :- yerno_o_nuera(X, Y), hombre(X).
 nuera(X, Y) :- yerno_o_nuera(X, Y), mujer(X).
 
 relaciones([hermano, abuelo, tio, sobrino, suegro, cuñado, yerno, nuera, esposos, progenitor]).
-relacion(X,Y,Z) :- relaciones(L), member(Z, L), Z=..[Z, X, Y], call(Z).
+relacion(X,Y,Z) :- relaciones(L), member(Z, L), N=..[Z, X, Y], call(N).

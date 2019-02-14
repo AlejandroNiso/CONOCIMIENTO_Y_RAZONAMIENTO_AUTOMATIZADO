@@ -32,6 +32,6 @@
 * TIENE  Soporte para OpenCV
 * ES     Utilizado en la creación de videojuegos
 * ES     Para programar en tarjetads gráficas
-
+* TIENE  ; al final de sentencia
 
 
