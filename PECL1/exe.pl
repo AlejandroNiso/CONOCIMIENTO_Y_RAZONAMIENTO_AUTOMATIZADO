@@ -19,6 +19,14 @@ lenguajes_aux(X,X).
 
 %Función que dada una caracteristica y su satisfación, devuelve una lista de los
 %lenguajes que la cumplen
+lenguajesCar (X,I,Y):-lenguajesCar_aux(X, I, Y, []).
+lenguajesCar_aux (X,I,Y,Z):-
 
 %Funcione que obtiene una pregunta dado un indice
 obtenerPregunta(I, X):-caracteristicas(L), nth1(I, L, X).
+
+%Funcion para contar caracteristicas
+
+%Funcion para generar vector con tantos 0 como caract hay
+
+%Dado un indice y una lista, pone dicho elemento a 1
