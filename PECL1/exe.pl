@@ -12,9 +12,13 @@ gameLoop:-question,nl,
 question:-write('pregunta').
 validate(Answer):-write(Answer).
 
+%Función que devuelve una lista con todos los lenguajes
 lenguajes(Y):- lenguajes_aux([], Y).
 lenguajes_aux(Z,Y):- lenguaje(X1,_), not(member(X1,Z)), lenguajes_aux([X1|Z], Y), !.
 lenguajes_aux(X,X).
+
+%Función que dada una caracteristica y su satisfación, de una lista de los lenguajes
+%que la cumplen
 
 
 
