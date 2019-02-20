@@ -20,3 +20,5 @@ lenguajes_aux(X,X).
 %Función que dada una caracteristica y su satisfación, devuelve una lista de los
 %lenguajes que la cumplen
 
+%Funcione que obtiene una pregunta dado un indice
+obtenerPregunta(I, X):-caracteristicas(L), nth1(I, L, X).

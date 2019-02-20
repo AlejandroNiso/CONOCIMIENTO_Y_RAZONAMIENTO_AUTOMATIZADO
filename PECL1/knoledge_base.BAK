@@ -63,9 +63,5 @@ lenguaje(kotlin,[1,1,0,0,n,0,1,0,0,n,1,1,0,0,0,0,1,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0
 lenguaje(scala,[1,1,0,0,1,0,1,0,0,n,1,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0]).
 lenguaje(fortran,[0,0,0,0,0,0,0,0,0,1,0,1,n,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0]).
 
-lenguajes(Y):- lenguajes_aux([], Y).
-lenguajes_aux(Z,Y):- lenguaje(X1,_), not(member(X1,Z)), lenguajes_aux([X1|Z], Y), !.
-lenguajes_aux(X,X).
-
 %Buscar caracteristica preguntada por posicion
 %Lenguajes cuya posicion sea 1 o n

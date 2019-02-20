@@ -17,14 +17,8 @@ lenguajes(Y):- lenguajes_aux([], Y).
 lenguajes_aux(Z,Y):- lenguaje(X1,_), not(member(X1,Z)), lenguajes_aux([X1|Z], Y), !.
 lenguajes_aux(X,X).
 
-
-
-
-%Comentario bonico
-
-
-
 %Función que dada una caracteristica y su satisfación, devuelve una lista de los
 %lenguajes que la cumplen
 
-%Prueba comentario
+%Funcione que obtiene una pregunta dado un indice
+obtenerPregunta(I, X):-caracteristicas(L), nth1(I, L, X).
