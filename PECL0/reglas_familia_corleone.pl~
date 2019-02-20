@@ -20,7 +20,7 @@ hermano_de_padre(X, Y)  :- progenitor(Z,X), hombre(Z), progenitor(Z,Y), X\=Y.
 hermano(X, Y) :- progenitor(Z,X), progenitor(Z,Y), X\=Y.
 
 % Podria haberse definido solo abuelo o solo hermano y hacer a una
-% depender de la otra, no obstante se ha decidido no hacerlo.
+ % depender de la otra, no obstante se ha decidido no hacerlo.
 abuelo(X, Y) :-progenitor(X, Z), progenitor(Z,Y).
 nieto(X, Y) :- progenitor(Z, X), progenitor(Y, Z).
 
