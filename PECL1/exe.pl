@@ -19,3 +19,5 @@ lenguajes_aux(X,X).
 
 %Función que dada una caracteristica y su satisfación, devuelve una lista de los
 %lenguajes que la cumplen
+
+%Prueba comentario
