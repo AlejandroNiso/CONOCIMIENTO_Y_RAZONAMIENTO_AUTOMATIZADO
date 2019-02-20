@@ -17,8 +17,6 @@ lenguajes(Y):- lenguajes_aux([], Y).
 lenguajes_aux(Z,Y):- lenguaje(X1,_), not(member(X1,Z)), lenguajes_aux([X1|Z], Y), !.
 lenguajes_aux(X,X).
 
-%Función que dada una caracteristica y su satisfación, de una lista de los lenguajes
-%que la cumplen
 
 
 
@@ -26,22 +24,7 @@ lenguajes_aux(X,X).
 
 
 
+%Función que dada una caracteristica y su satisfación, devuelve una lista de los
+%lenguajes que la cumplen
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+%Prueba comentario
