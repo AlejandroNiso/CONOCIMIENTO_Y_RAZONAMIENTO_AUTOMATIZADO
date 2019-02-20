@@ -1,5 +1,5 @@
 %consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
-:-consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/knoledge_base.pl').
+:-consult('./knoledge_base.pl').
 
 akinator:-nl,write('Akinator!!!'), nl,nl,
     gameLoop,
