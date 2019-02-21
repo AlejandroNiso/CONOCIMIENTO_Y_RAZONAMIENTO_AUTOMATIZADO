@@ -1,13 +1,16 @@
 %consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
 :-consult('./knoledge_base.pl').
 
-akinator:-nl,write('Akinator!!!'), nl,nl,caracteristicas(ListaPreguntas),
-    length(ListaPreguntas, LongitudPreguntas), build(n,LongitudPreguntas,ListaRespuestas),
-    lenguajes(ListaLenguajes),
+%Inicio del programa
+akinator:-nl,write('Akinator!!!'), nl,nl,
+    caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
+    build(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
     nl,write('Game Over!!!'),nl,!.
 
-gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice):-question(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice).
+%Bucle del juego
+gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice):
+    -question(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice).
 
 question([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-write('Su lenguaje '),
     write(PrimeraPregunta),write('?'),

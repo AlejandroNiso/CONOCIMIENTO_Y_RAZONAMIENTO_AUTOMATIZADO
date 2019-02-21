@@ -1,16 +1,19 @@
 %consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
 :-consult('./knoledge_base.pl').
 
-akinator:-nl,write('Akinator!!!'), nl,nl,caracteristicas(ListaPreguntas),
-    length(ListaPreguntas, LongitudPreguntas), build(n,LongitudPreguntas,ListaRespuestas),
-    lenguajes(ListaLenguajes),
+%Inicio del programa
+akinator:-nl,write('Akinator!!!'), nl,nl,
+    caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
+    build(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
     nl,write('Game Over!!!'),nl,!.
 
-gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice):-question(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice).
+%Bucle del juego
+gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice):-
+    question(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice).
 
-question([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-write('Su lenguaje '),
-    write(PrimeraPregunta),write('?'),
+question([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
+    write('Su lenguaje '),write(PrimeraPregunta),write('?'),
     read(Answer),
     (Answer==e -> ! ;
     reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
@@ -44,7 +47,6 @@ validarAux([Respuesta1|RestoRespuestas],[Caracteristica1|RestoCaracteristicas],L
 validarAux(_,_,Lenguaje1,FinalAnterior,[Lenguaje1|FinalAnterior]).
 validarAux(_,_,FinalAnterior,FinalAnterior).
 
-
 %Reemplazar valor de una lista en una cierta posición
 reemplazar([_|T], 0, X, [X|T]).
 reemplazar([H|T], I, X, [H|R]):- I > -1, NI is I-1, reemplazar(T, NI, X, R), !.
@@ -60,16 +62,5 @@ lenguajes(Y):- lenguajes_aux([], Y).
 lenguajes_aux(Z,Y):- lenguaje(X1,_), not(member(X1,Z)), lenguajes_aux([X1|Z], Y), !.
 lenguajes_aux(X,X).
 
-%Función que dada una caracteristica y su satisfación, devuelve una lista de los
-%lenguajes que la cumplen
-%lenguajesCar (X,I,Y):-lenguajesCar_aux(X, I, Y, []).
-%lenguajesCar_aux (X,I,Y,Z):-
-
 %Funcione que obtiene una pregunta dado un indice
 obtenerPregunta(I, X):-caracteristicas(L), nth1(I, L, X).
-
-%Funcion para contar caracteristicas
-
-%Funcion para generar vector con tantos 0 como caract hay
-
-%Dado un indice y una lista, pone dicho elemento a 1

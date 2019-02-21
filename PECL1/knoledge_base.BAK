@@ -1,3 +1,4 @@
+%Caracteristicas de los lenguajes
 lenguaje(webAssembly,[0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,1,n,n,n,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0]).
 lenguaje(dylan,[0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0]).
 lenguaje(julia,[0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]).
@@ -63,6 +64,7 @@ lenguaje(kotlin,[1,1,0,0,n,0,1,0,0,n,1,1,0,0,0,0,1,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0
 lenguaje(scala,[1,1,0,0,1,0,1,0,0,n,1,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0]).
 lenguaje(fortran,[0,0,0,0,0,0,0,0,0,1,0,1,n,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0]).
 
+%Preguntas que se realizarán
 caracteristicas([
 'tiene bloques tipo C: {}',
 'admite programacion orentada a objetos (POO)',
@@ -71,11 +73,12 @@ caracteristicas([
 'admite la programacion funcional, o al menos poder referenciar a una funcion por su direccion de memoria',
 'admite el paradigma de programacion logico',
 'fue creado en el siglo XXI',
+'es utilizado oficialmente por Microsoft',
 'es utilizado oficialmente por Apple',
 'es compilado',
 'es interpretado',
 'es de alto nivel, en general no tiene acceso a punteros ni a registros',
-'es de bajo nivel, en general stiene acceso a punteros o a registros',
+'es de bajo nivel, en general si tiene acceso a punteros o a registros',
 'está incluido en el kernell de Linux',
 'soporta la librería std',
 'está pensado para consultar bases de datos',
@@ -107,6 +110,3 @@ caracteristicas([
 'es un lenguaje transaccional',
 'admite la sentencia GOTO',
 'fue diseñado para manejar texto y archivos']).
-
-%Buscar caracteristica preguntada por posicion
-%Lenguajes cuya posicion sea 1 o n
