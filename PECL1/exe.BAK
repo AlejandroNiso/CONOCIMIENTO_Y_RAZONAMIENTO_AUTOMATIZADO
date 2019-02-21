@@ -18,8 +18,16 @@ question(Lista_caracteristicas,Lista_Respuestas,Indice):-write('Su lenguaje '),
 rlist(Lista1,Lista2):-[C1|Cola1]=Lista1,[C2|Cola2]=Lista2, write(C1), write(C2),rlist(Cola1,Cola2).
 
 %Comparar caracteristicas y quitar lenguaje de la lista general
-validarLeng(ListaRespuestas,ListaLenguajes,NombreLenguaje):-[C1|Cola1]=ListaRespuestas,
-    lenguaje(NombreLenguaje,ListaCaract),[C2|Cola2]=ListaCaract, write(C1), write(C2),rlist(Cola1,Cola2).
+validar(ListaRespuestas,ListaLenguajes,Final):-
+    [Lenguaje1|RestoLenguajes]=ListaLenguajes,
+    lenguaje(Lenguaje1,ListaCaract),
+    validarAux(ListaRespuestas,ListaCaract,Lenguaje1,[]).
+
+validarAux(ListaRespuestas,ListaCaract,Lenguaje1,Final):-
+    length(ListaRespuestas,LongitudR)=:=0->Final=[Lenguaje1|Final];
+    [C1|Cola1]=ListaRespuestas,C1=
+    [C2|Cola2]=ListaCaract,
+    write(C1), write(C2),validarAux(Cola1,Cola2,).
 
 %Reemplazar valor de una lista en una cierta posición
 reemplazar([_|T], 0, X, [X|T]).
