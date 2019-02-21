@@ -15,14 +15,12 @@ public class Akinator {
     }
 
     private static void ejecutarSwipl() {
-        String consult = "consult('../../../../exe.pl').\n";
         String aki = "akinator.\n";
-        byte[] cons = consult.getBytes();
         byte[] ak = aki.getBytes();
 
         try {
             System.out.println("Entrando en try");
-            Process p = Runtime.getRuntime().exec("swipl");
+            Process p = Runtime.getRuntime().exec("swipl /Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl");
 
             InputStream is = p.getErrorStream();
             byte[] buffer = new byte[is.available()];
@@ -36,9 +34,6 @@ public class Akinator {
             
             InputStream is1 = p.getInputStream();
             System.out.println("Canales creados");
-
-            os.write(cons);
-            System.out.println("Escribiendo consulta");
             
             os.write(ak);
             System.out.println("Escribiendo akinator");
