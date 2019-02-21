@@ -12,6 +12,10 @@ question(Lista_caracteristicas,Lista_Respuestas, Indice):-write('Su lenguaje '),
     [Cabeza|Cola]=Lista_caracteristicas,write($Cabeza),write('?'),
     read(Answer),nth0(Indice,Nueva_ListaRespuestas,Answer,Lista_Respuestas),write($Nueva_ListaRespuestas),
     Indice1 is Indice+1, gameLoop(Cola,Nueva_ListaRespuestas,Indice1).
+    
+replace(E,S,[],[]).
+replace(E,S,[E|T1],[S|T2]):-replace(E,S,T1,T2).
+replace(E,S,[H|T1],[H|T2]):-E\=H, replace(E,S,T1,T2).
 
 build(X, N, List)  :-
     length(List, N),
