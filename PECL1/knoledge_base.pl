@@ -71,6 +71,7 @@ caracteristicas([
 'admite la programacion funcional, o al menos poder referenciar a una funcion por su direccion de memoria',
 'admite el paradigma de programacion logico',
 'fue creado en el siglo XXI',
+'es utilizado oficialmente por Microsoft',
 'es utilizado oficialmente por Apple',
 'es compilado',
 'es interpretado',
