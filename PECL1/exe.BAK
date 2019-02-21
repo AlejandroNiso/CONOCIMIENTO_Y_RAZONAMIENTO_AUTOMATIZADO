@@ -9,9 +9,17 @@ akinator:-nl,write('Akinator!!!'), nl,nl,caracteristicas(Lista_caracteristicas),
 gameLoop(Lista_caracteristicas,Lista_Respuestas,Indice):-question(Lista_caracteristicas,Lista_Respuestas,Indice),nl.
 
 question(Lista_caracteristicas,Lista_Respuestas,Indice):-write('Su lenguaje '),
-    [Cabeza|Cola]=Lista_caracteristicas,write($Cabeza),write('?'),
+    [Cabeza|Cola]=Lista_caracteristicas,write(Cabeza),write('?'),
     read(Answer),reemplazar(Lista_Respuestas,Indice,Answer,NuevaListaRespuestas),
-    write($NuevaListaRespuestas),Indice1 is Indice+1, gameLoop(Cola,NuevaListaRespuestas,Indice1).
+    write(NuevaListaRespuestas),Indice1 is Indice+1, gameLoop(Cola,NuevaListaRespuestas,Indice1).
+
+
+%Mostrar elementos de dos listas a la vez
+rlist(Lista1,Lista2):-[C1|Cola1]=Lista1,[C2|Cola2]=Lista2, write(C1), write(C2),rlist(Cola1,Cola2).
+
+%Comparar caracteristicas y quitar lenguaje de la lista general
+validarLeng(ListaRespuestas,ListaLenguajes,NombreLenguaje):-[C1|Cola1]=ListaRespuestas,
+    lenguaje(NombreLenguaje,ListaCaract),[C2|Cola2]=ListaCaract, write(C1), write(C2),rlist(Cola1,Cola2).
 
 %Reemplazar valor de una lista en una cierta posición
 reemplazar([_|T], 0, X, [X|T]).
@@ -22,11 +30,8 @@ reemplazar(L, _, _, L).
 build(X, N, List)  :-
     length(List, N),
     maplist(=(X), List).
-    
 
-%validate(Lista_caracteristicas,Answer):-write(Answer),gameLoop(Lista_caracteristicas).
-
-%Función que devuelve una lista con todos los lenguajes
+%Función que devuelve una lista con nombres de los lenguajes
 lenguajes(Y):- lenguajes_aux([], Y).
 lenguajes_aux(Z,Y):- lenguaje(X1,_), not(member(X1,Z)), lenguajes_aux([X1|Z], Y), !.
 lenguajes_aux(X,X).
