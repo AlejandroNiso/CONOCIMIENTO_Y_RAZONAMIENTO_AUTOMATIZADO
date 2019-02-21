@@ -11,7 +11,7 @@ gameLoop(Lista_caracteristicas,Lista_Respuestas,Indice):-question(Lista_caracter
 question(Lista_caracteristicas,Lista_Respuestas, Indice):-write('Su lenguaje '),
     [Cabeza|Cola]=Lista_caracteristicas,write($Cabeza),write('?'),
     read(Answer),nth0(Indice,Nueva_ListaRespuestas,Answer,Lista_Respuestas),write($Nueva_ListaRespuestas),
-    gameLoop(Cola,Nueva_ListaRespuestas,Indice is Indice + 1).
+    Indice1 is Indice+1, gameLoop(Cola,Nueva_ListaRespuestas,Indice1).
 
 build(X, N, List)  :-
     length(List, N),
