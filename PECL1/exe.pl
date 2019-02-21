@@ -2,21 +2,23 @@
 :-consult('./knoledge_base.pl').
 
 akinator:-nl,write('Akinator!!!'), nl,nl,caracteristicas(Lista_caracteristicas),
-    %length(Lista_caracteristicas, Longitud_car), %build(n,Longitud_car,Lista_Respuestas),
-    gameLoop(Lista_caracteristicas,[],0),
+    length(Lista_caracteristicas, Longitud_car), build(n,Longitud_car,Lista_Respuestas),
+    gameLoop(Lista_caracteristicas,Lista_Respuestas,0),
     nl,write('Game Over!!!'),nl,!.
 
 gameLoop(Lista_caracteristicas,Lista_Respuestas,Indice):-question(Lista_caracteristicas,Lista_Respuestas,Indice),nl.
 
-question(Lista_caracteristicas,Lista_Respuestas, Indice):-write('Su lenguaje '),
+question(Lista_caracteristicas,Lista_Respuestas,Indice):-write('Su lenguaje '),
     [Cabeza|Cola]=Lista_caracteristicas,write($Cabeza),write('?'),
-    read(Answer),nth0(Indice,Nueva_ListaRespuestas,Answer,Lista_Respuestas),write($Nueva_ListaRespuestas),
-    Indice1 is Indice+1, gameLoop(Cola,Nueva_ListaRespuestas,Indice1).
-    
-replace(E,S,[],[]).
-replace(E,S,[E|T1],[S|T2]):-replace(E,S,T1,T2).
-replace(E,S,[H|T1],[H|T2]):-E\=H, replace(E,S,T1,T2).
+    read(Answer),reemplazar(Lista_Respuestas,Indice,Answer,NuevaListaRespuestas),
+    write($NuevaListaRespuestas),Indice1 is Indice+1, gameLoop(Cola,NuevaListaRespuestas,Indice1).
 
+%Reemplazar valor de una lista en una cierta posición
+reemplazar([_|T], 0, X, [X|T]).
+reemplazar([H|T], I, X, [H|R]):- I > -1, NI is I-1, reemplazar(T, NI, X, R), !.
+reemplazar(L, _, _, L).
+    
+%Construir lista de longitud N con valor X en sus posiciones
 build(X, N, List)  :-
     length(List, N),
     maplist(=(X), List).
