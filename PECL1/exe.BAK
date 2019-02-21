@@ -7,7 +7,7 @@ akinator:-nl,write('Akinator!!!'), nl,nl,caracteristicas(ListaPreguntas),
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
     nl,write('Game Over!!!'),nl,!.
 
-gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice):-question(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice),nl.
+gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice):-question(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice).
 
 question([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-write('Su lenguaje '),
     write(PrimeraPregunta),write('?'),
@@ -18,8 +18,11 @@ question([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
     Indice1 is Indice+1,
     validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
     write(NuevaListaLenguajes),nl,
-    (length(NuevaListaLenguajes)==1 -> write("Su lenguaje es "),[Solucion|_]=NuevaListaLenguajes,write(Solucion);
-    gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1))).
+    length(NuevaListaLenguajes,N),(N=:=1 -> write('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,write(Solucion),!;
+    (N=:=0 -> write('No se ha podido encontrar su lenguaje'),!;
+    gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
+    
+question(_,_,_,_):-write('No quedan preguntas').
 
 
 %Mostrar elementos de dos listas a la vez
