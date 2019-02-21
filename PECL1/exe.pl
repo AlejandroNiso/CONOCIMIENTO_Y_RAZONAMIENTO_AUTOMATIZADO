@@ -18,7 +18,8 @@ question([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
     Indice1 is Indice+1,
     validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
     write(NuevaListaLenguajes),nl,
-    gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)).
+    (length(NuevaListaLenguajes)==1 -> write("Su lenguaje es "),[Solucion|_]=NuevaListaLenguajes,write(Solucion);
+    gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1))).
 
 
 %Mostrar elementos de dos listas a la vez

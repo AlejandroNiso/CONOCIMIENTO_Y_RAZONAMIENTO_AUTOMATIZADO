@@ -18,7 +18,8 @@ question([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
     Indice1 is Indice+1,
     validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
     write(NuevaListaLenguajes),nl,
-    gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)).
+    (length(NuevaListaLenguajes)==1 -> write("Su lenguaje es "),[Solucion|_]=NuevaListaLenguajes,write(Solucion);
+    gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1))).
 
 
 %Mostrar elementos de dos listas a la vez
@@ -69,5 +70,3 @@ obtenerPregunta(I, X):-caracteristicas(L), nth1(I, L, X).
 %Funcion para generar vector con tantos 0 como caract hay
 
 %Dado un indice y una lista, pone dicho elemento a 1
-
-funcion(_,X,X).
