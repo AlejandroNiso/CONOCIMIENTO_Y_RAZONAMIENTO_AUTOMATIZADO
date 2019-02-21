@@ -2,12 +2,22 @@
 :-consult('./knoledge_base.pl').
 
 akinator:-nl,write('Akinator!!!'), nl,nl,caracteristicas(Lista_caracteristicas),
-    gameLoop(Lista_caracteristicas),
+    %length(Lista_caracteristicas, Longitud_car), %build(n,Longitud_car,Lista_Respuestas),
+    gameLoop(Lista_caracteristicas,[],0),
     nl,write('Game Over!!!'),nl,!.
 
-gameLoop(Lista_caracteristicas):-question(Lista_caracteristicas),nl.
+gameLoop(Lista_caracteristicas,Lista_Respuestas,Indice):-question(Lista_caracteristicas,Lista_Respuestas,Indice),nl.
 
-question(Lista_caracteristicas):-write('Su lenguaje '),[Cabeza|Cola]=Lista_caracteristicas,write($Cabeza),write('?'),read(Answer),write(Answer),gameLoop(Cola).
+question(Lista_caracteristicas,Lista_Respuestas, Indice):-write('Su lenguaje '),
+    [Cabeza|Cola]=Lista_caracteristicas,write($Cabeza),write('?'),
+    read(Answer),nth0(Indice,Nueva_ListaRespuestas,Answer,Lista_Respuestas),write($Nueva_ListaRespuestas),
+    gameLoop(Cola,Nueva_ListaRespuestas,Indice is Indice + 1).
+
+build(X, N, List)  :-
+    length(List, N),
+    maplist(=(X), List).
+    
+
 %validate(Lista_caracteristicas,Answer):-write(Answer),gameLoop(Lista_caracteristicas).
 
 %Función que devuelve una lista con todos los lenguajes
