@@ -2,10 +2,19 @@
 :-consult('./knoledge_base.pl').
 
 %Inicio del programa
-akinator:-nl,write('Akinator!!!'), nl,nl,
+akinator:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
-    build(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
+    crearListaRespuestas(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
+    %tcp_socket(Socket),
+    %tcp_connect(Socket, localhost:5008),
+    %tcp_open_socket(Socket, InStream, OutStream),
+    %set_input(InStream),
+    %set_output(OutStream),
+    nl,write('Akinator!!!'), nl,nl,
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
+    %close(InStream),
+    %close(OutStream),
+    %tcp_close_socket(Socket),
     nl,write('Game Over!!!'),nl,!.
 
 %Bucle del juego
@@ -37,7 +46,7 @@ validar(ListaRespuestas,[Lenguaje1|RestoLenguajes],FinalAnterior,Final):-
 validar(_,_,FinalAnterior,FinalAnterior).
 
 validarAux([Respuesta1|RestoRespuestas],[Caracteristica1|RestoCaracteristicas],Lenguaje1,FinalAnterior,Final):-
-    (Respuesta1==n ->
+    ((Respuesta1==n;Caracteristica1==n)->
                       validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
                       (Respuesta1==Caracteristica1 ->
                                    validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
@@ -47,17 +56,17 @@ validarAux(_,_,Lenguaje1,FinalAnterior,[Lenguaje1|FinalAnterior]).
 validarAux(_,_,FinalAnterior,FinalAnterior).
 
 %Reemplazar valor de una lista en una cierta posición
-reemplazar([_|Cola], 0, _, [_|Cola]).
-reemplazar([_|Cola1], Indice, Valor, [_|Cola2]):-
+reemplazar([_|Cola], 0, Valor, [Valor|Cola]).
+reemplazar([Cabeza|Cola1], Indice, Valor, [Cabeza|Cola2]):-
     Indice > -1,
     NuevoIndice is Indice-1,
     reemplazar(Cola1, NuevoIndice, Valor, Cola2), !.
 reemplazar(Lista, _, _, Lista).
 
 %Construir lista de longitud N con valor X en sus posiciones
-build(Valor, Longitud, List)  :-
-    length(List, Longitud),
-    maplist(=(Valor), List).
+crearListaRespuestas(Valor, Longitud, ListaRespuestas)  :-
+    length(ListaRespuestas, Longitud),
+    maplist(=(Valor), ListaRespuestas).
 
 %Función que devuelve una lista con nombres de los lenguajes
 lenguajes(Lenguajes):- lenguajes_aux([], Lenguajes).
