@@ -119,3 +119,5 @@ send(Message) :-
         udp_socket(S),
         udp_send(S, Message, localhost:5008, []),
         tcp_close_socket(S).
+        
+:-akinator.
