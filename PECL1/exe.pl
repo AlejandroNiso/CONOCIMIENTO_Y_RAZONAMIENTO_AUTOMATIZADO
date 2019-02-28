@@ -20,10 +20,11 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                  Indice1 is Indice+1,
                  validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
                  write(NuevaListaLenguajes),nl,
-                 length(NuevaListaLenguajes,N),
-                 (N=:=1 ->
-                          write('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,write(Solucion),!;
-                          (N=:=0 ->
+                 length(NuevaListaLenguajes,LongitudLenguajes),
+                 (LongitudLenguajes=:=1 ->
+                          write('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,
+                          write(Solucion),!;
+                          (LongitudLenguajes=:=0 ->
                                     write('No se ha podido encontrar su lenguaje'),nl,
                                     write('¿Quiere introducir un lenguaje nuevo?'),
                                     read(IntroducirL),
@@ -31,21 +32,23 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                                                       write('Escriba el nombre del lenguaje'),
                                                       read(NombreNuevo),
                                                       caracteristicas(ListaPreguntas),
-                                                      completarRespuestas(ListaPreguntas,NuevaListaRespuestas,ListaGuardar),
-                                                      meterLenguaje(NombreNuevo, ListaGuardar),!;!);
+                                                      completarRespuestas(ListaPreguntas,NuevaListaRespuestas,[],ListaGuardar),
+                                                      write('Se va a guardar su lenguaje'),
+                                                      meterLenguaje(NombreNuevo, ListaGuardar),!;write('Es bueno colaborar!!!'),!);
                           gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
 
 gameLoop(_,_,_,_):-write('No quedan preguntas').
 
 %Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
-completarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaGuardar):-
+completarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaGuardar,ListaRetorno):-
     (PrimeraRespuesta==n->
                            write(PrimeraPregunta),
                            read(Respuesta),
-                           completarRespuestas(RestoPreguntas,RestoRespuestas,[Respuesta|ListaGuardar]);
-                           completarRespuestas(RestoPreguntas,RestoRespuestas,[PrimeraRespuesta|ListaGuardar])).
+                           write(ListaGuardar),nl,
+                           completarRespuestas(RestoPreguntas,RestoRespuestas,[Respuesta|ListaGuardar],ListaRetorno);
+                           completarRespuestas(RestoPreguntas,RestoRespuestas,[PrimeraRespuesta|ListaGuardar],ListaRetorno)).
 
-completarRespuestas(_,_).
+completarRespuestas(_,_,ListaGuardar,ListaGuardar).
 
 %Comparar caracteristicas y quitar lenguaje de la lista general
 validar(ListaRespuestas,[Lenguaje1|RestoLenguajes],FinalAnterior,Final):-
@@ -90,18 +93,18 @@ lenguajes_aux(X,X).
 obtenerPregunta(Indice, Pregunta):-
     caracteristicas(Lista),
     nth1(Indice, Lista, Pregunta).
-    
+
 %Funcion para insertar lenguaje en la base de conocimiento
 meterLenguaje(NombreLenguaje, Caracteristicas):-
     write('Guaradando'),
     write(NombreLenguaje),
     write(Caracteristicas),
     assertz(lenguaje(NombreLenguaje,Caracteristicas)),
-    tell('knoledge_base.pl'),
+    tell('./knoledge_base.pl'),
     listing(lenguaje),
     told,
     write('Guardado').
-    
+
 %Recibir datos del socket UDP
 receive(Data) :-
         udp_socket(S),
