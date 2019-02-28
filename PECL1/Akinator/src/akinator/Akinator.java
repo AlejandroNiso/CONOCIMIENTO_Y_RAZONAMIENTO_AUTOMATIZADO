@@ -11,50 +11,11 @@ import java.io.OutputStream;
 public class Akinator {
 
     public static void main(String[] args) {
-        ejecutarSwipl();
+        java.awt.EventQueue.invokeLater(() -> {
+            new Interfaz().setVisible(true);
+        });
     }
-
-    private static void ejecutarSwipl() {
-        String aki = "akinator.\n";
-        byte[] ak = aki.getBytes();
-
-        try {
-            System.out.println("Entrando en try");
-            Process p = Runtime.getRuntime().exec("swipl /Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl");
-
-            InputStream is = p.getErrorStream();
-            byte[] buffer = new byte[is.available()];
-            is.read(buffer, 0, is.available());
-            for (byte dato : buffer) {
-                System.out.print((char) dato);
-            }
-
-            System.out.println("Proceso creado");
-            OutputStream os = p.getOutputStream();
-            
-            InputStream is1 = p.getInputStream();
-            System.out.println("Canales creados");
-            
-            os.write(ak);
-            System.out.println("Escribiendo akinator");
-            byte[] buf = new byte[is.available()];
-            is.read(buf, 0, is.available());
-            for (byte dato : buf) {
-                System.out.print((char) dato);
-            }
-            
-            System.out.println("Leyendo");
-            //System.out.println(is1.read());
-            
-            byte[] buf2 = new byte[is1.available()];
-            is.read(buf2, 0, is.available());
-            for (byte dato : buf2) {
-                System.out.print((char) dato);
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error: " + e.toString());
-        }
-    }
+    
+    
 
 }
