@@ -6,46 +6,46 @@
 akinator:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
-    nl,write('Akinator!!!'), nl,nl,
+    nl,send('%'),send('Akinator!!!'), nl,nl,
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
-    nl,write('Game Over!!!'),nl,!.
+    nl,send('%'),send('Game Over!!!'),nl,!.
 
 %Bucle del juego
 gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
-    write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
-    read(Answer),
-    (Answer==e -> write('exit'),! ;
+    send('@'),send('¿Su lenguaje '),send(PrimeraPregunta),send('?'),
+    receive(Answer),
+    (Answer==e -> send('%'), send('exit'),! ;
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
-                 write(NuevaListaRespuestas),nl,
+                 send('$'), send(NuevaListaRespuestas),nl,
                  Indice1 is Indice+1,
                  validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
-                 write(NuevaListaLenguajes),nl,
+                 send('#'),send(NuevaListaLenguajes),nl,
                  length(NuevaListaLenguajes,LongitudLenguajes),
                  (LongitudLenguajes=:=1 ->
-                          write('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,
-                          write(Solucion),!;
+                          send('%'),send('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,
+                          send(Solucion),!;
                           (LongitudLenguajes=:=0 ->
-                                    write('No se ha podido encontrar su lenguaje'),nl,
-                                    write('¿Quiere introducir un lenguaje nuevo?'),
-                                    read(IntroducirL),
+                                    send('%'),send('No se ha podido encontrar su lenguaje'),nl,
+                                    send('@'),send('¿Quiere introducir un lenguaje nuevo?'),
+                                    receive(IntroducirL),
                                     (IntroducirL=:=1 ->
-                                                      write('Escriba el nombre del lenguaje'),
-                                                      read(NombreNuevo),
+                                                      send('@'),send('Escriba el nombre del lenguaje'),
+                                                      receive(NombreNuevo),
                                                       caracteristicas(ListaPreguntas),
-                                                      nl,write('Deberá contestar unas respuestas extra!'),nl,
+                                                      nl,send('%'),send('Deberá contestar unas respuestas extra!'),nl,
                                                       completarRespuestas(ListaPreguntas,NuevaListaRespuestas,[],ListaGuardar),
                                                       meterLenguaje(NombreNuevo, ListaGuardar),!;
-                                                      write('Habría sido bueno colaborar!!!'),!);
+                                                      send('%'),send('Habría sido bueno colaborar!!!'),!);
                           gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
 
-gameLoop(_,_,_,_):-write('No quedan preguntas').
+gameLoop(_,_,_,_):-send('%'),send('No quedan preguntas').
 
 %Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
 completarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaGuardar,ListaRetorno):-
     (PrimeraRespuesta==n->
-                           write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
-                           read(Respuesta),
-                           write(ListaGuardar),nl,
+                           send('@'),send('¿Su lenguaje '),send(PrimeraPregunta),send('?'),
+                           receive(Respuesta),
+                           send('$'),send(ListaGuardar),nl,
                            completarRespuestas(RestoPreguntas,RestoRespuestas,[Respuesta|ListaGuardar],ListaRetorno);
                            completarRespuestas(RestoPreguntas,RestoRespuestas,[PrimeraRespuesta|ListaGuardar],ListaRetorno)).
 
@@ -97,15 +97,15 @@ obtenerPregunta(Indice, Pregunta):-
 
 %Funcion para insertar lenguaje en la base de conocimiento
 meterLenguaje(NombreLenguaje, Caracteristicas):-
-    nl,write('Guaradando el lenguaje '),
-    write(NombreLenguaje),
-    write(' con las respuestas:'),nl,
-    write(Caracteristicas),nl,
+    nl,send('%'),send('Guaradando el lenguaje '),
+    send(NombreLenguaje),
+    send(' con las respuestas:'),nl,
+    send(Caracteristicas),nl,
     assertz(lenguaje(NombreLenguaje,Caracteristicas)),
     tell('./knoledge_base.pl'),
     listing(lenguaje),
     told,
-    write('Guardado!!!'),nl.
+    send('Guardado!!!'),nl.
 
 %Recibir datos del socket UDP
 receive(Data) :-
@@ -119,5 +119,5 @@ send(Message) :-
         udp_socket(S),
         udp_send(S, Message, localhost:5008, []),
         tcp_close_socket(S).
-        
+
 :-akinator.

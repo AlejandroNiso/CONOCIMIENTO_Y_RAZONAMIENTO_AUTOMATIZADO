@@ -32,7 +32,7 @@ public class UDP extends Thread{
         boolean continuar = true;
         Process p;
         try {
-            p = Runtime.getRuntime().exec("swipl ./../../../exe.pl");
+            p = Runtime.getRuntime().exec("swipl ./../../../pruebasocket.pl");
             p.waitFor();
         } catch (IOException ex) {
             Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
