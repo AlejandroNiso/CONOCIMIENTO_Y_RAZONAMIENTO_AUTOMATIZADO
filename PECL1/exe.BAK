@@ -1,78 +1,116 @@
 %consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
 :-consult('./knoledge_base.pl').
+:-consult('./preguntas.pl').
 
 %Inicio del programa
-akinator:-nl,write('Akinator!!!'), nl,nl,
+akinator:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
-    build(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
+    crearListaRespuestas(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
+    nl,write('Akinator!!!'), nl,nl,
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
     nl,write('Game Over!!!'),nl,!.
 
 %Bucle del juego
-gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice):
-    -question(ListaPreguntas,ListaRespuestas,ListaLenguajes,Indice).
-
-question([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-write('Su lenguaje '),
-    write(PrimeraPregunta),write('?'),
+gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
+    write('Su lenguaje '),write(PrimeraPregunta),write('?'),
     read(Answer),
-    (Answer==e -> ! ;
-    reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
-    write(NuevaListaRespuestas),nl,
-    Indice1 is Indice+1,
-    validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
-    write(NuevaListaLenguajes),nl,
-    length(NuevaListaLenguajes,N),(N=:=1 -> write('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,write(Solucion),!;
-    (N=:=0 -> write('No se ha podido encontrar su lenguaje'),!;
-    gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
-    
-question(_,_,_,_):-write('No quedan preguntas').
+    (Answer==e -> write('exit'),! ;
+                 reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
+                 write(NuevaListaRespuestas),nl,
+                 Indice1 is Indice+1,
+                 validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
+                 write(NuevaListaLenguajes),nl,
+                 length(NuevaListaLenguajes,N),
+                 (N=:=1 ->
+                          write('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,write(Solucion),!;
+                          (N=:=0 ->
+                                    write('No se ha podido encontrar su lenguaje'),nl,
+                                    write('¿Quiere introducir un lenguaje nuevo?'),
+                                    read(IntroducirL),
+                                    (IntroducirL=:=1 ->
+                                                      write('Escriba el nombre del lenguaje'),
+                                                      read(NombreNuevo),
+                                                      caracteristicas(ListaPreguntas),
+                                                      completarRespuestas(ListaPreguntas,NuevaListaRespuestas,ListaGuardar),
+                                                      meterLenguaje(NombreNuevo, ListaGuardar),!;!);
+                                    gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
 
+gameLoop(_,_,_,_):-write('No quedan preguntas').
 
-%Mostrar elementos de dos listas a la vez
-rlist(Lista1,Lista2):-[C1|Cola1]=Lista1,[C2|Cola2]=Lista2, write(C1), write(C2),rlist(Cola1,Cola2).
+%Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
+completarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaGuardar):-
+    (PrimeraRespuesta==n->
+                           write(PrimeraPregunta),
+                           read(Respuesta),
+                           completarRespuestas(RestoPreguntas,RestoRespuestas,[Respuesta|ListaGuardar]);
+                           completarRespuestas(RestoPreguntas,RestoRespuestas,[PrimeraRespuesta|ListaGuardar])).
+
+completarRespuestas(_,_).
 
 %Comparar caracteristicas y quitar lenguaje de la lista general
 validar(ListaRespuestas,[Lenguaje1|RestoLenguajes],FinalAnterior,Final):-
     lenguaje(Lenguaje1,ListaCaract),
     validarAux(ListaRespuestas,ListaCaract,Lenguaje1,FinalAnterior,Resultado),
     validar(ListaRespuestas,RestoLenguajes,Resultado,Final).
-    
+
 validar(_,_,FinalAnterior,FinalAnterior).
 
 validarAux([Respuesta1|RestoRespuestas],[Caracteristica1|RestoCaracteristicas],Lenguaje1,FinalAnterior,Final):-
-    (Respuesta1==n ->validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
-    (Respuesta1==Caracteristica1 -> validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);validarAux([],[],FinalAnterior,Final))).
-    %write(C1), write(C2),validarAux(Cola1,Cola2,).
+    ((Respuesta1==n;Caracteristica1==n)->
+                      validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
+                      (Respuesta1==Caracteristica1 ->
+                                   validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
+                                   validarAux([],[],FinalAnterior,Final))).
 
 validarAux(_,_,Lenguaje1,FinalAnterior,[Lenguaje1|FinalAnterior]).
 validarAux(_,_,FinalAnterior,FinalAnterior).
 
-
 %Reemplazar valor de una lista en una cierta posición
-reemplazar([_|T], 0, X, [X|T]).
-reemplazar([H|T], I, X, [H|R]):- I > -1, NI is I-1, reemplazar(T, NI, X, R), !.
-reemplazar(L, _, _, L).
-    
+reemplazar([_|Cola], 0, Valor, [Valor|Cola]).
+reemplazar([Cabeza|Cola1], Indice, Valor, [Cabeza|Cola2]):-
+    Indice > -1,
+    NuevoIndice is Indice-1,
+    reemplazar(Cola1, NuevoIndice, Valor, Cola2), !.
+reemplazar(Lista, _, _, Lista).
+
 %Construir lista de longitud N con valor X en sus posiciones
-build(X, N, List)  :-
-    length(List, N),
-    maplist(=(X), List).
+crearListaRespuestas(Valor, Longitud, ListaRespuestas)  :-
+    length(ListaRespuestas, Longitud),
+    maplist(=(Valor), ListaRespuestas).
 
 %Función que devuelve una lista con nombres de los lenguajes
-lenguajes(Y):- lenguajes_aux([], Y).
-lenguajes_aux(Z,Y):- lenguaje(X1,_), not(member(X1,Z)), lenguajes_aux([X1|Z], Y), !.
+lenguajes(Lenguajes):- lenguajes_aux([], Lenguajes).
+lenguajes_aux(Lenguajes,Resultado):-
+    lenguaje(NuevoLenguaje,_),
+    not(member(NuevoLenguaje,Lenguajes)),
+    lenguajes_aux([NuevoLenguaje|Lenguajes], Resultado), !.
 lenguajes_aux(X,X).
 
-%Función que dada una caracteristica y su satisfación, devuelve una lista de los
-%lenguajes que la cumplen
-%lenguajesCar (X,I,Y):-lenguajesCar_aux(X, I, Y, []).
-%lenguajesCar_aux (X,I,Y,Z):-
-
 %Funcione que obtiene una pregunta dado un indice
-obtenerPregunta(I, X):-caracteristicas(L), nth1(I, L, X).
+obtenerPregunta(Indice, Pregunta):-
+    caracteristicas(Lista),
+    nth1(Indice, Lista, Pregunta).
+    
+%Funcion para insertar lenguaje en la base de conocimiento
+meterLenguaje(NombreLenguaje, Caracteristicas):-
+    write('Guaradando'),
+    write(NombreLenguaje),
+    write(Caracteristicas),
+    assertz(lenguaje(NombreLenguaje,Caracteristicas)),
+    tell('knoledge_base.pl'),
+    listing(lenguaje),
+    told,
+    write('Guardado').
+    
+%Recibir datos del socket UDP
+receive(Data) :-
+        udp_socket(S),
+        tcp_bind(S, 5009),
+        udp_receive(S, Data, _, [as(atom)]),
+        tcp_close_socket(S).
 
-%Funcion para contar caracteristicas
-
-%Funcion para generar vector con tantos 0 como caract hay
-
-%Dado un indice y una lista, pone dicho elemento a 1
+%Enviar datos al socket UDP
+send(Message) :-
+        udp_socket(S),
+        udp_send(S, Message, localhost:5008, []),
+        tcp_close_socket(S).

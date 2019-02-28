@@ -1,5 +1,6 @@
 %consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
 :-consult('./knoledge_base.pl').
+:-consult('./preguntas.pl').
 
 %Inicio del programa
 akinator:-
@@ -23,11 +24,28 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                  (N=:=1 ->
                           write('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,write(Solucion),!;
                           (N=:=0 ->
-                                    write('No se ha podido encontrar su lenguaje'),!;
-                                    gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
+                                    write('No se ha podido encontrar su lenguaje'),nl,
+                                    write('¿Quiere introducir un lenguaje nuevo?'),
+                                    read(IntroducirL),
+                                    (IntroducirL=:=1 ->
+                                                      write('Escriba el nombre del lenguaje'),
+                                                      read(NombreNuevo),
+                                                      caracteristicas(ListaPreguntas),
+                                                      completarRespuestas(ListaPreguntas,NuevaListaRespuestas,ListaGuardar),
+                                                      meterLenguaje(NombreNuevo, ListaGuardar),!;!);
+                          gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
 
 gameLoop(_,_,_,_):-write('No quedan preguntas').
 
+%Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
+completarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaGuardar):-
+    (PrimeraRespuesta==n->
+                           write(PrimeraPregunta),
+                           read(Respuesta),
+                           completarRespuestas(RestoPreguntas,RestoRespuestas,[Respuesta|ListaGuardar]);
+                           completarRespuestas(RestoPreguntas,RestoRespuestas,[PrimeraRespuesta|ListaGuardar])).
+
+completarRespuestas(_,_).
 
 %Comparar caracteristicas y quitar lenguaje de la lista general
 validar(ListaRespuestas,[Lenguaje1|RestoLenguajes],FinalAnterior,Final):-
@@ -72,3 +90,27 @@ lenguajes_aux(X,X).
 obtenerPregunta(Indice, Pregunta):-
     caracteristicas(Lista),
     nth1(Indice, Lista, Pregunta).
+    
+%Funcion para insertar lenguaje en la base de conocimiento
+meterLenguaje(NombreLenguaje, Caracteristicas):-
+    write('Guaradando'),
+    write(NombreLenguaje),
+    write(Caracteristicas),
+    assertz(lenguaje(NombreLenguaje,Caracteristicas)),
+    tell('knoledge_base.pl'),
+    listing(lenguaje),
+    told,
+    write('Guardado').
+    
+%Recibir datos del socket UDP
+receive(Data) :-
+        udp_socket(S),
+        tcp_bind(S, 5009),
+        udp_receive(S, Data, _, [as(atom)]),
+        tcp_close_socket(S).
+
+%Enviar datos al socket UDP
+send(Message) :-
+        udp_socket(S),
+        udp_send(S, Message, localhost:5008, []),
+        tcp_close_socket(S).
