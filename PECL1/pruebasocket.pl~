@@ -6,7 +6,7 @@
 akinator:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
-    write('Init'),nl,
+    write('Init'),
     send('%'),send('Akinator!!!'),
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
     send('%'),send('Game Over!!!'),!.
@@ -109,24 +109,12 @@ receive(Data) :-
         udp_socket(S),
         tcp_bind(S, 5009),
         udp_receive(S, Data, _, [as(atom)]),
-	write("Recivel: "),
-	write(Data),nl,
+	write(Data),
         tcp_close_socket(S).
 
 %Enviar datos al socket UDP
 send(Message) :-
-        udp_socket(S),
-	write("Sent: "),
-	write(Message),nl,
+	write(Message),
         udp_send(S, Message, localhost:5008, []),
         tcp_close_socket(S).
-
-
-
-
-
-
-
-
-
 

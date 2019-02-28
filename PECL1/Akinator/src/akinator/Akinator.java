@@ -2,6 +2,7 @@ package akinator;
 
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.sql.SQLOutput;
 
 /**
  *
@@ -10,22 +11,18 @@ import java.net.SocketException;
 public class Akinator {
 
     public static void main(String[] args) throws SocketException {
-        DatagramSocket escucharSocket = null;
-        DatagramSocket enviarSocket = null;
+        DatagramSocket socket = null;
         Interfaz interfaz;
-
         try {
-            escucharSocket = new DatagramSocket(5008);
-            enviarSocket = new DatagramSocket(5009);
+            socket = new DatagramSocket(5008);
         } catch (SocketException e) {
-
+            System.out.println(e.toString());
         }
-        interfaz = new Interfaz(enviarSocket);
+        interfaz = new Interfaz(socket);
         java.awt.EventQueue.invokeLater(() -> {
             interfaz.setVisible(true);
         });
-
-        UDP udp = new UDP(escucharSocket, interfaz);
+        UDP udp = new UDP(socket, interfaz);
         udp.start();
     }
 }

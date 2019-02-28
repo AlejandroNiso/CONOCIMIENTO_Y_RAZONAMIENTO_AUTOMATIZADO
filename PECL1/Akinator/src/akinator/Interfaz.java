@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class Interfaz extends javax.swing.JFrame {
 
-    int port = 5008;
+    int port = 5009;
     DatagramSocket socket;
     InetAddress direccion = InetAddress.getLoopbackAddress();
 
@@ -27,7 +27,6 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     public void enviar(String datos) {
-
         byte[] sendData = datos.getBytes();
         DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, direccion, port);
 

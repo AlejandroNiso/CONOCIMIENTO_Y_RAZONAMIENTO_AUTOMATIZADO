@@ -23,15 +23,11 @@ public class UDP extends Thread {
 
     private Interfaz interfaz;
     private DatagramSocket socket;
-    private ArrayList<String> datosRecibidos = new ArrayList<>();
+    private String datosRecibidos = "";
 
     public UDP(DatagramSocket socket, Interfaz interfaz) {
         this.interfaz = interfaz;
         this.socket = socket;
-        datosRecibidos.add("");
-        datosRecibidos.add("");
-        datosRecibidos.add("");
-        datosRecibidos.add("");
     }
 
     @Override
@@ -40,15 +36,15 @@ public class UDP extends Thread {
         Process p;
         try {
             String ruta = "../../../pruebasocket.pl";
-            p = Runtime.getRuntime().exec("swipl --win_app" + ruta);
-            System.out.println("1");
-            //p.waitFor();
-            System.out.println("2");
+            String nombreSO = System.getProperty("os.name");
+            if (nombreSO.startsWith("Mac OS")) {
+                p = Runtime.getRuntime().exec("swipl " + ruta);
+            }else {
+                p = Runtime.getRuntime().exec("swipl --win_app" + ruta);
+            }
             InputStream is = p.getErrorStream();
-            System.out.println("3");
             byte[] buffer = new byte[is.available()];
             is.read(buffer, 0, is.available());
-            System.out.println("4");
             for (byte dato : buffer) {
                 System.out.print((char) dato);
             }
@@ -56,13 +52,12 @@ public class UDP extends Thread {
             System.out.println(ex.toString());
         }
 
-        System.out.println("5");
         while (continuar) {
             int index = 0;
-
+            boolean set = false;
+            System.out.println("Sarted");
             try {
                 byte[] receiveData = new byte[1024];
-                System.out.println("Waiting");
                 while (true) {
                     for (int i = 0; i < receiveData.length; i++) {
                         receiveData[i] = 0;
@@ -71,48 +66,45 @@ public class UDP extends Thread {
                     socket.receive(receivePacket);
                     String sentence = new String(receivePacket.getData());
                     System.out.println("Received: " + sentence);
-                    InetAddress IPAddress = receivePacket.getAddress();
                     switch (sentence.charAt(0)) {
-                        case '$':
-                            //Nueva lista respuestas
+                        case '$'://Nueva lista respuestas
                             index = 0;
                             colocarString(index, "");
-                            datosRecibidos.set(index, "");
+                            datosRecibidos="";
+                            set = false;
                             break;
-                        case '#':
-                            //Lista de lenguajes
+                        case '#'://Lista de lenguajes
                             index = 1;
                             colocarString(index, "");
-                            datosRecibidos.set(index, "");
+                            datosRecibidos="";
+                            set = false;
                             break;
-                        case '%':
-                            //Varios
+                        case '%'://Varios
                             index = 2;
                             colocarString(index, "");
-                            datosRecibidos.set(index, "");
+                            datosRecibidos="";
+                            set = false;
                             break;
-                        case '@':
-                            //Preguntas
+                        case '@'://Preguntas
                             index = 3;
                             colocarString(index, "");
-                            datosRecibidos.set(index, "");
+                            datosRecibidos="";
+                            set = false;
                             break;
                         default:
-                            index = 4;
+                            set = true;
                     }
-                    if (index != 4) {
-                        String buffer = datosRecibidos.get(index);
-                        for (int i = 1; i < sentence.length(); i++) {
-                            buffer += sentence.charAt(i);
+                    if (set) {
+                        for (int i = 0; i < sentence.length(); i++) {
+                            if (sentence.charAt(i)!=0) {
+                                datosRecibidos += sentence.charAt(i);
+                            }
                         }
-                        datosRecibidos.set(index, buffer);
+                        colocarString(index, datosRecibidos);
                     }
                 }
-
-            } catch (SocketException ex) {
-                Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.toString());
             }
         }
 
@@ -120,20 +112,16 @@ public class UDP extends Thread {
 
     private void colocarString(int index, String s) {
         switch (index) {
-            case 0:
-                //Nueva lista respuestas
+            case 0://Nueva lista respuestas
                 interfaz.escribirRespuestas(s);
                 break;
-            case 1:
-                //Lista de lenguajes
+            case 1://Lista de lenguajes
                 interfaz.escribirLenguajes(s);
                 break;
-            case 2:
-                //Varios
+            case 2://Varios
                 interfaz.escribirVarios(s);
                 break;
-            case 3:
-                //Preguntas
+            case 3://Preguntas
                 interfaz.escribirPregunta(s);
                 break;
         }
