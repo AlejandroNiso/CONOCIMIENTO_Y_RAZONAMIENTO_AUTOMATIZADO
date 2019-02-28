@@ -6,6 +6,7 @@
 akinator:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
+    write('Init'),
     nl,send('%'),send('Akinator!!!'), nl,nl,
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
     nl,send('%'),send('Game Over!!!'),nl,!.

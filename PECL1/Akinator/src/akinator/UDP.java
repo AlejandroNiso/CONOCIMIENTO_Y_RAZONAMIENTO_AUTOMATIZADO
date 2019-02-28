@@ -6,10 +6,10 @@
 package akinator;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,92 +19,123 @@ import java.util.logging.Logger;
  *
  * @author Álvaro Zamorano
  */
-public class UDP extends Thread{
-    Interfaz interfaz;
-    DatagramSocket socket;
-    
-    public UDP(DatagramSocket socket, Interfaz interfaz){
+public class UDP extends Thread {
+
+    private Interfaz interfaz;
+    private DatagramSocket socket;
+    private ArrayList<String> datosRecibidos = new ArrayList<>();
+
+    public UDP(DatagramSocket socket, Interfaz interfaz) {
         this.interfaz = interfaz;
         this.socket = socket;
+        datosRecibidos.add("");
+        datosRecibidos.add("");
+        datosRecibidos.add("");
+        datosRecibidos.add("");
     }
-    
-    
-    
+
     @Override
-    public void run(){
+    public void run() {
         boolean continuar = true;
         Process p;
         try {
-            p = Runtime.getRuntime().exec("swipl ./../../../pruebasocket.pl");
-            p.waitFor();
+            String ruta = "../../../pruebasocket.pl";
+            p = Runtime.getRuntime().exec("swipl --win_app" + ruta);
+            System.out.println("1");
+            //p.waitFor();
+            System.out.println("2");
+            InputStream is = p.getErrorStream();
+            System.out.println("3");
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer, 0, is.available());
+            System.out.println("4");
+            for (byte dato : buffer) {
+                System.out.print((char) dato);
+            }
         } catch (IOException ex) {
-            Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.toString());
         }
-        
-        
-        while(continuar){
-            ArrayList<String> datosRecibidos = new ArrayList<>();
-            datosRecibidos.add("");
-            datosRecibidos.add("");
-            datosRecibidos.add("");
-            datosRecibidos.add("");
+
+        System.out.println("5");
+        while (continuar) {
             int index = 0;
-            
-            try{
+
+            try {
                 byte[] receiveData = new byte[1024];
-                while(true){
-                    for(int i = 0;i<receiveData.length;i++){
+                System.out.println("Waiting");
+                while (true) {
+                    for (int i = 0; i < receiveData.length; i++) {
                         receiveData[i] = 0;
                     }
-                    DatagramPacket receivePacket = new DatagramPacket(receiveData,receiveData.length);
+                    DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                     socket.receive(receivePacket);
                     String sentence = new String(receivePacket.getData());
                     System.out.println("Received: " + sentence);
-                    InetAddress IPAddress = receivePacket.getAddress(); 
-                    switch(sentence.charAt(0)){
-                        case'$':
+                    InetAddress IPAddress = receivePacket.getAddress();
+                    switch (sentence.charAt(0)) {
+                        case '$':
                             //Nueva lista respuestas
                             index = 0;
-                            interfaz.escribirRespuestas("");
+                            colocarString(index, "");
                             datosRecibidos.set(index, "");
                             break;
-                        case'#':
+                        case '#':
                             //Lista de lenguajes
                             index = 1;
-                            interfaz.escribirLenguajes("");
+                            colocarString(index, "");
                             datosRecibidos.set(index, "");
                             break;
-                        case'%':
+                        case '%':
                             //Varios
                             index = 2;
-                            interfaz.escribirVarios("");
+                            colocarString(index, "");
                             datosRecibidos.set(index, "");
                             break;
-                        case'@':
+                        case '@':
                             //Preguntas
                             index = 3;
-                            interfaz.escribirPregunta("");
+                            colocarString(index, "");
+                            datosRecibidos.set(index, "");
                             break;
                         default:
-                            index = 4;                         
+                            index = 4;
                     }
-                    if(index != 4){
+                    if (index != 4) {
                         String buffer = datosRecibidos.get(index);
-                        for(int i = 0 ;i<sentence.length();i++){
+                        for (int i = 1; i < sentence.length(); i++) {
                             buffer += sentence.charAt(i);
                         }
                         datosRecibidos.set(index, buffer);
                     }
                 }
-            
+
             } catch (SocketException ex) {
-            Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-            Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UDP.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
+    }
+
+    private void colocarString(int index, String s) {
+        switch (index) {
+            case 0:
+                //Nueva lista respuestas
+                interfaz.escribirRespuestas(s);
+                break;
+            case 1:
+                //Lista de lenguajes
+                interfaz.escribirLenguajes(s);
+                break;
+            case 2:
+                //Varios
+                interfaz.escribirVarios(s);
+                break;
+            case 3:
+                //Preguntas
+                interfaz.escribirPregunta(s);
+                break;
+        }
     }
 }

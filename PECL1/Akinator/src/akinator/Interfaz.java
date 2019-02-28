@@ -1,30 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package akinator;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import static java.net.InetAddress.getLoopbackAddress;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.Port;
 
 /**
  *
- * @author Álvaro Zamorano
+ * @author 
  */
+
 public class Interfaz extends javax.swing.JFrame {
+
     int port = 5008;
     DatagramSocket socket;
     InetAddress direccion = InetAddress.getLoopbackAddress();
-    
-    
-    
+
     /**
      * Creates new form Interfaz
      */
@@ -33,33 +26,34 @@ public class Interfaz extends javax.swing.JFrame {
         this.socket = socket;
     }
 
-    public void enviar(String datos){
-        
+    public void enviar(String datos) {
+
         byte[] sendData = datos.getBytes();
-        DatagramPacket sendPacket = new DatagramPacket(sendData,sendData.length,direccion,port);
-        
+        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, direccion, port);
+
         try {
             socket.send(sendPacket);
         } catch (IOException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void escribirPregunta(String pregunta){
+
+    public void escribirPregunta(String pregunta) {
         CampoPreguntas.setText(pregunta);
     }
-    
-    public void escribirRespuestas(String respuesta){
+
+    public void escribirRespuestas(String respuesta) {
         CampoRespuestas.setText(respuesta);
     }
-    
-    public void escribirLenguajes(String lenguajes){
+
+    public void escribirLenguajes(String lenguajes) {
         CampoListaLenguajes.setText(lenguajes);
     }
-    
-    public void escribirVarios(String varios){
+
+    public void escribirVarios(String varios) {
         CampoVarios.setText(varios);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -323,7 +317,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonJugarActionPerformed
 
     private void BotonResSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResSIActionPerformed
-        enviar("1.\n");         
+        enviar("1.\n");
     }//GEN-LAST:event_BotonResSIActionPerformed
 
     private void BotonResPSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPSIActionPerformed
