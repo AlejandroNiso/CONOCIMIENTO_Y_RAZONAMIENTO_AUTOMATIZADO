@@ -44,6 +44,22 @@ public class Interfaz extends javax.swing.JFrame {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void escribirPregunta(String pregunta){
+        CampoPreguntas.setText(pregunta);
+    }
+    
+    public void escribirRespuestas(String respuesta){
+        CampoRespuestas.setText(respuesta);
+    }
+    
+    public void escribirLenguajes(String lenguajes){
+        CampoListaLenguajes.setText(lenguajes);
+    }
+    
+    public void escribirVarios(String varios){
+        CampoVarios.setText(varios);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,7 +89,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         BotonInsertarLenguaje = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        CampoVarios = new javax.swing.JTextField();
         BotonJugar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,7 +192,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel28.setText("NUEVO LENGUAJE");
 
-        jTextField5.setFont(new java.awt.Font("Nirmala UI", 0, 11)); // NOI18N
+        CampoVarios.setFont(new java.awt.Font("Nirmala UI", 0, 11)); // NOI18N
 
         BotonJugar.setText("JUGAR");
         BotonJugar.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +208,7 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5)
+                    .addComponent(CampoVarios)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +298,7 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonInsertarLenguaje))))
                 .addGap(18, 18, 18)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CampoVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -311,7 +327,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonResSIActionPerformed
 
     private void BotonResPSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPSIActionPerformed
-        enviar("n\n");
+        enviar("n.\n");
     }//GEN-LAST:event_BotonResPSIActionPerformed
 
     private void BotonResNSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNSActionPerformed
@@ -349,6 +365,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField CampoNuevoLenguaje;
     private javax.swing.JTextField CampoPreguntas;
     private javax.swing.JTextField CampoRespuestas;
+    private javax.swing.JTextField CampoVarios;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -357,6 +374,5 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
