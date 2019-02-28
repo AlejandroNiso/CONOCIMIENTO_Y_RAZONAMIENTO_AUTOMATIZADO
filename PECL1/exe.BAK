@@ -64,6 +64,9 @@ validarAux([Respuesta1|RestoRespuestas],[Caracteristica1|RestoCaracteristicas],L
                       validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
                       (Respuesta1==Caracteristica1 ->
                                    validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
+                                   ((Respuesta1==p;Caracteristica1==n;Caracteristica1==1) -> )
+                                   
+                                   
                                    validarAux([],[],FinalAnterior,Final))).
 
 validarAux(_,_,Lenguaje1,FinalAnterior,[Lenguaje1|FinalAnterior]).
