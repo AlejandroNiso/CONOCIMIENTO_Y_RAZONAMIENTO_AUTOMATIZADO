@@ -5,16 +5,8 @@
 akinator:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
-    %tcp_socket(Socket),
-    %tcp_connect(Socket, localhost:5008),
-    %tcp_open_socket(Socket, InStream, OutStream),
-    %set_input(InStream),
-    %set_output(OutStream),
     nl,write('Akinator!!!'), nl,nl,
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
-    %close(InStream),
-    %close(OutStream),
-    %tcp_close_socket(Socket),
     nl,write('Game Over!!!'),nl,!.
 
 %Bucle del juego
