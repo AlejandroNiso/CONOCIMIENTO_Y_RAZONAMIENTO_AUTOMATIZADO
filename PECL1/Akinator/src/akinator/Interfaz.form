@@ -208,26 +208,41 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="SI"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonResSIActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BotonResPSI">
       <Properties>
         <Property name="text" type="java.lang.String" value="PROBABLEMENTE SI"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonResPSIActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BotonResNS">
       <Properties>
         <Property name="text" type="java.lang.String" value="NO SE"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonResNSActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BotonResPNO">
       <Properties>
         <Property name="text" type="java.lang.String" value="PROBABLEMENTE NO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonResPNOActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BotonResNO">
       <Properties>
         <Property name="text" type="java.lang.String" value="NO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonResNOActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel24">
       <Properties>
@@ -259,11 +274,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="SI"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonInsertarSIActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BotonInsertarNO">
       <Properties>
         <Property name="text" type="java.lang.String" value="NO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonInsertarNOActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel27">
       <Properties>
