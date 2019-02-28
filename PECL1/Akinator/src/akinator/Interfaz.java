@@ -5,19 +5,45 @@
  */
 package akinator;
 
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import static java.net.InetAddress.getLoopbackAddress;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.Port;
+
 /**
  *
  * @author Álvaro Zamorano
  */
 public class Interfaz extends javax.swing.JFrame {
-
+    int port = 5008;
+    DatagramSocket socket;
+    InetAddress direccion = InetAddress.getLoopbackAddress();
+    
+    
+    
     /**
      * Creates new form Interfaz
      */
-    public Interfaz() {
+    public Interfaz(DatagramSocket socket) {
         initComponents();
+        this.socket = socket;
     }
 
+    public void enviar(String datos){
+        
+        byte[] sendData = datos.getBytes();
+        DatagramPacket sendPacket = new DatagramPacket(sendData,sendData.length,direccion,port);
+        
+        try {
+            socket.send(sendPacket);
+        } catch (IOException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,14 +102,39 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         BotonResSI.setText("SI");
+        BotonResSI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonResSIActionPerformed(evt);
+            }
+        });
 
         BotonResPSI.setText("PROBABLEMENTE SI");
+        BotonResPSI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonResPSIActionPerformed(evt);
+            }
+        });
 
         BotonResNS.setText("NO SE");
+        BotonResNS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonResNSActionPerformed(evt);
+            }
+        });
 
         BotonResPNO.setText("PROBABLEMENTE NO");
+        BotonResPNO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonResPNOActionPerformed(evt);
+            }
+        });
 
         BotonResNO.setText("NO");
+        BotonResNO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonResNOActionPerformed(evt);
+            }
+        });
 
         jLabel24.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel24.setText("LISTA LENGUAJES PROBABLES");
@@ -99,8 +150,18 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         BotonInsertarSI.setText("SI");
+        BotonInsertarSI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInsertarSIActionPerformed(evt);
+            }
+        });
 
         BotonInsertarNO.setText("NO");
+        BotonInsertarNO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInsertarNOActionPerformed(evt);
+            }
+        });
 
         jLabel27.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel27.setText("NOMBRE");
@@ -237,12 +298,41 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_CampoListaLenguajesActionPerformed
 
     private void BotonInsertarLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarLenguajeActionPerformed
-        // TODO add your handling code here:
+        String nombre = CampoNuevoLenguaje.getText();
+        enviar(nombre + ".\n");
     }//GEN-LAST:event_BotonInsertarLenguajeActionPerformed
 
     private void BotonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonJugarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonJugarActionPerformed
+
+    private void BotonResSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResSIActionPerformed
+        enviar("1.\n");         
+    }//GEN-LAST:event_BotonResSIActionPerformed
+
+    private void BotonResPSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPSIActionPerformed
+        enviar("n\n");
+    }//GEN-LAST:event_BotonResPSIActionPerformed
+
+    private void BotonResNSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNSActionPerformed
+        enviar("n.\n");
+    }//GEN-LAST:event_BotonResNSActionPerformed
+
+    private void BotonResPNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPNOActionPerformed
+        enviar("n.\n");
+    }//GEN-LAST:event_BotonResPNOActionPerformed
+
+    private void BotonResNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNOActionPerformed
+        enviar("0.\n");
+    }//GEN-LAST:event_BotonResNOActionPerformed
+
+    private void BotonInsertarSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarSIActionPerformed
+        enviar("1.\n");
+    }//GEN-LAST:event_BotonInsertarSIActionPerformed
+
+    private void BotonInsertarNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarNOActionPerformed
+        enviar("0.\n");
+    }//GEN-LAST:event_BotonInsertarNOActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
