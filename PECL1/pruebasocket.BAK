@@ -7,7 +7,7 @@ jugar:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(2,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     nl,
-    send('%'),send('Akinator!!!'),
+    send('%'),send('Jugando...'),
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
     send('Game Over!!!'),!.
 
@@ -15,17 +15,17 @@ jugar:-
 gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
     send('@'),send('¿Su lenguaje '),send(PrimeraPregunta),send('?'),
     receive(Respuesta),write(Respuesta),
-    (Respuesta==e -> send('%'), send('exit'),! ;
                  cambiarRespuesta(Respuesta,Answer),
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
-                 send('$'), %send(NuevaListaRespuestas),
                  Indice1 is Indice+1,
                  validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
-                 send('#'),%send(NuevaListaLenguajes),
                  length(NuevaListaLenguajes,LongitudLenguajes),
                  (LongitudLenguajes=:=1 ->
                           send('%'),send('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,
-                          send(Solucion),!;
+                          send(Solucion),
+                          send('@'),send('¿Quiere volver a jugar? (si/no): '),
+                          receive(VolverJugar),
+                          (VolverJugar==si -> jugar;!);
                           (LongitudLenguajes=:=0 ->
                                     send('%'),send('No se ha podido encontrar su lenguaje'),
                                     send('@'),send('¿Quiere introducir un lenguaje nuevo?'),
@@ -37,11 +37,22 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                                                       caracteristicas(ListaPreguntas),
                                                       send('%'),send('Deberá contestar unas respuestas extra!'),
                                                       rellenarRespuestas(ListaPreguntas,NuevaListaRespuestas,NuevaListaRespuestas,0,ListaGuardar),
-                                                      meterLenguaje(NombreNuevo, ListaGuardar),!;
-                                                      send('%'),send('Habría sido bueno colaborar!!!'),!);
-                          gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
+                                                      meterLenguaje(NombreNuevo, ListaGuardar),
 
-gameLoop(_,_,_,_):-send('%'),send('No quedan preguntas').
+                                                      send('@'),send('¿Quiere volver a jugar? (si/no): '),
+                                                      receive(VolverJugar),
+                                                      (VolverJugar==si -> jugar;!);
+
+                                                      send('%'),send('Habría sido bueno colaborar!!!'),
+                                                      send('@'),send('¿Quiere volver a jugar? (si/no): '),
+                                                      receive(VolverJugar),
+                                                      (VolverJugar==si -> jugar;!));
+                       gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1))).
+
+gameLoop(_,_,_,_):-send('%'),send('No quedan preguntas'),
+                  send('@'),send('¿Quiere volver a jugar? (si/no): '),
+                  receive(VolverJugar),
+                  (VolverJugar==si -> jugar;!).
 
 %Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
