@@ -12,9 +12,10 @@ jugar:-
 
 %Bucle del juego
 gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
-    write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
-    read(Answer),
-    (Answer==e -> write('exit'),! ;
+    write('¿Su lenguaje '),write(PrimeraPregunta),write(' ?(si/no/n)'),
+    read(Respuesta),
+    (Respuesta==e -> write('exit'),! ;
+                 cambiarRespuesta(Respuesta,Answer),
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
                  write(NuevaListaRespuestas),nl,
                  Indice1 is Indice+1,
@@ -26,8 +27,9 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                           write(Solucion),!;
                           (LongitudLenguajes=:=0 ->
                                     write('No se ha podido encontrar su lenguaje'),nl,
-                                    write('¿Quiere introducir un lenguaje nuevo?'),
-                                    read(IntroducirL),
+                                    write('¿Quiere introducir un lenguaje nuevo ?(si/no)'),
+                                    read(IntroducirLeng),
+                                    cambiarRespuesta(IntroducirLeng,IntroducirL),
                                     (IntroducirL=:=1 ->
                                                       write('Escriba el nombre del lenguaje'),
                                                       read(NombreNuevo),
@@ -42,8 +44,9 @@ gameLoop(_,_,_,_):-write('No quedan preguntas').
 
 %Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
-    (PrimeraRespuesta==n-> write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
-                           read(Respuesta),
+    (PrimeraRespuesta==n-> write('¿Su lenguaje '),write(PrimeraPregunta),write('?(si/no/n)'),
+                           read(Answer),
+                           cambiarRespuesta(Answer,Respuesta),
                            reemplazar(ListaRespuestas,Indice,Respuesta,ListaGuardar),
                            write(ListaGuardar),nl,
                            Indice2 is Indice +1,
@@ -107,7 +110,7 @@ meterLenguaje(NombreLenguaje, Caracteristicas):-
     listing(lenguaje),
     told,
     write('Guardado!!!'),nl.
-
+    
 %Recibir datos del socket UDP
 receive(Data) :-
         udp_socket(S),
@@ -121,10 +124,10 @@ send(Message) :-
         udp_send(S, Message, localhost:5008, []),
         tcp_close_socket(S).
         
-<<<<<<< HEAD
-%:-jugar.
-%completarRespuestas(ListaPreguntas,NuevaListaRespuestas,[],ListaGuardar),
-=======
-%:-akinator.
 
->>>>>>> 9241e8e882ce1f2207b0eae1ce963cdbf6dda50e
+cambiarRespuesta(Respuesta,RespuestaTrans):-
+    (Respuesta==si -> RespuestaTrans is 1;
+    (Respuesta==no -> RespuestaTrans is 0;
+    RespuestaTrans is Respuesta)).
+    
+

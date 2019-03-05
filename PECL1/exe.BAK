@@ -3,7 +3,7 @@
 :-consult('./preguntas.pl').
 
 %Inicio del programa
-akinator:-
+jugar:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     nl,write('Akinator!!!'), nl,nl,
@@ -12,9 +12,10 @@ akinator:-
 
 %Bucle del juego
 gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
-    write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
-    read(Answer),
-    (Answer==e -> write('exit'),! ;
+    write('¿Su lenguaje '),write(PrimeraPregunta),write(' ?(si/no/n)'),
+    read(Respuesta),
+    (Respuesta==e -> write('exit'),! ;
+                 cambiarRespuesta(Respuesta,Answer),
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
                  write(NuevaListaRespuestas),nl,
                  Indice1 is Indice+1,
@@ -26,8 +27,9 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                           write(Solucion),!;
                           (LongitudLenguajes=:=0 ->
                                     write('No se ha podido encontrar su lenguaje'),nl,
-                                    write('¿Quiere introducir un lenguaje nuevo?'),
-                                    read(IntroducirL),
+                                    write('¿Quiere introducir un lenguaje nuevo ?(si/no)'),
+                                    read(IntroducirLeng),
+                                    cambiarRespuesta(IntroducirLeng,IntroducirL),
                                     (IntroducirL=:=1 ->
                                                       write('Escriba el nombre del lenguaje'),
                                                       read(NombreNuevo),
@@ -40,10 +42,11 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
 
 gameLoop(_,_,_,_):-write('No quedan preguntas').
 
-
+%Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
-    (PrimeraRespuesta==n-> write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
-                           read(Respuesta),
+    (PrimeraRespuesta==n-> write('¿Su lenguaje '),write(PrimeraPregunta),write('?(si/no/n)'),
+                           read(Answer),
+                           cambiarRespuesta(Answer,Respuesta),
                            reemplazar(ListaRespuestas,Indice,Respuesta,ListaGuardar),
                            write(ListaGuardar),nl,
                            Indice2 is Indice +1,
@@ -51,18 +54,6 @@ rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespu
                            Indice2 is Indice +1,
                            rellenarRespuestas(RestoPreguntas,RestoRespuestas,ListaRespuestas,Indice2,ListaRetorno)).
 rellenarRespuestas(_,_,ListaGuardar,_,ListaGuardar).
-
-
-%Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
-completarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaGuardar,ListaRetorno):-
-    (PrimeraRespuesta==n->
-                           write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
-                           read(Respuesta),
-                           write(ListaGuardar),nl,
-                           completarRespuestas(RestoPreguntas,RestoRespuestas,[Respuesta|ListaGuardar],ListaRetorno);
-                           completarRespuestas(RestoPreguntas,RestoRespuestas,[PrimeraRespuesta|ListaGuardar],ListaRetorno)).
-
-%completarRespuestas(_,_,ListaGuardar,ListaGuardar).
 
 %Comparar caracteristicas y quitar lenguaje de la lista general
 validar(ListaRespuestas,[Lenguaje1|RestoLenguajes],FinalAnterior,Final):-
@@ -119,7 +110,7 @@ meterLenguaje(NombreLenguaje, Caracteristicas):-
     listing(lenguaje),
     told,
     write('Guardado!!!'),nl.
-
+    
 %Recibir datos del socket UDP
 receive(Data) :-
         udp_socket(S),
@@ -133,5 +124,10 @@ send(Message) :-
         udp_send(S, Message, localhost:5008, []),
         tcp_close_socket(S).
         
-%:-akinator.
-%completarRespuestas(ListaPreguntas,NuevaListaRespuestas,[],ListaGuardar),
+
+cambiarRespuesta(Respuesta,RespuestaTrans):-
+    (Respuesta==si -> RespuestaTrans is 1;
+    (Respuesta==no -> RespuestaTrans is 0;
+    RespuestaTrans is Respuesta)).
+    
+
