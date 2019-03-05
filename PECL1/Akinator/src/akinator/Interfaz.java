@@ -212,7 +212,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         enviar("e");
-        socket.close();
+        //socket.close();
     }//GEN-LAST:event_formWindowClosing
 
 
