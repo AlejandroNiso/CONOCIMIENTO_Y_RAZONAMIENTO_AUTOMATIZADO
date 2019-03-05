@@ -18,10 +18,8 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
     (Respuesta==e -> send('%'), send('exit'),! ;
                  cambiarRespuesta(Respuesta,Answer),
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
-                 send('$'), %send(NuevaListaRespuestas),
                  Indice1 is Indice+1,
                  validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
-                 send('#'),%send(NuevaListaLenguajes),
                  length(NuevaListaLenguajes,LongitudLenguajes),
                  (LongitudLenguajes=:=1 ->
                           send('%'),send('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,
