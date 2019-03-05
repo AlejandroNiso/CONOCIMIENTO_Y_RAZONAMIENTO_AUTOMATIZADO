@@ -32,7 +32,7 @@ public class Interfaz extends javax.swing.JFrame {
         DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, direccion, port);
 
         try {
-            socket.send(S,sendPacket);
+            socket.send(sendPacket);
         } catch (IOException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,7 +86,7 @@ public class Interfaz extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CampoPreguntas.setEditable(false);
-        CampoPreguntas.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+        CampoPreguntas.setFont(new java.awt.Font("Gill Sans MT", 0, 13)); // NOI18N
         getContentPane().add(CampoPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 650, 30));
 
         jLabel22.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
@@ -192,6 +192,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void BotonResSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResSIActionPerformed
         enviar("si");
+        System.out.println(socket.isClosed());
     }//GEN-LAST:event_BotonResSIActionPerformed
 
     private void BotonResPSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPSIActionPerformed

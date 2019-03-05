@@ -27,7 +27,7 @@ public class UDP extends Thread {
         boolean continuar = true;
         Process p;
         try {
-            String ruta = "../../../pruebasocket.pl";
+            String ruta = "../../../pruebasocket2.pl";
             String nombreSO = System.getProperty("os.name");
             if (nombreSO.startsWith("Mac OS")) {
                 p = Runtime.getRuntime().exec("swipl " + ruta);
@@ -47,7 +47,7 @@ public class UDP extends Thread {
         while (continuar) {
             int index = 0;
             boolean set = false;
-            System.out.println("Sarted");
+            System.out.println("Started");
             try {
                 byte[] receiveData = new byte[1024];
                 while (true) {
@@ -55,7 +55,7 @@ public class UDP extends Thread {
                         receiveData[i] = 0;
                     }
                     DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-                    socket.receive(S,receivePacket);
+                    socket.receive(receivePacket);
                     String sentence = new String(receivePacket.getData());
                     System.out.println("Received: " + sentence);
                     switch (sentence.charAt(0)) {

@@ -140,4 +140,4 @@ cambiarRespuesta(Respuesta,RespuestaTrans):-
     RespuestaTrans is 2)).
 
 %Iniciar programa automaticamente al iniciar el Java
-:-jugarConSocket.
+%:-jugarConSocket.
