@@ -35,7 +35,7 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                                                       send('@'),send('Escriba el nombre del lenguaje'),
                                                       receive(NombreNuevo),
                                                       caracteristicas(ListaPreguntas),
-                                                      send('%'),send('Deberá contestar unas respuestas extra!'),
+                                                      send('%'),send('Debera contestar unas respuestas extra!'),
                                                       rellenarRespuestas(ListaPreguntas,NuevaListaRespuestas,NuevaListaRespuestas,0,ListaGuardar),
                                                       meterLenguaje(NombreNuevo, ListaGuardar),
 
@@ -110,15 +110,13 @@ lenguajes_aux(X,X).
 %Funcion para insertar lenguaje en la base de conocimiento
 meterLenguaje(NombreLenguaje, Caracteristicas):-
     send('%'),
-    send('Guaradando el lenguaje '),
+    send('Guardando el lenguaje... '),
     send(NombreLenguaje),
-    send(' con las respuestas:'),
-    send(Caracteristicas),
     assertz(lenguaje(NombreLenguaje,Caracteristicas)),
     tell('./knoledge_base.pl'),
     listing(lenguaje),
     told,
-    send('Guardado!!!').
+    send('%'),send('Guardado!!!').
 
 %Recibir datos del socket UDP
 receive(Data) :-

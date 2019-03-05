@@ -9,7 +9,7 @@ jugar:-
     nl,
     send('%'),send('Jugando...'),
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
-    send('Game Over!!!'),!.
+    send('%'),send('Game Over!!!'),!.
 
 %Bucle del juego
 gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-

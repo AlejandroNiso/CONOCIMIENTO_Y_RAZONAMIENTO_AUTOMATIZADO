@@ -78,10 +78,15 @@ public class Interfaz extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 0, 255));
         setMinimumSize(new java.awt.Dimension(1045, 595));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CampoPreguntas.setEditable(false);
-        CampoPreguntas.setFont(new java.awt.Font("Nirmala UI", 0, 10)); // NOI18N
+        CampoPreguntas.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
         getContentPane().add(CampoPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 650, 30));
 
         jLabel22.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
@@ -176,7 +181,7 @@ public class Interfaz extends javax.swing.JFrame {
         getContentPane().add(CampoVarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 310, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/akinator/imagen/Akinatorlogo.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, -1, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -204,6 +209,11 @@ public class Interfaz extends javax.swing.JFrame {
     private void BotonResNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNOActionPerformed
         enviar("no");
     }//GEN-LAST:event_BotonResNOActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        enviar("e");
+        socket.close();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
