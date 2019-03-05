@@ -5,14 +5,14 @@
 %Inicio del programa
 jugar:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
-    crearListaRespuestas(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
+    crearListaRespuestas(2,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     nl,write('Akinator!!!'), nl,nl,
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
     nl,write('Game Over!!!'),nl,!.
 
 %Bucle del juego
 gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
-    write('¿Su lenguaje '),write(PrimeraPregunta),write(' ?(si/no/n)'),
+    write('¿Su lenguaje '),write(PrimeraPregunta),write('? (si/no/n): '),
     read(Respuesta),
     (Respuesta==e -> write('exit'),! ;
                  cambiarRespuesta(Respuesta,Answer),
@@ -27,7 +27,7 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                           write(Solucion),!;
                           (LongitudLenguajes=:=0 ->
                                     write('No se ha podido encontrar su lenguaje'),nl,
-                                    write('¿Quiere introducir un lenguaje nuevo ?(si/no)'),
+                                    write('¿Quiere introducir un lenguaje nuevo?(si/no): '),
                                     read(IntroducirLeng),
                                     cambiarRespuesta(IntroducirLeng,IntroducirL),
                                     (IntroducirL=:=1 ->
@@ -44,7 +44,7 @@ gameLoop(_,_,_,_):-write('No quedan preguntas').
 
 %Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
-    (PrimeraRespuesta==n-> write('¿Su lenguaje '),write(PrimeraPregunta),write('?(si/no/n)'),
+    (PrimeraRespuesta=:=2-> write('¿Su lenguaje '),write(PrimeraPregunta),write('?(si/no/n): '),
                            read(Answer),
                            cambiarRespuesta(Answer,Respuesta),
                            reemplazar(ListaRespuestas,Indice,Respuesta,ListaGuardar),
@@ -64,7 +64,7 @@ validar(ListaRespuestas,[Lenguaje1|RestoLenguajes],FinalAnterior,Final):-
 validar(_,_,FinalAnterior,FinalAnterior).
 
 validarAux([Respuesta1|RestoRespuestas],[Caracteristica1|RestoCaracteristicas],Lenguaje1,FinalAnterior,Final):-
-    ((Respuesta1==n;Caracteristica1==n)->
+    ((Respuesta1=:=2;Caracteristica1=:=2)->
                       validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
                       (Respuesta1==Caracteristica1 ->
                                    validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
@@ -82,7 +82,7 @@ reemplazar([Cabeza|Cola1], Indice, Valor, [Cabeza|Cola2]):-
 reemplazar(Lista, _, _, Lista).
 
 %Construir lista de longitud N con valor X en sus posiciones
-crearListaRespuestas(Valor, Longitud, ListaRespuestas)  :-
+crearListaRespuestas(Valor, Longitud, ListaRespuestas):-
     length(ListaRespuestas, Longitud),
     maplist(=(Valor), ListaRespuestas).
 
@@ -128,6 +128,6 @@ send(Message) :-
 cambiarRespuesta(Respuesta,RespuestaTrans):-
     (Respuesta==si -> RespuestaTrans is 1;
     (Respuesta==no -> RespuestaTrans is 0;
-    RespuestaTrans is Respuesta)).
+    RespuestaTrans is 2)).
     
 
