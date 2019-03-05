@@ -3,7 +3,7 @@
 :-consult('./preguntas.pl').
 
 %Inicio del programa
-akinator:-
+jugar:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(n,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     nl,write('Akinator!!!'), nl,nl,
@@ -133,5 +133,5 @@ send(Message) :-
         udp_send(S, Message, localhost:5008, []),
         tcp_close_socket(S).
         
-%:-akinator.
+%:-jugar.
 %completarRespuestas(ListaPreguntas,NuevaListaRespuestas,[],ListaGuardar),
