@@ -166,15 +166,15 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 10)); // NOI18N
         jLabel1.setText("LOPEZ CUENCA, GABRIEL");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 490, -1, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 480, -1, 20));
 
         jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 10)); // NOI18N
         jLabel5.setText("ZAMORANO ORTEGA, ALVARO");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 510, 150, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 500, 150, 20));
 
         jLabel6.setFont(new java.awt.Font("Showcard Gothic", 0, 10)); // NOI18N
         jLabel6.setText("CASADO BALLESTEROS, JUAN");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 470, -1, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, -1, 20));
 
         CampoVarios.setEditable(false);
         CampoVarios.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
