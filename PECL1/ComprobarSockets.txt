@@ -1,0 +1,4 @@
+netstat -ano | findstr :5008
+netstat -ano | findstr :5009
+
+kill *PID*

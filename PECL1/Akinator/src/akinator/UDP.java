@@ -71,6 +71,12 @@ public class UDP extends Thread {
                             datosRecibidos = "";
                             set = false;
                             break;
+                        case '#'://Posibles lenguajes
+                            index = 2;
+                            colocarString(index, "");
+                            datosRecibidos = "";
+                            set = false;
+                            break;
                         default:
                             set = true;
                     }
@@ -97,6 +103,9 @@ public class UDP extends Thread {
                 break;
             case 1://Preguntas
                 interfaz.escribirPregunta(s);
+                break;
+            case 2://Posibles lenguajes
+                interfaz.escribirPosibles(s);
                 break;
         }
     }

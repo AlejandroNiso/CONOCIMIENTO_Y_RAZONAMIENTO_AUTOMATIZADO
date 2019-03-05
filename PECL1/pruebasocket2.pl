@@ -20,10 +20,12 @@ jugar(S):-
 gameLoop(S,[PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
     send(S,'@'),send(S,'Su lenguaje '),send(S,PrimeraPregunta),send(S,'?'),
     receive(S,Respuesta),write(Respuesta),
+    (Respuesta==e -> !;
                  cambiarRespuesta(Respuesta,Answer),
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
                  Indice1 is Indice+1,
                  validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
+                 send(S,'#'),enviarLisLenguajes(S,NuevaListaLenguajes),
                  length(NuevaListaLenguajes,LongitudLenguajes),
                  (LongitudLenguajes=:=1 ->
                           send(S,'%'),send(S,'Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,
@@ -52,12 +54,19 @@ gameLoop(S,[PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indic
                                                       send(S,'@'),send(S,'Quiere volver a jugar?'),
                                                       receive(S,VolverJugar),
                                                       (VolverJugar==si -> jugar(S);!));
-                       gameLoop(S,RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1))).
+                       gameLoop(S,RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
 
 gameLoop(_,_,_,_,_):-send(S,'%'),send(S,'No quedan preguntas'),
                   send(S,'@'),send(S,'Quiere volver a jugar?'),
                   receive(S,VolverJugar),
                   (VolverJugar==si -> jugar(S);!).
+
+%Funcion para enviar la lista de lenguajes posibles por el socket
+enviarLisLenguajes(S,[PrimerLenguaje|RestoLenguajes]):-
+    send(S,PrimerLenguaje),send(S,' '),
+    enviarLisLenguajes(S,RestoLenguajes).
+
+enviarLisLenguajes(_,_).
 
 %Funci�n para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas(S,[PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-

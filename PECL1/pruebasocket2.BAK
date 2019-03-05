@@ -24,6 +24,7 @@ gameLoop(S,[PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indic
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
                  Indice1 is Indice+1,
                  validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
+                 send(S,'#'),enviarLisLenguajes(S,NuevaListaLenguajes),
                  length(NuevaListaLenguajes,LongitudLenguajes),
                  (LongitudLenguajes=:=1 ->
                           send(S,'%'),send(S,'Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,
@@ -58,6 +59,13 @@ gameLoop(_,_,_,_,_):-send(S,'%'),send(S,'No quedan preguntas'),
                   send(S,'@'),send(S,'Quiere volver a jugar?'),
                   receive(S,VolverJugar),
                   (VolverJugar==si -> jugar(S);!).
+
+%Funcion para enviar la lista de lenguajes posibles por el socket
+enviarLisLenguajes(S,[PrimerLenguaje|RestoLenguajes]):-
+    send(S,PrimerLenguaje),send(S,' '),
+    enviarLisLenguajes(S,RestoLenguajes).
+
+enviarLisLenguajes(_,_).
 
 %Funci�n para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas(S,[PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
@@ -140,4 +148,4 @@ cambiarRespuesta(Respuesta,RespuestaTrans):-
     RespuestaTrans is 2)).
 
 %Iniciar programa automaticamente al iniciar el Java
-%:-jugarConSocket.
+:-jugarConSocket.

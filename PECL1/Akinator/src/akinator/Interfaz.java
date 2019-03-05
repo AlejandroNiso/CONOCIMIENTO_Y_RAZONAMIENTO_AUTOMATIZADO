@@ -45,6 +45,10 @@ public class Interfaz extends javax.swing.JFrame {
     public void escribirVarios(String varios) {
         CampoVarios.setText(varios);
     }
+    
+    public void escribirPosibles(String posibles) {
+        PosiblesL.setText(posibles);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,8 +59,8 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        CampoPreguntas = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
+        CampoPreguntas = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         CampoNuevoLenguaje = new javax.swing.JTextField();
         BotonResSI = new javax.swing.JButton();
@@ -70,6 +74,9 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         CampoVarios = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PosiblesL = new javax.swing.JTextArea();
+        jLabel24 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,17 +92,19 @@ public class Interfaz extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel22.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("POSIBLES LENGUAJES");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 360, 47));
+
         CampoPreguntas.setEditable(false);
         CampoPreguntas.setFont(new java.awt.Font("Gill Sans MT", 0, 13)); // NOI18N
-        getContentPane().add(CampoPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 650, 30));
-
-        jLabel22.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel22.setText("PREGUNTA");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 79, 47));
+        CampoPreguntas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(CampoPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 720, 30));
 
         jLabel23.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel23.setText("rESPUESTA");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         CampoNuevoLenguaje.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
         getContentPane().add(CampoNuevoLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 520, 136, 30));
@@ -108,7 +117,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonResSIActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonResSI, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 62, -1));
+        getContentPane().add(BotonResSI, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 62, -1));
 
         BotonResPSI.setBackground(new java.awt.Color(255, 51, 51));
         BotonResPSI.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
@@ -128,7 +137,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonResNSActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonResNS, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
+        getContentPane().add(BotonResNS, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, -1, -1));
 
         BotonResPNO.setBackground(new java.awt.Color(255, 51, 51));
         BotonResPNO.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
@@ -138,7 +147,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonResPNOActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonResPNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
+        getContentPane().add(BotonResPNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, -1, -1));
 
         BotonResNO.setBackground(new java.awt.Color(255, 51, 51));
         BotonResNO.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
@@ -148,7 +157,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonResNOActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonResNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 120, -1, -1));
+        getContentPane().add(BotonResNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, -1, -1));
 
         BotonInsertarLenguaje.setBackground(new java.awt.Color(0, 255, 51));
         BotonInsertarLenguaje.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
@@ -178,10 +187,22 @@ public class Interfaz extends javax.swing.JFrame {
 
         CampoVarios.setEditable(false);
         CampoVarios.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        getContentPane().add(CampoVarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 310, 30));
+        CampoVarios.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(CampoVarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 310, 30));
+
+        PosiblesL.setEditable(false);
+        PosiblesL.setColumns(20);
+        PosiblesL.setRows(5);
+        jScrollPane1.setViewportView(PosiblesL);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 530, 40));
+
+        jLabel24.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel24.setText("PREGUNTA");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 79, 47));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/akinator/imagen/Akinatorlogo.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, -1, 590));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,6 +235,7 @@ public class Interfaz extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         enviar("e");
         //socket.close();
+        System.out.println("Flujo cerrado");
     }//GEN-LAST:event_formWindowClosing
 
 
@@ -227,12 +249,15 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField CampoNuevoLenguaje;
     private javax.swing.JTextField CampoPreguntas;
     private javax.swing.JTextField CampoVarios;
+    private javax.swing.JTextArea PosiblesL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
