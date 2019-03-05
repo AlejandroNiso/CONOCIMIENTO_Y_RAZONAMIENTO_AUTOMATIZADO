@@ -1,7 +1,7 @@
 %Lista de preguntas
 caracteristicas([
 'tiene bloques tipo C: {}',
-'admite programacion orentada a objetos (POO)',
+'admite programacion orientada a objetos (POO)',
 'tiene muuuuchos parentesis (((())))',
 'tiene muuuuuchas listas ((())) o [[[]]]',
 'admite la programacion funcional, o al menos poder referenciar a una funcion por su direccion de memoria',

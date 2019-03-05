@@ -1,4 +1,4 @@
-netstat -ano | findstr :5008
-netstat -ano | findstr :5009
+netstat -ano | findstr :49260
+netstat -ano | findstr :49153
 
 kill *PID*

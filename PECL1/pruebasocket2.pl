@@ -4,7 +4,7 @@
 
 %Inicio para crear el socket
 jugarConSocket:-udp_socket(S),
-    tcp_bind(S, 5009),
+    tcp_bind(S, 49153),
     jugar(S).
 
 %Inicio del programa
@@ -140,7 +140,7 @@ receive(S,Data) :-
 send(S,Message) :-
         write("Sent: "),
         write(Message),nl,
-        udp_send(S, Message, localhost:5008, []).
+        udp_send(S, Message, localhost:49260, []).
 
 
 cambiarRespuesta(Respuesta,RespuestaTrans):-

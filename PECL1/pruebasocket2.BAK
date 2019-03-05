@@ -20,6 +20,7 @@ jugar(S):-
 gameLoop(S,[PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
     send(S,'@'),send(S,'Su lenguaje '),send(S,PrimeraPregunta),send(S,'?'),
     receive(S,Respuesta),write(Respuesta),
+    (Respuesta==e -> !;
                  cambiarRespuesta(Respuesta,Answer),
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
                  Indice1 is Indice+1,
@@ -53,7 +54,7 @@ gameLoop(S,[PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indic
                                                       send(S,'@'),send(S,'Quiere volver a jugar?'),
                                                       receive(S,VolverJugar),
                                                       (VolverJugar==si -> jugar(S);!));
-                       gameLoop(S,RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1))).
+                       gameLoop(S,RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
 
 gameLoop(_,_,_,_,_):-send(S,'%'),send(S,'No quedan preguntas'),
                   send(S,'@'),send(S,'Quiere volver a jugar?'),

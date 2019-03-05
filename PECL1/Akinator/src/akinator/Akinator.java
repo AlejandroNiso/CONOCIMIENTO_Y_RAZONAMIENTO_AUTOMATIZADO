@@ -10,12 +10,14 @@ import java.net.SocketException;
  * Álvaro Zamorano Ortega
  */
 public class Akinator {
+    
+    private static int puertoRecibir = 49260;
 
     public static void main(String[] args) throws SocketException {
         DatagramSocket socket = null;
         Interfaz interfaz;
         try {
-            socket = new DatagramSocket(5008);
+            socket = new DatagramSocket(puertoRecibir);
         } catch (SocketException e) {
             System.out.println(e.toString());
         }

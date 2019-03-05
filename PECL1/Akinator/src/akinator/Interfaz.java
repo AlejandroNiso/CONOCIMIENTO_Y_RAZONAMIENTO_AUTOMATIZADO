@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class Interfaz extends javax.swing.JFrame {
 
-    int port = 5009;
+    int portRecibir = 49153;
     DatagramSocket socket;
     InetAddress direccion = InetAddress.getLoopbackAddress();
 
@@ -29,7 +29,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     public void enviar(String datos) {
         byte[] sendData = datos.getBytes();
-        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, direccion, port);
+        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, direccion, portRecibir);
 
         try {
             socket.send(sendPacket);
@@ -192,6 +192,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         PosiblesL.setEditable(false);
         PosiblesL.setColumns(20);
+        PosiblesL.setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
         PosiblesL.setRows(5);
         jScrollPane1.setViewportView(PosiblesL);
 
