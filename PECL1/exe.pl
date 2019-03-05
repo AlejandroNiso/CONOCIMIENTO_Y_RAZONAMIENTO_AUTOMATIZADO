@@ -40,7 +40,7 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
 
 gameLoop(_,_,_,_):-write('No quedan preguntas').
 
-
+%Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
     (PrimeraRespuesta==n-> write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
                            read(Respuesta),
@@ -51,18 +51,6 @@ rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespu
                            Indice2 is Indice +1,
                            rellenarRespuestas(RestoPreguntas,RestoRespuestas,ListaRespuestas,Indice2,ListaRetorno)).
 rellenarRespuestas(_,_,ListaGuardar,_,ListaGuardar).
-
-
-%Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
-completarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaGuardar,ListaRetorno):-
-    (PrimeraRespuesta==n->
-                           write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
-                           read(Respuesta),
-                           write(ListaGuardar),nl,
-                           completarRespuestas(RestoPreguntas,RestoRespuestas,[Respuesta|ListaGuardar],ListaRetorno);
-                           completarRespuestas(RestoPreguntas,RestoRespuestas,[PrimeraRespuesta|ListaGuardar],ListaRetorno)).
-
-%completarRespuestas(_,_,ListaGuardar,ListaGuardar).
 
 %Comparar caracteristicas y quitar lenguaje de la lista general
 validar(ListaRespuestas,[Lenguaje1|RestoLenguajes],FinalAnterior,Final):-
@@ -133,5 +121,10 @@ send(Message) :-
         udp_send(S, Message, localhost:5008, []),
         tcp_close_socket(S).
         
+<<<<<<< HEAD
 %:-jugar.
 %completarRespuestas(ListaPreguntas,NuevaListaRespuestas,[],ListaGuardar),
+=======
+%:-akinator.
+
+>>>>>>> 9241e8e882ce1f2207b0eae1ce963cdbf6dda50e
