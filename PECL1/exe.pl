@@ -44,8 +44,8 @@ gameLoop(_,_,_,_):-write('No quedan preguntas').
 rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
     (PrimeraRespuesta==n-> write('¿Su lenguaje '),write(PrimeraPregunta),write('?'),
                            read(Respuesta),
-                           write(ListaGuardar),nl,
                            reemplazar(ListaRespuestas,Indice,Respuesta,ListaGuardar),
+                           write(ListaGuardar),nl,
                            Indice2 is Indice +1,
                            rellenarRespuestas(RestoPreguntas,RestoRespuestas,ListaGuardar,Indice2,ListaRetorno);
                            Indice2 is Indice +1,
@@ -110,7 +110,7 @@ obtenerPregunta(Indice, Pregunta):-
 
 %Funcion para insertar lenguaje en la base de conocimiento
 meterLenguaje(NombreLenguaje, Caracteristicas):-
-    nl,write('Guaradando el lenguaje '),
+    nl,write('Guardando el lenguaje '),
     write(NombreLenguaje),
     write(' con las respuestas:'),nl,
     write(Caracteristicas),nl,
