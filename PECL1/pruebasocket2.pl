@@ -1,19 +1,24 @@
+% Autor:
+% Fecha: 05/03/2019
+
 %consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
 :-consult('./knoledge_base.pl').
 :-consult('./preguntas.pl').
 
 %Inicio del programa
 jugar:-
+    udp_socket(S),
+    tcp_bind(S, 5009),
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(2,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     nl,
     send(S,'%'),send(S,'Jugando...'),
-    gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
-    send(S,'%'),send(S,'Game Over!!!'),!.
+    gameLoop(S,ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
+    send(S,'%'),send(S,'Game Over!!!'),tcp_close_socket(S),!.
 
 %Bucle del juego
-gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
-    send(S,'@'),send(S,'�Su lenguaje 'send(S,d(PrimeraPreguntasend(S,d('?'),
+gameLoop(S,[PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
+    send(S,'@'),send(S,'�Su lenguaje '),send(S,PrimeraPregunta),send(S,'?'),
     receive(S,Respuesta),write(Respuesta),
                  cambiarRespuesta(Respuesta,Answer),
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
@@ -47,16 +52,16 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                                                       send(S,'@'),send(S,'�Quiere volver a jugar? (si/no): '),
                                                       receive(S,VolverJugar),
                                                       (VolverJugar==si -> jugar;!));
-                       gameLoop(RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1))).
+                       gameLoop(S,RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1))).
 
-gameLoop(_,_,_,_):-send(S,'%'),send(S,'No quedan preguntas'),
+gameLoop(_,_,_,_,_):-send(S,'%'),send(S,'No quedan preguntas'),
                   send(S,'@'),send(S,'�Quiere volver a jugar? (si/no): '),
                   receive(S,VolverJugar),
                   (VolverJugar==si -> jugar;!).
 
 %Funci�n para rellenar la lista de respuestas al introducir un nuevo lenguaje
-rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
-    (PrimeraRespuesta=:=2-> send(S,'@'),send(S,'�Su lenguaje 'send(S,d(PrimeraPreguntasend(S,d('?: '),
+rellenarRespuestas(S,[PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
+    (PrimeraRespuesta=:=2-> send(S,'@'),send(S,'�Su lenguaje '),send(S,PrimeraPregunta),send(S,'?: '),
                            receive(S,Answer),
                            cambiarRespuesta(Answer,Respuesta),
                            reemplazar(ListaRespuestas,Indice,Respuesta,ListaGuardar),
@@ -120,25 +125,22 @@ meterLenguaje(NombreLenguaje, Caracteristicas):-
 
 %Recibir datos del socket UDP
 receive(S,Data) :-
-        udp_socket(S),
-        tcp_bind(S, 5009),
-        udp_receive(S,S, Data, _, [as(atom)]),
+        udp_receive(S, Data, _, [as(atom)]),
         write("Recivel: "),
-        write(Data),nl,
-        tcp_close_socket(S).
+        write(Data),nl.
+
 
 %Enviar datos al socket UDP
 send(S,Message) :-
-        udp_socket(S),
         write("Sent: "),
         write(Message),nl,
-        udp_send(S,S, Message, localhost:5008, []),
-        tcp_close_socket(S).
+        udp_send(S, Message, localhost:5008, []).
 
 
 cambiarRespuesta(Respuesta,RespuestaTrans):-
     (Respuesta==si -> RespuestaTrans is 1;
     (Respuesta==no -> RespuestaTrans is 0;
     RespuestaTrans is 2)).
-    
+
 %Iniciar programa automaticamente al iniciar el Java
+:-jugar.

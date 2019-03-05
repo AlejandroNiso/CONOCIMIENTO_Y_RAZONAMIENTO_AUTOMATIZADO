@@ -32,7 +32,7 @@ public class Interfaz extends javax.swing.JFrame {
         DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, direccion, port);
 
         try {
-            socket.send(sendPacket);
+            socket.send(S,sendPacket);
         } catch (IOException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }

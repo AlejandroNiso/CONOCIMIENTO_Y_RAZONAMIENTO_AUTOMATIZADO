@@ -26,7 +26,7 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                           write(Solucion),!;
                           (LongitudLenguajes=:=0 ->
                                     write('No se ha podido encontrar su lenguaje'),nl,
-                                    write('¿Quiere introducir un lenguaje nuevo?'),
+                                    write('ï¿½Quiere introducir un lenguaje nuevo?'),
                                     read(IntroducirL),
                                     (IntroducirL=:=1 ->
                                                       write('Escriba el nombre del lenguaje'),
@@ -39,7 +39,7 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
 
 gameLoop(_,_,_,_):-write('No quedan preguntas').
 
-%Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
+%Funciï¿½n para rellenar la lista de respuestas al introducir un nuevo lenguaje
 completarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaGuardar,ListaRetorno):-
     (PrimeraRespuesta==n->
                            write(PrimeraPregunta),
@@ -68,7 +68,7 @@ validarAux([Respuesta1|RestoRespuestas],[Caracteristica1|RestoCaracteristicas],L
 validarAux(_,_,Lenguaje1,FinalAnterior,[Lenguaje1|FinalAnterior]).
 validarAux(_,_,FinalAnterior,FinalAnterior).
 
-%Reemplazar valor de una lista en una cierta posición
+%Reemplazar valor de una lista en una cierta posiciï¿½n
 reemplazar([_|Cola], 0, Valor, [Valor|Cola]).
 reemplazar([Cabeza|Cola1], Indice, Valor, [Cabeza|Cola2]):-
     Indice > -1,
@@ -81,7 +81,7 @@ crearListaRespuestas(Valor, Longitud, ListaRespuestas)  :-
     length(ListaRespuestas, Longitud),
     maplist(=(Valor), ListaRespuestas).
 
-%Función que devuelve una lista con nombres de los lenguajes
+%Funciï¿½n que devuelve una lista con nombres de los lenguajes
 lenguajes(Lenguajes):- lenguajes_aux([], Lenguajes).
 lenguajes_aux(Lenguajes,Resultado):-
     lenguaje(NuevoLenguaje,_),
@@ -106,14 +106,14 @@ meterLenguaje(NombreLenguaje, Caracteristicas):-
     write('Guardado').
 
 %Recibir datos del socket UDP
-receive(Data) :-
+receive(S,Data) :-
         udp_socket(S),
         tcp_bind(S, 5009),
-        udp_receive(S, Data, _, [as(atom)]),
+        udp_receive(S,S, Data, _, [as(atom)]),
         tcp_close_socket(S).
 
 %Enviar datos al socket UDP
-send(Message) :-
+send(S,Message) :-
         udp_socket(S),
-        udp_send(S, Message, localhost:5008, []),
+        udp_send(S,S, Message, localhost:5008, []),
         tcp_close_socket(S).
