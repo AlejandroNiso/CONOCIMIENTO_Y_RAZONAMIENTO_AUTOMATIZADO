@@ -42,11 +42,11 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     public void escribirRespuestas(String respuesta) {
-        CampoRespuestas.setText(respuesta);
+        //CampoRespuestas.setText(respuesta);
     }
 
     public void escribirLenguajes(String lenguajes) {
-        CampoListaLenguajes.setText(lenguajes);
+        //CampoListaLenguajes.setText(lenguajes);
     }
 
     public void escribirVarios(String varios) {
@@ -62,9 +62,6 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
-        CampoRespuestas = new javax.swing.JTextField();
         CampoPreguntas = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -74,226 +71,131 @@ public class Interfaz extends javax.swing.JFrame {
         BotonResNS = new javax.swing.JButton();
         BotonResPNO = new javax.swing.JButton();
         BotonResNO = new javax.swing.JButton();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        CampoListaLenguajes = new javax.swing.JTextField();
-        BotonInsertarSI = new javax.swing.JButton();
-        BotonInsertarNO = new javax.swing.JButton();
-        jLabel27 = new javax.swing.JLabel();
         BotonInsertarLenguaje = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         CampoVarios = new javax.swing.JTextField();
-        BotonJugar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Akinator");
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(0, 0, 255));
+        setMaximumSize(new java.awt.Dimension(1045, 595));
+        setMinimumSize(new java.awt.Dimension(1045, 595));
+        setPreferredSize(new java.awt.Dimension(1045, 595));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 102));
-
-        jLabel21.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel21.setText("aKINATOR");
-        jPanel1.add(jLabel21);
-
-        CampoRespuestas.setFont(new java.awt.Font("Nirmala UI", 0, 11)); // NOI18N
-
-        CampoPreguntas.setFont(new java.awt.Font("Nirmala UI", 0, 11)); // NOI18N
+        CampoPreguntas.setEditable(false);
+        CampoPreguntas.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
+        getContentPane().add(CampoPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 580, 30));
 
         jLabel22.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel22.setText("PREGUNTA");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 79, 47));
 
         jLabel23.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel23.setText("rESPUESTA");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
-        CampoNuevoLenguaje.setFont(new java.awt.Font("Nirmala UI", 0, 11)); // NOI18N
+        CampoNuevoLenguaje.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
         CampoNuevoLenguaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CampoNuevoLenguajeActionPerformed(evt);
             }
         });
+        getContentPane().add(CampoNuevoLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 520, 136, 30));
 
+        BotonResSI.setBackground(new java.awt.Color(255, 51, 51));
+        BotonResSI.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
         BotonResSI.setText("SI");
         BotonResSI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonResSIActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonResSI, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 62, -1));
 
+        BotonResPSI.setBackground(new java.awt.Color(255, 51, 51));
+        BotonResPSI.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
         BotonResPSI.setText("PROBABLEMENTE SI");
         BotonResPSI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonResPSIActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonResPSI, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 180, -1));
 
+        BotonResNS.setBackground(new java.awt.Color(255, 51, 51));
+        BotonResNS.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
         BotonResNS.setText("NO SE");
         BotonResNS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonResNSActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonResNS, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
 
+        BotonResPNO.setBackground(new java.awt.Color(255, 51, 51));
+        BotonResPNO.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
         BotonResPNO.setText("PROBABLEMENTE NO");
         BotonResPNO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonResPNOActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonResPNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, -1, -1));
 
+        BotonResNO.setBackground(new java.awt.Color(255, 51, 51));
+        BotonResNO.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
         BotonResNO.setText("NO");
         BotonResNO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonResNOActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonResNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, -1, -1));
 
-        jLabel24.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel24.setText("LISTA LENGUAJES PROBABLES");
-
-        jLabel25.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel25.setText("LISTA RESPUESTAS");
-
-        CampoListaLenguajes.setFont(new java.awt.Font("Nirmala UI", 0, 11)); // NOI18N
-        CampoListaLenguajes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoListaLenguajesActionPerformed(evt);
-            }
-        });
-
-        BotonInsertarSI.setText("SI");
-        BotonInsertarSI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonInsertarSIActionPerformed(evt);
-            }
-        });
-
-        BotonInsertarNO.setText("NO");
-        BotonInsertarNO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonInsertarNOActionPerformed(evt);
-            }
-        });
-
-        jLabel27.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel27.setText("NOMBRE");
-
+        BotonInsertarLenguaje.setBackground(new java.awt.Color(0, 255, 51));
+        BotonInsertarLenguaje.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
         BotonInsertarLenguaje.setText("CONFIRMAR");
         BotonInsertarLenguaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonInsertarLenguajeActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonInsertarLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 520, -1, 30));
 
         jLabel28.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel28.setText("NUEVO LENGUAJE");
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 490, -1, 47));
 
-        CampoVarios.setFont(new java.awt.Font("Nirmala UI", 0, 11)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 10)); // NOI18N
+        jLabel1.setText("LOPEZ CUENCA, GABRIEL");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 490, -1, 20));
 
-        BotonJugar.setText("JUGAR");
-        BotonJugar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 10)); // NOI18N
+        jLabel5.setText("ZAMORANO ORTEGA, ALVARO");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 510, 150, 20));
+
+        jLabel6.setFont(new java.awt.Font("Showcard Gothic", 0, 10)); // NOI18N
+        jLabel6.setText("CASADO BALLESTEROS, JUAN");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 470, -1, 20));
+
+        CampoVarios.setEditable(false);
+        CampoVarios.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        CampoVarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonJugarActionPerformed(evt);
+                CampoVariosActionPerformed(evt);
             }
         });
+        getContentPane().add(CampoVarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 310, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CampoVarios)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CampoPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(BotonResPSI)
-                                .addGap(18, 18, 18)
-                                .addComponent(BotonResNS)
-                                .addGap(18, 18, 18)
-                                .addComponent(BotonResPNO)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotonResNO, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CampoRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addGap(8, 8, 8)
-                                .addComponent(BotonResSI, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel28)
-                                .addGap(40, 40, 40)
-                                .addComponent(BotonInsertarSI)
-                                .addGap(28, 28, 28)
-                                .addComponent(BotonInsertarNO)
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel27)
-                                .addGap(26, 26, 26)
-                                .addComponent(CampoNuevoLenguaje, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(BotonInsertarLenguaje)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addGap(10, 10, 10)
-                        .addComponent(CampoListaLenguajes)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(317, 317, 317)
-                .addComponent(BotonJugar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonJugar)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CampoPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(BotonResSI)
-                    .addComponent(BotonResNS)
-                    .addComponent(BotonResPNO)
-                    .addComponent(BotonResNO)
-                    .addComponent(BotonResPSI))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CampoRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CampoListaLenguajes, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BotonInsertarSI)
-                            .addComponent(BotonInsertarNO)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CampoNuevoLenguaje, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonInsertarLenguaje))))
-                .addGap(18, 18, 18)
-                .addComponent(CampoVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/akinator/imagen/Akinatorlogo.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -302,18 +204,10 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoNuevoLenguajeActionPerformed
 
-    private void CampoListaLenguajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoListaLenguajesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoListaLenguajesActionPerformed
-
     private void BotonInsertarLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarLenguajeActionPerformed
         String nombre = CampoNuevoLenguaje.getText();
         enviar(nombre);
     }//GEN-LAST:event_BotonInsertarLenguajeActionPerformed
-
-    private void BotonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonJugarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonJugarActionPerformed
 
     private void BotonResSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResSIActionPerformed
         enviar("si");
@@ -335,37 +229,27 @@ public class Interfaz extends javax.swing.JFrame {
         enviar("no");
     }//GEN-LAST:event_BotonResNOActionPerformed
 
-    private void BotonInsertarSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarSIActionPerformed
-        enviar("si");
-    }//GEN-LAST:event_BotonInsertarSIActionPerformed
-
-    private void BotonInsertarNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarNOActionPerformed
-        enviar("no");
-    }//GEN-LAST:event_BotonInsertarNOActionPerformed
+    private void CampoVariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoVariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoVariosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonInsertarLenguaje;
-    private javax.swing.JButton BotonInsertarNO;
-    private javax.swing.JButton BotonInsertarSI;
-    private javax.swing.JButton BotonJugar;
     private javax.swing.JButton BotonResNO;
     private javax.swing.JButton BotonResNS;
     private javax.swing.JButton BotonResPNO;
     private javax.swing.JButton BotonResPSI;
     private javax.swing.JButton BotonResSI;
-    private javax.swing.JTextField CampoListaLenguajes;
     private javax.swing.JTextField CampoNuevoLenguaje;
     private javax.swing.JTextField CampoPreguntas;
-    private javax.swing.JTextField CampoRespuestas;
     private javax.swing.JTextField CampoVarios;
-    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

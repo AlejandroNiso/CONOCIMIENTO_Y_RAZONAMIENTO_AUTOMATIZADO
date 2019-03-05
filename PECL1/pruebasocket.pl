@@ -3,7 +3,7 @@
 :-consult('./preguntas.pl').
 
 %Inicio del programa
-akinator:-
+jugar:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(2,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     nl,
@@ -131,8 +131,6 @@ cambiarRespuesta(Respuesta,RespuestaTrans):-
     (Respuesta==si -> RespuestaTrans is 1;
     (Respuesta==no -> RespuestaTrans is 0;
     RespuestaTrans is 2)).
-
-
-
-
-
+    
+%Iniciar programa automaticamente al iniciar el Java
+:-jugar.
