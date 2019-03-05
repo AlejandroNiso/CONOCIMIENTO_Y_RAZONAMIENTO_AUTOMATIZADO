@@ -32,7 +32,7 @@ public class Main {
             while (true) {
                 DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                 System.out.println("Waiting");
-                serverSocket.receive(receivePacket);
+                serverSocket.receive(S,receivePacket);
                 String sentence = new String(receivePacket.getData());
                 System.out.println("RECEIVED: " + sentence);
                 InetAddress IPAddress = receivePacket.getAddress();
@@ -41,7 +41,7 @@ public class Main {
                 String readed = keyboard.nextLine();
                 sendData = readed.getBytes();
                 DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
-                serverSocket.send(sendPacket);
+                serverSocket.send(S,sendPacket);
             }
         }catch (Exception e){
             System.out.println(e.toString());

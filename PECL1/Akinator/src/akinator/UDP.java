@@ -55,7 +55,7 @@ public class UDP extends Thread {
                         receiveData[i] = 0;
                     }
                     DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-                    socket.receive(receivePacket);
+                    socket.receive(S,receivePacket);
                     String sentence = new String(receivePacket.getData());
                     System.out.println("Received: " + sentence);
                     switch (sentence.charAt(0)) {
