@@ -316,31 +316,31 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonJugarActionPerformed
 
     private void BotonResSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResSIActionPerformed
-        enviar("1.\n");
+        enviar("si");
     }//GEN-LAST:event_BotonResSIActionPerformed
 
     private void BotonResPSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPSIActionPerformed
-        enviar("n.\n");
+        enviar("n");
     }//GEN-LAST:event_BotonResPSIActionPerformed
 
     private void BotonResNSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNSActionPerformed
-        enviar("n.\n");
+        enviar("n");
     }//GEN-LAST:event_BotonResNSActionPerformed
 
     private void BotonResPNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPNOActionPerformed
-        enviar("n.\n");
+        enviar("n");
     }//GEN-LAST:event_BotonResPNOActionPerformed
 
     private void BotonResNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNOActionPerformed
-        enviar("0.\n");
+        enviar("no");
     }//GEN-LAST:event_BotonResNOActionPerformed
 
     private void BotonInsertarSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarSIActionPerformed
-        enviar("1.\n");
+        enviar("si");
     }//GEN-LAST:event_BotonInsertarSIActionPerformed
 
     private void BotonInsertarNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarNOActionPerformed
-        enviar("0.\n");
+        enviar("no");
     }//GEN-LAST:event_BotonInsertarNOActionPerformed
 
 

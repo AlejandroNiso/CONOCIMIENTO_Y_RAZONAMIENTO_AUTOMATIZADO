@@ -6,22 +6,22 @@
 akinator:-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
     crearListaRespuestas(2,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
-    write('Init'),nl,
+    nl,
     send('%'),send('Akinator!!!'),
     gameLoop(ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
-    send('%'),send('Game Over!!!'),!.
+    send('Game Over!!!'),!.
 
 %Bucle del juego
 gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
     send('@'),send('¿Su lenguaje '),send(PrimeraPregunta),send('?'),
-    receive(Respuesta),
+    receive(Respuesta),write(Respuesta),
     (Respuesta==e -> send('%'), send('exit'),! ;
                  cambiarRespuesta(Respuesta,Answer),
                  reemplazar(ListaRespuestas,Indice,Answer,NuevaListaRespuestas),
-                 send('$'), send(NuevaListaRespuestas),
+                 send('$'), %send(NuevaListaRespuestas),
                  Indice1 is Indice+1,
                  validar(NuevaListaRespuestas,ListaLenguajes,[],NuevaListaLenguajes),
-                 send('#'),send(NuevaListaLenguajes),
+                 send('#'),%send(NuevaListaLenguajes),
                  length(NuevaListaLenguajes,LongitudLenguajes),
                  (LongitudLenguajes=:=1 ->
                           send('%'),send('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,
@@ -45,8 +45,8 @@ gameLoop(_,_,_,_):-send('%'),send('No quedan preguntas').
 
 %Función para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
-    (PrimeraRespuesta=:=2-> write('¿Su lenguaje '),write(PrimeraPregunta),write('?(si/no/n): '),
-                           read(Answer),
+    (PrimeraRespuesta=:=2-> send('@'),send('¿Su lenguaje '),send(PrimeraPregunta),send('?: '),
+                           receive(Answer),
                            cambiarRespuesta(Answer,Respuesta),
                            reemplazar(ListaRespuestas,Indice,Respuesta,ListaGuardar),
                            write(ListaGuardar),nl,
