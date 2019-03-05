@@ -132,6 +132,7 @@ cambiarRespuesta(Respuesta,RespuestaTrans):-
     (Respuesta==no -> RespuestaTrans is 0;
     RespuestaTrans is 2)).
 
+:-akinator.
 
 
 

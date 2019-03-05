@@ -308,7 +308,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void BotonInsertarLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarLenguajeActionPerformed
         String nombre = CampoNuevoLenguaje.getText();
-        enviar(nombre + ".\n");
+        enviar(nombre);
     }//GEN-LAST:event_BotonInsertarLenguajeActionPerformed
 
     private void BotonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonJugarActionPerformed
