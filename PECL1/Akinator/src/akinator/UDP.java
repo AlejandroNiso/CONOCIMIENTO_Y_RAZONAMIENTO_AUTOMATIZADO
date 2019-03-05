@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package akinator;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author Álvaro Zamorano
+ * Juan Casado Ballesteros 
+ * Gabriel López Cuenca 
+ * Álvaro Zamorano Ortega
  */
 public class UDP extends Thread {
 
@@ -39,7 +31,7 @@ public class UDP extends Thread {
             String nombreSO = System.getProperty("os.name");
             if (nombreSO.startsWith("Mac OS")) {
                 p = Runtime.getRuntime().exec("swipl " + ruta);
-            }else {
+            } else {
                 p = Runtime.getRuntime().exec("swipl --win_app" + ruta);
             }
             InputStream is = p.getErrorStream();
@@ -67,28 +59,16 @@ public class UDP extends Thread {
                     String sentence = new String(receivePacket.getData());
                     System.out.println("Received: " + sentence);
                     switch (sentence.charAt(0)) {
-                        case '$'://Nueva lista respuestas
+                        case '%'://Varios
                             index = 0;
                             colocarString(index, "");
-                            datosRecibidos="";
-                            set = false;
-                            break;
-                        case '#'://Lista de lenguajes
-                            index = 1;
-                            colocarString(index, "");
-                            datosRecibidos="";
-                            set = false;
-                            break;
-                        case '%'://Varios
-                            index = 2;
-                            colocarString(index, "");
-                            datosRecibidos="";
+                            datosRecibidos = "";
                             set = false;
                             break;
                         case '@'://Preguntas
-                            index = 3;
+                            index = 1;
                             colocarString(index, "");
-                            datosRecibidos="";
+                            datosRecibidos = "";
                             set = false;
                             break;
                         default:
@@ -96,7 +76,7 @@ public class UDP extends Thread {
                     }
                     if (set) {
                         for (int i = 0; i < sentence.length(); i++) {
-                            if (sentence.charAt(i)!=0) {
+                            if (sentence.charAt(i) != 0) {
                                 datosRecibidos += sentence.charAt(i);
                             }
                         }
@@ -112,16 +92,10 @@ public class UDP extends Thread {
 
     private void colocarString(int index, String s) {
         switch (index) {
-            case 0://Nueva lista respuestas
-                interfaz.escribirRespuestas(s);
-                break;
-            case 1://Lista de lenguajes
-                interfaz.escribirLenguajes(s);
-                break;
-            case 2://Varios
+            case 0://Varios
                 interfaz.escribirVarios(s);
                 break;
-            case 3://Preguntas
+            case 1://Preguntas
                 interfaz.escribirPregunta(s);
                 break;
         }

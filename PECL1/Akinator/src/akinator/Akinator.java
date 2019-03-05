@@ -2,11 +2,12 @@ package akinator;
 
 import java.net.DatagramSocket;
 import java.net.SocketException;
-import java.sql.SQLOutput;
 
 /**
  *
- * @author
+ * Juan Casado Ballesteros 
+ * Gabriel López Cuenca 
+ * Álvaro Zamorano Ortega
  */
 public class Akinator {
 

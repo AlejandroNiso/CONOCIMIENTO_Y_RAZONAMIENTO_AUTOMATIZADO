@@ -9,9 +9,10 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author 
+ * Juan Casado Ballesteros
+ * Gabriel López Cuenca
+ * Álvaro Zamorano Ortega
  */
-
 public class Interfaz extends javax.swing.JFrame {
 
     int port = 5009;
@@ -39,14 +40,6 @@ public class Interfaz extends javax.swing.JFrame {
 
     public void escribirPregunta(String pregunta) {
         CampoPreguntas.setText(pregunta);
-    }
-
-    public void escribirRespuestas(String respuesta) {
-        //CampoRespuestas.setText(respuesta);
-    }
-
-    public void escribirLenguajes(String lenguajes) {
-        //CampoListaLenguajes.setText(lenguajes);
     }
 
     public void escribirVarios(String varios) {
@@ -83,30 +76,23 @@ public class Interfaz extends javax.swing.JFrame {
         setTitle("Akinator");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 255));
-        setMaximumSize(new java.awt.Dimension(1045, 595));
         setMinimumSize(new java.awt.Dimension(1045, 595));
-        setPreferredSize(new java.awt.Dimension(1045, 595));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CampoPreguntas.setEditable(false);
-        CampoPreguntas.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        getContentPane().add(CampoPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 580, 30));
+        CampoPreguntas.setFont(new java.awt.Font("Nirmala UI", 0, 10)); // NOI18N
+        getContentPane().add(CampoPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 650, 30));
 
         jLabel22.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel22.setText("PREGUNTA");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 79, 47));
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 79, 47));
 
         jLabel23.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel23.setText("rESPUESTA");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         CampoNuevoLenguaje.setFont(new java.awt.Font("Nirmala UI", 0, 12)); // NOI18N
-        CampoNuevoLenguaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoNuevoLenguajeActionPerformed(evt);
-            }
-        });
         getContentPane().add(CampoNuevoLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 520, 136, 30));
 
         BotonResSI.setBackground(new java.awt.Color(255, 51, 51));
@@ -117,7 +103,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonResSIActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonResSI, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 62, -1));
+        getContentPane().add(BotonResSI, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 62, -1));
 
         BotonResPSI.setBackground(new java.awt.Color(255, 51, 51));
         BotonResPSI.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
@@ -127,7 +113,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonResPSIActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonResPSI, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 180, -1));
+        getContentPane().add(BotonResPSI, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 180, -1));
 
         BotonResNS.setBackground(new java.awt.Color(255, 51, 51));
         BotonResNS.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
@@ -147,7 +133,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonResPNOActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonResPNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, -1, -1));
+        getContentPane().add(BotonResPNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
 
         BotonResNO.setBackground(new java.awt.Color(255, 51, 51));
         BotonResNO.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
@@ -157,7 +143,7 @@ public class Interfaz extends javax.swing.JFrame {
                 BotonResNOActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonResNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, -1, -1));
+        getContentPane().add(BotonResNO, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 120, -1, -1));
 
         BotonInsertarLenguaje.setBackground(new java.awt.Color(0, 255, 51));
         BotonInsertarLenguaje.setFont(new java.awt.Font("Ravie", 0, 11)); // NOI18N
@@ -187,11 +173,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         CampoVarios.setEditable(false);
         CampoVarios.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        CampoVarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoVariosActionPerformed(evt);
-            }
-        });
         getContentPane().add(CampoVarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 310, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/akinator/imagen/Akinatorlogo.jpg"))); // NOI18N
@@ -200,13 +181,8 @@ public class Interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CampoNuevoLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoNuevoLenguajeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoNuevoLenguajeActionPerformed
-
     private void BotonInsertarLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInsertarLenguajeActionPerformed
-        String nombre = CampoNuevoLenguaje.getText();
-        enviar(nombre);
+        enviar(CampoNuevoLenguaje.getText());
     }//GEN-LAST:event_BotonInsertarLenguajeActionPerformed
 
     private void BotonResSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResSIActionPerformed
@@ -228,10 +204,6 @@ public class Interfaz extends javax.swing.JFrame {
     private void BotonResNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNOActionPerformed
         enviar("no");
     }//GEN-LAST:event_BotonResNOActionPerformed
-
-    private void CampoVariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoVariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoVariosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
