@@ -1,5 +1,5 @@
 ﻿%consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
-:-consult('./knowledge_cambio.pl').
+:-consult('./knowledge_base.pl').
 :-consult('./preguntas.pl').
 
 %Inicio del programa
@@ -80,15 +80,17 @@ validar(ListaRespuestas,[Lenguaje1|RestoLenguajes],FinalAnterior,Final):-
 validar(_,_,FinalAnterior,FinalAnterior).
 
 validarAux([Respuesta1|RestoRespuestas],[Caracteristica1|RestoCaracteristicas],Lenguaje1,FinalAnterior,Final):-
+     (((Respuesta1=:=2;Respuesta1=:=0), Caracteristica1=:=1)->validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
     ((Respuesta1=:=1)->
                       validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
-                      (Respuesta1==Caracteristica1 ->
+
+                      ((Respuesta1==Caracteristica1)->
                                    validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
                                               (Respuesta1=:=0.5,Caracteristica1<2 ->
                                                             validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
                                                                        (Respuesta1=:=1.5,Caracteristica1>0 ->
                                                                                     validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
-                                   validarAux([],[],FinalAnterior,Final))))).
+                                   validarAux([],[],FinalAnterior,Final)))))).
 
 validarAux(_,_,Lenguaje1,FinalAnterior,[Lenguaje1|FinalAnterior]).
 validarAux(_,_,FinalAnterior,FinalAnterior).
