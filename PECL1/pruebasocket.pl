@@ -1,4 +1,4 @@
-%consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
+﻿%consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
 :-consult('./knoledge_base.pl').
 :-consult('./preguntas.pl').
 

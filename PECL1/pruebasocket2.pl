@@ -1,5 +1,5 @@
 ﻿%consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
-:-consult('./knoledge_base.pl').
+:-consult('./knoledge_cambio.pl').
 :-consult('./preguntas.pl').
 
 %Inicio para crear el socket
@@ -10,7 +10,7 @@ jugarConSocket:-udp_socket(S),
 %Inicio del programa
 jugar(S):-
     caracteristicas(ListaPreguntas),length(ListaPreguntas,LongitudPreguntas),
-    crearListaRespuestas(2,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
+    crearListaRespuestas(1,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     nl,
     send(S,'%'),send(S,'Jugando...'),
     gameLoop(S,ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
@@ -91,11 +91,15 @@ validar(ListaRespuestas,[Lenguaje1|RestoLenguajes],FinalAnterior,Final):-
 validar(_,_,FinalAnterior,FinalAnterior).
 
 validarAux([Respuesta1|RestoRespuestas],[Caracteristica1|RestoCaracteristicas],Lenguaje1,FinalAnterior,Final):-
-    ((Respuesta1==2;Caracteristica1==2)->
+    ((Respuesta1=:=1)->
                       validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
                       (Respuesta1==Caracteristica1 ->
                                    validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
-                                   validarAux([],[],FinalAnterior,Final))).
+                                              (Respuesta1=:=0.5,Caracteristica1<2 ->
+                                                            validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
+                                                                       (Respuesta1=:=1.5,Caracteristica1>0 ->
+                                                                                    validarAux(RestoRespuestas,RestoCaracteristicas,Lenguaje1,FinalAnterior,Final);
+                                   validarAux([],[],FinalAnterior,Final))))).
 
 validarAux(_,_,Lenguaje1,FinalAnterior,[Lenguaje1|FinalAnterior]).
 validarAux(_,_,FinalAnterior,FinalAnterior).
@@ -142,11 +146,11 @@ send(S,Message) :-
         write(Message),nl,
         udp_send(S, Message, localhost:49260, []).
 
-
 cambiarRespuesta(Respuesta,RespuestaTrans):-
-    (Respuesta==si -> RespuestaTrans is 1;
+    (Respuesta==si -> RespuestaTrans is 2;
     (Respuesta==no -> RespuestaTrans is 0;
-    RespuestaTrans is 2)).
-
+    (Respuesta==psi -> RespuestaTrans is 1.5;
+    (Respuesta==pno -> RespuestaTrans is 0.5;
+    RespuestaTrans is 1)))).
 %Iniciar programa automaticamente al iniciar el Java
 :-jugarConSocket.

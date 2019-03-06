@@ -218,7 +218,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonResSIActionPerformed
 
     private void BotonResPSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPSIActionPerformed
-        enviar("n");
+        enviar("psi");
     }//GEN-LAST:event_BotonResPSIActionPerformed
 
     private void BotonResNSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNSActionPerformed
@@ -226,7 +226,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonResNSActionPerformed
 
     private void BotonResPNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPNOActionPerformed
-        enviar("n");
+        enviar("pno");
     }//GEN-LAST:event_BotonResPNOActionPerformed
 
     private void BotonResNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNOActionPerformed

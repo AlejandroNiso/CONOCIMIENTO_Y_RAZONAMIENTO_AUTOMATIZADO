@@ -134,20 +134,6 @@ meterLenguaje(NombreLenguaje, Caracteristicas):-
     told,
     write('Guardado!!!'),nl.
 
-%Recibir datos del socket UDP
-receive(S,Data) :-
-        udp_socket(S),
-        tcp_bind(S, 5009),
-        udp_receive(S,S, Data, _, [as(atom)]),
-        tcp_close_socket(S).
-
-%Enviar datos al socket UDP
-send(S,Message) :-
-        udp_socket(S),
-        udp_send(S,S, Message, localhost:5008, []),
-        tcp_close_socket(S).
-
-
 cambiarRespuesta(Respuesta,RespuestaTrans):-
     (Respuesta==si -> RespuestaTrans is 2;
     (Respuesta==no -> RespuestaTrans is 0;

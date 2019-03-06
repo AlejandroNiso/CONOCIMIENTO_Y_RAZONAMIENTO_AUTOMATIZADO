@@ -30,5 +30,7 @@ public class Akinator {
         
         Ejecutador ej = new Ejecutador();
         ej.start();
+        
+        
     }
 }

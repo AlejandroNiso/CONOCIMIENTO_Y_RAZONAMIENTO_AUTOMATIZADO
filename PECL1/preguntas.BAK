@@ -42,4 +42,4 @@ caracteristicas([
 'tiene concurrencia basada en agentes',
 'es un lenguaje transaccional',
 'admite la sentencia GOTO',
-'fue diseñado para manejar texto y archivos']).
+'fue disenado para manejar texto y archivos']).
