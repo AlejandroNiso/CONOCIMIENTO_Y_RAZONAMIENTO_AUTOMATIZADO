@@ -6,14 +6,12 @@ import java.net.DatagramSocket;
 
 /**
  *
- * Juan Casado Ballesteros 
- * Gabriel López Cuenca 
- * Álvaro Zamorano Ortega
+ * Juan Casado Ballesteros Gabriel López Cuenca Álvaro Zamorano Ortega
  */
 public class UDP extends Thread {
 
-    private Interfaz interfaz;
-    private DatagramSocket socket;
+    private final Interfaz interfaz;
+    private final DatagramSocket socket;
     private String datosRecibidos = "";
 
     public UDP(DatagramSocket socket, Interfaz interfaz) {
@@ -28,7 +26,7 @@ public class UDP extends Thread {
         while (continuar) {
             int index = 0;
             boolean set = false;
-            System.out.println("Started");
+            System.out.println("Started...");
             try {
                 byte[] receiveData = new byte[1024];
                 while (true) {
@@ -38,7 +36,11 @@ public class UDP extends Thread {
                     DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                     socket.receive(receivePacket);
                     String sentence = new String(receivePacket.getData());
+                    
+                    /*MOSTRAR LO QUE SE RECIBE
                     System.out.println("Received: " + sentence);
+                     */
+                    
                     switch (sentence.charAt(0)) {
                         case '%'://Varios
                             index = 0;

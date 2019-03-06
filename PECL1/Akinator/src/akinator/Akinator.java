@@ -5,13 +5,11 @@ import java.net.SocketException;
 
 /**
  *
- * Juan Casado Ballesteros 
- * Gabriel López Cuenca 
- * Álvaro Zamorano Ortega
+ * Juan Casado Ballesteros Gabriel López Cuenca Álvaro Zamorano Ortega
  */
 public class Akinator {
-    
-    private static int puertoRecibir = 49260;
+
+    private static final int puertoRecibir = 49260;
 
     public static void main(String[] args) throws SocketException {
         DatagramSocket socket = null;
@@ -21,16 +19,16 @@ public class Akinator {
         } catch (SocketException e) {
             System.out.println(e.toString());
         }
-        interfaz = new Interfaz(socket);
+        Ejecutador ej = new Ejecutador();
+        interfaz = new Interfaz(socket, ej);
         java.awt.EventQueue.invokeLater(() -> {
             interfaz.setVisible(true);
         });
+
         UDP udp = new UDP(socket, interfaz);
         udp.start();
-        
-        Ejecutador ej = new Ejecutador();
+
         ej.start();
-        
-        
+
     }
 }

@@ -14,10 +14,11 @@ import java.util.logging.Logger;
  * Álvaro Zamorano Ortega
  */
 public class Ejecutador extends Thread {
+    
+    private Process p;
 
     @Override
     public void run() {
-        Process p;
         try {
             String ruta = "../../../exesocket.pl";
             String nombreSO = System.getProperty("os.name");
@@ -26,20 +27,24 @@ public class Ejecutador extends Thread {
             } else {
                 p = Runtime.getRuntime().exec("swipl --win_app" + ruta);
 
+                /*MOSTRAR LO QUE PROLOG ENVIA
                 InputStream stderr = p.getInputStream();
                 InputStreamReader isr = new InputStreamReader(stderr);
                 BufferedReader br = new BufferedReader(isr);
                 String line = null;
                 while ((line = br.readLine()) != null) {
-                    System.out.println(line);
-                }
+                System.out.println(line);
+                }*/
 
                 int exitVal = p.waitFor();
-                System.out.println("Process exitValue: " + exitVal);
             }
 
         } catch (IOException | InterruptedException ex) {
             Logger.getLogger(Ejecutador.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void terminar(){
+        p.destroy();
     }
 }

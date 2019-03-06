@@ -18,13 +18,18 @@ public class Interfaz extends javax.swing.JFrame {
     int portRecibir = 49153;
     DatagramSocket socket;
     InetAddress direccion = InetAddress.getLoopbackAddress();
+    private final Ejecutador ejec;
 
     /**
      * Creates new form Interfaz
+     * @param socket
+     * @param e
      */
-    public Interfaz(DatagramSocket socket) {
+    public Interfaz(DatagramSocket socket, Ejecutador e) {
         initComponents();
         this.socket = socket;
+        ejec = e;
+        
     }
 
     public void enviar(String datos) {
@@ -214,7 +219,6 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void BotonResSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResSIActionPerformed
         enviar("si");
-        System.out.println(socket.isClosed());
     }//GEN-LAST:event_BotonResSIActionPerformed
 
     private void BotonResPSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResPSIActionPerformed
@@ -231,12 +235,13 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void BotonResNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonResNOActionPerformed
         enviar("no");
+        CampoPreguntas.setText("");
     }//GEN-LAST:event_BotonResNOActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         enviar("e");
-        //socket.close();
-        System.out.println("Flujo cerrado");
+        ejec.terminar();
+        System.out.println("..finished!!!");
     }//GEN-LAST:event_formWindowClosing
 
 
