@@ -13,11 +13,16 @@ jugar(S):-
     crearListaRespuestas(1,LongitudPreguntas,ListaRespuestas),lenguajes(ListaLenguajes),
     nl,
     send(S,'%'),send(S,'Jugando...'),
-    gameLoop(S,ListaPreguntas,ListaRespuestas,ListaLenguajes,0),
+    crearListaIndices(ListaIndices),
+    gameLoop(S,ListaRespuestas,ListaLenguajes,ListaIndices),
     send(S,'%'),send(S,'Game Over!!!'),tcp_close_socket(S),!.
 
 %Bucle del juego
-gameLoop(S,[PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice):-
+gameLoop(S,ListaRespuestas,ListaLenguajes,ListaIndices):-
+    mejorIndice(ListaLenguajes,ListaIndices, Indice1),
+    obtenerPregunta(Indice1,PrimeraPregunta),
+    Indice is Indice1 - 1,
+    delete(ListaIndices, Indice1, NuevaListaIndices),
     send(S,'@'),send(S,'Su lenguaje '),send(S,PrimeraPregunta),send(S,'?'),
     receive(S,Respuesta),write(Respuesta),
     (Respuesta==e -> !;
@@ -54,9 +59,9 @@ gameLoop(S,[PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indic
                                                       send(S,'@'),send(S,'Quiere volver a jugar?'),
                                                       receive(S,VolverJugar),
                                                       (VolverJugar==si -> jugar(S);!));
-                       gameLoop(S,RestoPreguntas,NuevaListaRespuestas,NuevaListaLenguajes,Indice1)))).
+                       gameLoop(S,NuevaListaRespuestas,NuevaListaLenguajes,NuevaListaIndices)))).
 
-gameLoop(_,_,_,_,_):-send(S,'%'),send(S,'No quedan preguntas'),
+gameLoop(_,_,_,_):-send(S,'%'),send(S,'No quedan preguntas'),
                   send(S,'@'),send(S,'Quiere volver a jugar?'),
                   receive(S,VolverJugar),
                   (VolverJugar==si -> jugar(S);!).
@@ -153,5 +158,77 @@ cambiarRespuesta(Respuesta,RespuestaTrans):-
     (Respuesta==psi -> RespuestaTrans is 1.5;
     (Respuesta==pno -> RespuestaTrans is 0.5;
     RespuestaTrans is 1)))).
+
+
+%Funcione que obtiene una pregunta dado un indice
+obtenerPregunta(Indice, Pregunta):-
+    caracteristicas(Lista),
+    nth1(Indice, Lista, Pregunta).
+
+
+%FUNCION QUE OBTIENE EL MEJOR INDICE
+mejorIndice(LenguajesPosibles,ListaIndices, MejorIndice):-
+    listaContadores(LenguajesPosibles,ListaIndices,[],ListaContadoresR),
+    reverse(ListaContadoresR,ListaContadores),
+    nl,write(ListaContadores),
+    random(1,11,Random),
+    (Random > 9 -> replace('abc',0,ListaContadores,ListaContadoresFormated), max_list(ListaContadoresFormated,MejorValor);
+                   replace('abc',9999,ListaContadores,ListaContadoresFormated), min_list(ListaContadoresFormated,MejorValor)),
+    nth1(IndiceMejorContador,ListaContadores,MejorValor),
+    nth1(IndiceMejorContador,ListaIndices,MejorIndice),
+    write('-->('),write(MejorIndice),write(","),write(MejorValor),write(")"),nl.
+
+%Obtener columna de caracteristicas
+obtenerColumna([PrimerLenguaje|RestoLenguajes], Indice, ColumnaCaracteristicasInicial,ColumnaCaracteristicasFinal):-
+    lenguaje(PrimerLenguaje,Caracteristicas),
+    nth1(Indice, Caracteristicas, Caracteristica),
+    obtenerColumna(RestoLenguajes,Indice,[Caracteristica|ColumnaCaracteristicasInicial],ColumnaCaracteristicasFinal).
+obtenerColumna(_,_,ColumnaCaracteristicasInicial,ColumnaCaracteristicasInicial).
+
+recorrerYContar([PrimeraCaracteristica|RestoCaracteristicas], ContadorInicial, FlagInicial, ContadorFinal, FlagFinal):-
+    (PrimeraCaracteristica =:= 0 -> ContadorInicial1 is ContadorInicial - 1, Flag1 is 1;
+                                   (PrimeraCaracteristica =:= 2 ->  ContadorInicial1 is ContadorInicial + 1, Flag1 is 1;
+                                                                    ContadorInicial1 is ContadorInicial, Flag1 is FlagInicial)),
+    recorrerYContar(RestoCaracteristicas,ContadorInicial1,Flag1, ContadorFinal, FlagFinal).
+recorrerYContar(_,ContadorInicial,FlagInicial,ContadorInicial,FlagInicial).
+
+
+%Diferencia absoluta de caracteristicas
+diferenciaCaracteristicas(LenguajesPosibles, Indice, ContadorAbs,Flag):-
+    obtenerColumna(LenguajesPosibles,Indice,[],ColumnaCaracteristicas),
+    recorrerYContar(ColumnaCaracteristicas, 0, 0,Contador, Flag),
+    ContadorAbs is abs(Contador).
+
+%Lista contadores
+listaContadores(LenguajesPosibles, [PrimerIndice|RestoIndices], ListaContadores,ListaContadoresResultado):-
+    IndiceUsar is PrimerIndice +1,
+    diferenciaCaracteristicas(LenguajesPosibles, IndiceUsar, ContadorAbs, Flag),
+    (Flag \= 0 -> listaContadores(LenguajesPosibles, RestoIndices, [ContadorAbs|ListaContadores], ListaContadoresResultado) ;
+                 listaContadores(LenguajesPosibles, RestoIndices, ['abc'|ListaContadores], ListaContadoresResultado)).
+listaContadores(_,_,ListaContadores,ListaContadores).
+
+replace(_, _, [], []).
+replace(O, Reemplazar, [O|Resto1], [Reemplazar|Resto2]) :- replace(O, Reemplazar, Resto1, Resto2).
+replace(O, Reemplazar, [Cabeza|Resto1], [Cabeza|Resto2]) :- Cabeza \= O, replace(O, Reemplazar, Resto1, Resto2).
+
+crearListaIndicesAux([_|RestoLista], ListaGuardar, ListaResultado):-
+    length(RestoLista,LongitudLista),
+    crearListaIndicesAux(RestoLista,[LongitudLista|ListaGuardar],ListaResultado).
+crearListaIndicesAux(_,ListaGuardar,ListaGuardar).
+
+crearListaIndices(ListaIndices):-
+   caracteristicas(Preguntas),
+   crearListaIndicesAux(Preguntas,[],ListaIndices).
+
+
 %Iniciar programa automaticamente al iniciar el Java
 :-jugarConSocket.
+
+
+
+
+
+
+
+
+
