@@ -37,9 +37,8 @@ public class UDP extends Thread {
                     socket.receive(receivePacket);
                     String sentence = new String(receivePacket.getData());
                     
-                    /*MOSTRAR LO QUE SE RECIBE
-                    System.out.println("Received: " + sentence);
-                     */
+                    //MOSTRAR LO QUE SE RECIBE
+                    //System.out.println("Received: " + sentence);
                     
                     switch (sentence.charAt(0)) {
                         case '%'://Varios

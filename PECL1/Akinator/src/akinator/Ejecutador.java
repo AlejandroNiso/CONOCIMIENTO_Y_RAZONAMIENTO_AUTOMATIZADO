@@ -27,8 +27,8 @@ public class Ejecutador extends Thread {
             } else {
                 p = Runtime.getRuntime().exec("swipl --win_app" + ruta);
 
-                /*MOSTRAR LO QUE PROLOG ENVIA
-                InputStream stderr = p.getInputStream();
+                //MOSTRAR LO QUE PROLOG ENVIA
+                /*InputStream stderr = p.getInputStream();
                 InputStreamReader isr = new InputStreamReader(stderr);
                 BufferedReader br = new BufferedReader(isr);
                 String line = null;
@@ -37,6 +37,7 @@ public class Ejecutador extends Thread {
                 }*/
 
                 int exitVal = p.waitFor();
+                //System.out.println("Proceso terminado: " + exitVal);
             }
 
         } catch (IOException | InterruptedException ex) {
