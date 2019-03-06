@@ -1,7 +1,6 @@
 package akinator;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
@@ -25,24 +24,6 @@ public class UDP extends Thread {
     @Override
     public void run() {
         boolean continuar = true;
-        Process p;
-        try {
-            String ruta = "../../../pruebasocket2.pl";
-            String nombreSO = System.getProperty("os.name");
-            if (nombreSO.startsWith("Mac OS")) {
-                p = Runtime.getRuntime().exec("swipl " + ruta);
-            } else {
-                p = Runtime.getRuntime().exec("swipl --win_app" + ruta);
-            }
-            InputStream is = p.getErrorStream();
-            byte[] buffer = new byte[is.available()];
-            is.read(buffer, 0, is.available());
-            for (byte dato : buffer) {
-                System.out.print((char) dato);
-            }
-        } catch (IOException ex) {
-            System.out.println(ex.toString());
-        }
 
         while (continuar) {
             int index = 0;

@@ -27,5 +27,8 @@ public class Akinator {
         });
         UDP udp = new UDP(socket, interfaz);
         udp.start();
+        
+        Ejecutador ej = new Ejecutador();
+        ej.start();
     }
 }
