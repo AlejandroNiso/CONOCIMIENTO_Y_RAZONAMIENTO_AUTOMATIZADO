@@ -19,7 +19,7 @@ public class Ejecutador extends Thread {
     public void run() {
         Process p;
         try {
-            String ruta = "../../../pruebasocket2.pl";
+            String ruta = "../../../exesocket.pl";
             String nombreSO = System.getProperty("os.name");
             if (nombreSO.startsWith("Mac OS")) {
                 p = Runtime.getRuntime().exec("swipl " + ruta);

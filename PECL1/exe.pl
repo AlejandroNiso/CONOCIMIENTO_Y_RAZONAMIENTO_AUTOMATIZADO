@@ -1,8 +1,5 @@
-﻿% Autor:
-% Fecha: 06/03/2019
-
-%consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
-:-consult('./knoledge_cambio.pl').
+﻿%consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL1/exe.pl').
+:-consult('./knowledge_cambio.pl').
 :-consult('./preguntas.pl').
 
 %Inicio del programa
