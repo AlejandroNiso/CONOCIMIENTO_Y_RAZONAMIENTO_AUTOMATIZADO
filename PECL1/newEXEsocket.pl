@@ -73,7 +73,7 @@ enviarLisLenguajes(S,[PrimerLenguaje|RestoLenguajes]):-
 
 enviarLisLenguajes(_,_).
 
-%Funci�n para rellenar la lista de respuestas al introducir un nuevo lenguaje
+%Funcion para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas(S,[PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
     (PrimeraRespuesta=:=2-> send(S,'@'),send(S,'Su lenguaje '),send(S,PrimeraPregunta),send(S,'?'),
                            receive(S,Answer),
@@ -152,6 +152,7 @@ send(S,Message) :-
         write(Message),nl,
         udp_send(S, Message, localhost:49260, []).
 
+%Transforma la respuesta del usuario a los datos internos
 cambiarRespuesta(Respuesta,RespuestaTrans):-
     (Respuesta==si -> RespuestaTrans is 2;
     (Respuesta==no -> RespuestaTrans is 0;
@@ -185,6 +186,8 @@ obtenerColumna([PrimerLenguaje|RestoLenguajes], Indice, ColumnaCaracteristicasIn
     obtenerColumna(RestoLenguajes,Indice,[Caracteristica|ColumnaCaracteristicasInicial],ColumnaCaracteristicasFinal).
 obtenerColumna(_,_,ColumnaCaracteristicasInicial,ColumnaCaracteristicasInicial).
 
+%Recorrer caracteristicas y actualizar el contador dependiendo de ellas
+%El flag indica si todas las caracteristicas son de incertidumbre
 recorrerYContar([PrimeraCaracteristica|RestoCaracteristicas], ContadorInicial, FlagInicial, ContadorFinal, FlagFinal):-
     (PrimeraCaracteristica =:= 0 -> ContadorInicial1 is ContadorInicial - 1, Flag1 is 1;
                                    (PrimeraCaracteristica =:= 2 ->  ContadorInicial1 is ContadorInicial + 1, Flag1 is 1;
@@ -207,10 +210,12 @@ listaContadores(LenguajesPosibles, [PrimerIndice|RestoIndices], ListaContadores,
                  listaContadores(LenguajesPosibles, RestoIndices, ['abc'|ListaContadores], ListaContadoresResultado)).
 listaContadores(_,_,ListaContadores,ListaContadores).
 
+%Cambiar todos los elementos iguales por otro en una lista
 replace(_, _, [], []).
 replace(O, Reemplazar, [O|Resto1], [Reemplazar|Resto2]) :- replace(O, Reemplazar, Resto1, Resto2).
 replace(O, Reemplazar, [Cabeza|Resto1], [Cabeza|Resto2]) :- Cabeza \= O, replace(O, Reemplazar, Resto1, Resto2).
 
+%Crea lista con numeros consecutivos de las caracteristicas
 crearListaIndicesAux([_|RestoLista], ListaGuardar, ListaResultado):-
     length(RestoLista,LongitudLista),
     crearListaIndicesAux(RestoLista,[LongitudLista|ListaGuardar],ListaResultado).
@@ -223,12 +228,3 @@ crearListaIndices(ListaIndices):-
 
 %Iniciar programa automaticamente al iniciar el Java
 :-jugarConSocket.
-
-
-
-
-
-
-
-
-

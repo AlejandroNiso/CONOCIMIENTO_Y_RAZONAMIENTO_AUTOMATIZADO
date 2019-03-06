@@ -63,7 +63,7 @@ gameLoop(_,_,_):-write('No quedan preguntas'),nl,
                           read(VolverJugar),
                           (VolverJugar==si -> jugar;!).
 
-%Funci?n para rellenar la lista de respuestas al introducir un nuevo lenguaje
+%Funcion para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
     (PrimeraRespuesta=:=2-> write('Su lenguaje '),write(PrimeraPregunta),write('?(si/no/n): '),
                            read(Answer),
@@ -164,6 +164,8 @@ obtenerColumna([PrimerLenguaje|RestoLenguajes], Indice, ColumnaCaracteristicasIn
     obtenerColumna(RestoLenguajes,Indice,[Caracteristica|ColumnaCaracteristicasInicial],ColumnaCaracteristicasFinal).
 obtenerColumna(_,_,ColumnaCaracteristicasInicial,ColumnaCaracteristicasInicial).
 
+%Recorrer caracteristicas y actualizar el contador dependiendo de ellas
+%El flag indica si todas las caracteristicas son de incertidumbre
 recorrerYContar([PrimeraCaracteristica|RestoCaracteristicas], ContadorInicial, FlagInicial, ContadorFinal, FlagFinal):-
     (PrimeraCaracteristica =:= 0 -> ContadorInicial1 is ContadorInicial - 1, Flag1 is 1;
                                    (PrimeraCaracteristica =:= 2 ->  ContadorInicial1 is ContadorInicial + 1, Flag1 is 1;
@@ -186,10 +188,12 @@ listaContadores(LenguajesPosibles, [PrimerIndice|RestoIndices], ListaContadores,
                  listaContadores(LenguajesPosibles, RestoIndices, ['abc'|ListaContadores], ListaContadoresResultado)).
 listaContadores(_,_,ListaContadores,ListaContadores).
 
+%Cambiar todos los elementos iguales por otro en una lista
 replace(_, _, [], []).
 replace(O, Reemplazar, [O|Resto1], [Reemplazar|Resto2]) :- replace(O, Reemplazar, Resto1, Resto2).
 replace(O, Reemplazar, [Cabeza|Resto1], [Cabeza|Resto2]) :- Cabeza \= O, replace(O, Reemplazar, Resto1, Resto2).
 
+%Crea lista con numeros consecutivos de las caracteristicas
 crearListaIndicesAux([_|RestoLista], ListaGuardar, ListaResultado):-
     length(RestoLista,LongitudLista),
     crearListaIndicesAux(RestoLista,[LongitudLista|ListaGuardar],ListaResultado).
@@ -198,6 +202,3 @@ crearListaIndicesAux(_,ListaGuardar,ListaGuardar).
 crearListaIndices(ListaIndices):-
    caracteristicas(Preguntas),
    crearListaIndicesAux(Preguntas,[],ListaIndices).
-
-
-

@@ -18,7 +18,7 @@ gameLoop(ListaRespuestas,ListaLenguajes,ListaIndices):-
     Indice is Indice1 - 1,
     delete(ListaIndices, Indice1, NuevaListaIndices),
     write(ListaIndices),nl,
-    write('?Su lenguaje '),write(PrimeraPregunta),write('? (si/no/n/psi/pno): '),
+    write('Su lenguaje '),write(PrimeraPregunta),write('? (si/no/n/psi/pno): '),
     read(Respuesta),
     (Respuesta==e -> write('exit'),! ;
                  cambiarRespuesta(Respuesta,Answer),
@@ -30,12 +30,12 @@ gameLoop(ListaRespuestas,ListaLenguajes,ListaIndices):-
                  (LongitudLenguajes=:=1 ->
                           write('Su lenguaje es '),[Solucion|_]=NuevaListaLenguajes,
                           write(Solucion),nl,
-                          write('?Quiere volver a jugar? (si/no): '),
+                          write('Quiere volver a jugar? (si/no): '),
                           read(VolverJugar),
                           (VolverJugar==si -> jugar;!);
                           (LongitudLenguajes=:=0 ->
                                     write('No se ha podido encontrar su lenguaje'),nl,
-                                    write('?Quiere introducir un lenguaje nuevo?(si/no): '),
+                                    write('Quiere introducir un lenguaje nuevo?(si/no): '),
                                     read(IntroducirLeng),
                                     cambiarRespuesta(IntroducirLeng,IntroducirL),
                                     (IntroducirL=:=1 ->
@@ -46,26 +46,26 @@ gameLoop(ListaRespuestas,ListaLenguajes,ListaIndices):-
                                                       rellenarRespuestas(ListaPreguntas,NuevaListaRespuestas,NuevaListaRespuestas,0,ListaGuardar),
                                                       meterLenguaje(NombreNuevo, ListaGuardar),nl,
 
-                                                      write('?Quiere volver a jugar? (si/no): '),
+                                                      write('Quiere volver a jugar? (si/no): '),
                                                       read(VolverJugar),
                                                       (VolverJugar==si -> jugar;!);
 
-                                                      write('Habr?a sido bueno colaborar!!!'),
+                                                      write('Habria sido bueno colaborar!!!'),
                                                       nl,
-                                                      write('?Quiere volver a jugar? (si/no): '),
+                                                      write('Quiere volver a jugar? (si/no): '),
                                                       read(VolverJugar),
                                                       (VolverJugar==si -> jugar;!));
 
                           gameLoop(NuevaListaRespuestas,NuevaListaLenguajes,NuevaListaIndices)))).
 
 gameLoop(_,_,_):-write('No quedan preguntas'),nl,
-                          write('?Quiere volver a jugar? (si/no): '),
+                          write('Quiere volver a jugar? (si/no): '),
                           read(VolverJugar),
                           (VolverJugar==si -> jugar;!).
 
 %Funci?n para rellenar la lista de respuestas al introducir un nuevo lenguaje
 rellenarRespuestas([PrimeraPregunta|RestoPreguntas],[PrimeraRespuesta|RestoRespuestas],ListaRespuestas,Indice,ListaRetorno):-
-    (PrimeraRespuesta=:=2-> write('?Su lenguaje '),write(PrimeraPregunta),write('?(si/no/n): '),
+    (PrimeraRespuesta=:=2-> write('Su lenguaje '),write(PrimeraPregunta),write('?(si/no/n): '),
                            read(Answer),
                            cambiarRespuesta(Answer,Respuesta),
                            reemplazar(ListaRespuestas,Indice,Respuesta,ListaGuardar),
