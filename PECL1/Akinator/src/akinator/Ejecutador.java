@@ -9,12 +9,10 @@ import java.util.logging.Logger;
 
 /**
  *
- * Juan Casado Ballesteros 
- * Gabriel López Cuenca 
- * Álvaro Zamorano Ortega
+ * Juan Casado Ballesteros Gabriel López Cuenca Álvaro Zamorano Ortega
  */
 public class Ejecutador extends Thread {
-    
+
     private Process p;
 
     @Override
@@ -28,13 +26,13 @@ public class Ejecutador extends Thread {
                 p = Runtime.getRuntime().exec("swipl --win_app" + ruta);
 
                 //MOSTRAR LO QUE PROLOG ENVIA
-                /*InputStream stderr = p.getInputStream();
+                InputStream stderr = p.getInputStream();
                 InputStreamReader isr = new InputStreamReader(stderr);
                 BufferedReader br = new BufferedReader(isr);
                 String line = null;
                 while ((line = br.readLine()) != null) {
-                System.out.println(line);
-                }*/
+                    //System.out.println(line);
+                }
 
                 int exitVal = p.waitFor();
                 //System.out.println("Proceso terminado: " + exitVal);
@@ -44,8 +42,8 @@ public class Ejecutador extends Thread {
             Logger.getLogger(Ejecutador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void terminar(){
+
+    public void terminar() {
         p.destroy();
     }
 }
