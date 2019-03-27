@@ -10,14 +10,15 @@ oracion(Input):-
     write(Output).
 
 %Reglasgramaticales
-oracion(o(GN,GV))-->g_nominal(GN),g_verbal(GV).
-oracion(o(OP))-->oracionpreposicional(OP).
-oracionpreposicional(op(GN,PR,V,O))-->g_nominal(GN),preposicion(PR),verbo(V),oracion(O).
+oracion_simple(o(GN,GV))-->g_nominal(GN),g_verbal(GV).
+oracion_simple(o(GV,GN))-->g_verbal(GV),g_nominal(GN).
+oracion_subordinada(o(GV,GN))-->g_verbal(GV),g_nominal(GN).
 
 g_nominal(gn(N))-->nombre(N).
 g_nominal(gn(N,A))-->nombre(N),adjetivo(A).
 g_nominal(gn(D,N))-->determinante(D),nombre(N).
 g_nominal(gn(D,N,A))-->determinante(D),nombre(N),adjetivo(A).
+g_nominal(gn(D,N,PR,O))-->determinante(D),nombre(N),preposicion(PR),oracion_simple(O).
 
 g_verbal(gv(V))-->verbo(V).
 g_verbal(gv(V,GN))-->verbo(V),g_nominal(GN).

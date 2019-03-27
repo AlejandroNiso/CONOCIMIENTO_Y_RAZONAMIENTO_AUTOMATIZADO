@@ -1,14 +1,24 @@
+%consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL2/4.pl').
 :-consult(draw).
 
+oracion(Input):-
+    oracion(Output,Input,[]),
+    with_output_to(atom(Atom),write(Output)),
+    atom_string(Atom,String),
+    split_string(String,"()","( ) ",List),
+    write(List),nl,
+    write(Output).
+
 %Reglasgramaticales
-oracion(o(GN,GV))-->g_nominal(GN),g_verbal(GV).
-oracion(o(OP))-->oracionpreposicional(OP).
-oracionpreposicional(op(GN,PR,V,O))-->g_nominal(GN),preposicion(PR),verbo(V),oracion(O).
+oracion_simple(o(GN,GV))-->g_nominal(GN),g_verbal(GV).
+oracion_simple(o(GV,GN))-->g_verbal(GV),g_nominal(GN).
+oracion_subordinada(o(GV,GN))-->g_verbal(GV),g_nominal(GN).
 
 g_nominal(gn(N))-->nombre(N).
 g_nominal(gn(N,A))-->nombre(N),adjetivo(A).
 g_nominal(gn(D,N))-->determinante(D),nombre(N).
 g_nominal(gn(D,N,A))-->determinante(D),nombre(N),adjetivo(A).
+g_nominal(gn(D,N,PR,O))-->determinante(D),nombre(N),preposicion(PR),oracion_simple(O).
 
 g_verbal(gv(V))-->verbo(V).
 g_verbal(gv(V,GN))-->verbo(V),g_nominal(GN).
