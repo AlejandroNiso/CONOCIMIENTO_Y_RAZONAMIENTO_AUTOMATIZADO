@@ -33,7 +33,7 @@ gameLoop([PrimeraPregunta|RestoPreguntas],ListaRespuestas,ListaLenguajes,Indice)
                                     write('Quiere introducir un lenguaje nuevo?(si/no): '),
                                     read(IntroducirLeng),
                                     cambiarRespuesta(IntroducirLeng,IntroducirL),
-                                    (IntroducirL=:=1 ->
+                                    (IntroducirL=:=2 ->
                                                       write('Escriba el nombre del lenguaje'),
                                                       read(NombreNuevo),
                                                       caracteristicas(ListaPreguntas),

@@ -6,7 +6,7 @@ oracion(Input):-
     with_output_to(atom(Atom),write(Output)),
     atom_string(Atom,String),
     split_string(String,"()","( ) ",List),
-    write(List),nl,
+    write(List),
     write(Output).
 
 %Reglasgramaticales
