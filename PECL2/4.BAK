@@ -39,7 +39,8 @@ g_nominal(GN)-->g_nom(GN).
 g_nominal(gn(GN1,C,GN2))-->g_nom(GN1),conjuncion(C),g_nom(GN2).
 %g_nominal(gn(GN1,C,GN2,A))-->g_nom(GN1),conjuncion(C),g_nom(GN2),adjetivo(A).
 g_nominal(gn(GN1,GP))-->g_nom(GN1),g_preposicional(GP).
-g_nominal(gn(GN1,OR))-->g_nom(GN1),o_relativo(OR).
+g_nominal(gn(GN1,GA))-->g_nom(GN1),g_adjetival(GA).
+g_nominal(gn(GN1,GA,OR))-->g_nom(GN1),g_adjetival(GA),o_relativo(OR).
 
 o_relativo(or(PR,OS))-->p_relativo(PR),oracion_simple(OS).
 
@@ -163,6 +164,7 @@ v(toma).
 v(compre).
 v(bebe).
 v(salta).
+v(sonrie).
 
 v(saltan).
 v(comen).
@@ -195,6 +197,8 @@ a(moreno).
 a(alta).
 a(negro).
 a(frita).
+a(alegre).
+
 
 a(grandes).
 a(rojas).
@@ -217,6 +221,7 @@ p(para).
 conjuncion(c(X))-->[X],{c(X)}.
 c(y).
 c(mientras).
+c(pero).
 
 p_relativo(pr(X))-->[X],{pr(X)}.
 pr(que).
@@ -230,3 +235,4 @@ ad(muy).
 ad(lejos).
 ad(claramente).
 ad(solamente).
+ad(bastante).
