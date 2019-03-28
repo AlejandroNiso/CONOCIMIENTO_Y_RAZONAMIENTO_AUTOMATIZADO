@@ -1,6 +1,7 @@
 %consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL2/4.pl').
 :-consult(draw).
 :-consult(oraciones).
+:-consult(graphviz).
 
 oracion(Input):-
     oracion(Output,Input,[]),
@@ -8,7 +9,7 @@ oracion(Input):-
     atom_string(Atom,String),
     split_string(String,"()","( ) ",List),
     write(List),nl,
-    write(Output), draw(Output).
+    write(Output), draw(Output),!.
 
 %Reglasgramaticales
 oracion(Output,Input,[]):- oracion_simple(Output,Input,[]).
@@ -19,23 +20,28 @@ oracion_simple(o(GN,GV))-->g_nominal(GN),g_verbal(GV).
 oracion_simple(o(GV,GN))-->g_verbal(GV),g_nominal(GN).
 
 oracion_ccordinada(o(OS1,C,OS2))-->oracion_simple(OS1),conjuncion(C),oracion_simple(OS2).
+oracion_ccordinada(o(OS1,C1,OS2,C2,OS3))-->oracion_simple(OS1),conjuncion(C1),oracion_simple(OS2),conjuncion(C2),oracion_simple(OS3).
 
 oracion_subordinada(o(GN,GV))-->g_nominal_sub(GN),g_verbal(GV).
-oracion_subordinada(o(GN))-->g_nominal(GN).
+%oracion_subordinada(o(GN))-->g_nominal(GN).
 
-g_nominal(gn(N))-->nombre(N).
-g_nominal(gn(PN))-->pronombre(PN).
-g_nominal(gn(N,A))-->nombre(N),adjetivo(A).
-g_nominal(gn(N1,N2))-->nombre(N1),nombre(N2).
-g_nominal(gn(A,N))-->adjetivo(A),nombre(N).
-g_nominal(gn(D,A,N))-->determinante(D),adjetivo(A),nombre(N).
-g_nominal(gn(D,N))-->determinante(D),nombre(N).
-g_nominal(gn(D,N,A))-->determinante(D),nombre(N),adjetivo(A).
-g_nominal(gn(D,N,GP))-->determinante(D),nombre(N),g_preposicional(GP).
-g_nominal(gn(N,C,O))-->nombre(N),conjuncion(C),oracion_simple(O).
+g_nom(gn(N))-->nombre(N).
+g_nom(gn(PN))-->pronombre(PN).
+g_nom(gn(N,A))-->nombre(N),adjetivo(A).
+g_nom(gn(N1,N2))-->nombre(N1),nombre(N2).
 
-g_nominal(gn(GN1,C,GN2,GAD))-->g_nominal(GN1),conjuncion(C),g_nominal(GN2),g_adjetival(GAD).
-g_nominal(gn(GN1,C,GN2))-->g_nominal(GN1),conjuncion(C),g_nominal(GN2).
+g_nom(gn(A,N))-->adjetivo(A),nombre(N).
+g_nom(gn(D,A,N))-->determinante(D),adjetivo(A),nombre(N).
+g_nom(gn(D,N))-->determinante(D),nombre(N).
+g_nom(gn(D,N,A))-->determinante(D),nombre(N),adjetivo(A).
+
+g_nominal(GN)-->g_nom(GN).
+g_nominal(gn(GN1,C,GN2))-->g_nom(GN1),conjuncion(C),g_nom(GN2).
+%g_nominal(gn(GN1,C,GN2,A))-->g_nom(GN1),conjuncion(C),g_nom(GN2),adjetivo(A).
+g_nominal(gn(GN1,GP))-->g_nom(GN1),g_preposicional(GP).
+g_nominal(gn(GN1,OR))-->g_nom(GN1),o_relativo(OR).
+
+o_relativo(or(PR,OS))-->p_relativo(PR),oracion_simple(OS).
 
 g_nominal_sub(gn(D,N,C,O))-->determinante(D),nombre(N),conjuncion(C),oracion_simple(O).
 g_nominal_sub(gn(D,N,GP,C,O))-->determinante(D),nombre(N),g_preposicional(GP),conjuncion(C),oracion_simple(O).
@@ -50,9 +56,7 @@ g_verbal(gv(V,GA))-->verbo(V),g_adverbial(GA).
 g_verbal(gv(V,GA,GN))-->verbo(V),g_adverbial(GA),g_nominal(GN).
 g_verbal(gv(V,GAD))-->verbo(V),g_adjetival(GAD).
 
-g_preposicional(gp(P,G1,C,G2))-->preposicion(P),g_nominal(G1),conjuncion(C),g_nominal(G2).
 g_preposicional(gp(P,GN))-->preposicion(P),g_nominal(GN).
-g_preposicional(gp(P,GN,GP))-->preposicion(P),g_nominal(GN),g_preposicional(GP).
 
 g_adverbial(gad(AD1,AD2,GP))-->adverbio(AD1),adverbio(AD2),g_preposicional(GP).
 g_adverbial(gad(AD1,AD2))-->adverbio(AD1),adverbio(AD2).
@@ -60,7 +64,6 @@ g_adverbial(gad(ADV))-->adverbio(ADV).
 
 g_adjetival(gaj(AD,GP))-->adjetivo(AD),g_preposicional(GP).
 g_adjetival(gaj(ADV,ADJ))-->adverbio(ADV),adjetivo(ADJ).
-g_adjetival(gaj(ADJ))-->adjetivo(ADJ).
 
 %Diccionario
 determinante(det(X))-->[X],{det(X)}.
@@ -81,6 +84,7 @@ n(hombre).
 n(mujer).
 n(juan).
 n(maria).
+n(irene).
 n(manzana).
 n(manzanas).
 n(gato).
@@ -158,7 +162,9 @@ v(recoge).
 v(toma).
 v(compre).
 v(bebe).
+v(salta).
 
+v(saltan).
 v(comen).
 v(hacen).
 v(cantan).
@@ -210,8 +216,10 @@ p(para).
 
 conjuncion(c(X))-->[X],{c(X)}.
 c(y).
-c(que).
 c(mientras).
+
+p_relativo(pr(X))-->[X],{pr(X)}.
+pr(que).
 
 pronombre(pn(X))-->[X],{pn(X)}.
 pn(ella).
