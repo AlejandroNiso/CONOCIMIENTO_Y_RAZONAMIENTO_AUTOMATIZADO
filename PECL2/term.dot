@@ -1,0 +1,101 @@
+[o,gn,n,juan,,c,y,,o,gn,n,maria,,gv,v,comen,,gn,det,la,,n,manzana,,a,roja,,gp,p,con,,gn,det,un,,n,tenedor,,c,y,,gn,det,un,,n,cuchillo]
+o(gn(n(juan),c(y),o(gn(n(maria)),gv(v(comen),gn(det(la),n(manzana),a(roja)),gp(p(con),gn(det(un),n(tenedor)),c(y),gn(det(un),n(cuchillo)))))))
+                                                      o
+                                                      |
+                                                      |
+                                                      gn
+                                                      |
+      +------------------------------------------------------+
+      n      c                                               o
+      |      |                                               |
+      |      |      +---------------------------------------------+
+      |      |      gn                                            gv
+      |      |      |                                             |
+      |      |      |        +----------------------------------------------------+
+      |      |      n        v               gn                                   gp
+      |      |      |        |               |                                    |
+      |      |      |        |      +-----------------+       +---------------------------------+
+      |      |      |        |     det       n        a       p          gn          c          gn
+      |      |      |        |      |        |        |       |          |           |          |
+      |      |      |        |      |        |        |       |     +--------+       |    +--------+
+      |      |      |        |      |        |        |       |    det       n       |   det       n
+      |      |      |        |      |        |        |       |     |        |       |    |        |
+      |      |      |        |      |        |        |       |     |        |       |    |        |
+     juan    y    maria    comen    la    manzana    roja    con    un    tenedor    y    un    cuchillo
+
+[o,gn,n,juan,,c,y,,o,gn,n,maria,,gv,v,comen,,gn,det,la,,n,manzana,,gaj,a,roja,,gp,p,con,,gn,det,un,,n,tenedor,,c,y,,gn,det,un,,n,cuchillo]
+o(gn(n(juan),c(y),o(gn(n(maria)),gv(v(comen),gn(det(la),n(manzana)),gaj(a(roja),gp(p(con),gn(det(un),n(tenedor)),c(y),gn(det(un),n(cuchillo))))))))
+                                                      o
+                                                      |
+                                                      |
+                                                      gn
+                                                      |
+      +------------------------------------------------------+
+      n      c                                               o
+      |      |                                               |
+      |      |      +---------------------------------------------+
+      |      |      gn                                            gv
+      |      |      |                                             |
+      |      |      |        +-------------------------------------------------+
+      |      |      n        v           gn                                   gaj
+      |      |      |        |           |                                     |
+      |      |      |        |      +--------+        +---------------------------+
+      |      |      |        |     det       n        a                           gp
+      |      |      |        |      |        |        |                           |
+      |      |      |        |      |        |        |       +---------------------------------+
+      |      |      |        |      |        |        |       p          gn          c          gn
+      |      |      |        |      |        |        |       |          |           |          |
+      |      |      |        |      |        |        |       |     +--------+       |    +--------+
+      |      |      |        |      |        |        |       |    det       n       |   det       n
+      |      |      |        |      |        |        |       |     |        |       |    |        |
+      |      |      |        |      |        |        |       |     |        |       |    |        |
+     juan    y    maria    comen    la    manzana    roja    con    un    tenedor    y    un    cuchillo
+
+[o,gn,n,juan,,c,y,,o,gn,n,maria,,gv,v,comen,,gn,det,la,,n,manzana,,a,roja,,gp,p,con,,gn,det,un,,n,tenedor,,c,y,,gn,det,un,,n,cuchillo]
+o(gn(n(juan),c(y),o(gn(n(maria)),gv(v(comen),gn(det(la),n(manzana),a(roja)),gp(p(con),gn(det(un),n(tenedor)),c(y),gn(det(un),n(cuchillo)))))))
+                                                      o
+                                                      |
+                                                      |
+                                                      gn
+                                                      |
+      +------------------------------------------------------+
+      n      c                                               o
+      |      |                                               |
+      |      |      +---------------------------------------------+
+      |      |      gn                                            gv
+      |      |      |                                             |
+      |      |      |        +----------------------------------------------------+
+      |      |      n        v               gn                                   gp
+      |      |      |        |               |                                    |
+      |      |      |        |      +-----------------+       +---------------------------------+
+      |      |      |        |     det       n        a       p          gn          c          gn
+      |      |      |        |      |        |        |       |          |           |          |
+      |      |      |        |      |        |        |       |     +--------+       |    +--------+
+      |      |      |        |      |        |        |       |    det       n       |   det       n
+      |      |      |        |      |        |        |       |     |        |       |    |        |
+      |      |      |        |      |        |        |       |     |        |       |    |        |
+     juan    y    maria    comen    la    manzana    roja    con    un    tenedor    y    un    cuchillo
+
+[o,gn,n,juan,,c,y,,o,gn,n,maria,,gv,v,comen,,gn,det,la,,n,manzana,,gaj,a,roja,,gp,p,con,,gn,det,un,,n,tenedor,,c,y,,gn,det,un,,n,cuchillo]
+o(gn(n(juan),c(y),o(gn(n(maria)),gv(v(comen),gn(det(la),n(manzana)),gaj(a(roja),gp(p(con),gn(det(un),n(tenedor)),c(y),gn(det(un),n(cuchillo))))))))
+                                                      o
+                                                      |
+                                                      |
+                                                      gn
+                                                      |
+      +------------------------------------------------------+
+      n      c                                               o
+      |      |                                               |
+      |      |      +---------------------------------------------+
+      |      |      gn                                            gv
+      |      |      |                                             |
+      |      |      |        +-------------------------------------------------+
+      |      |      n        v           gn                                   gaj
+      |      |      |        |           |                                     |
+      |      |      |        |      +--------+        +---------------------------+
+      |      |      |        |     det       n        a                           gp
+      |      |      |        |      |        |        |                           |
+      |      |      |        |      |        |        |       +---------------------------------+
+      |      |      |        |      |        |        |       p          gn          c          gn
+      |      |      |        |      |        |        |       |          |           |          |
+      |      |      |        |      |        |      

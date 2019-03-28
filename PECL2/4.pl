@@ -21,21 +21,23 @@ oracion_simple(o(GV,GN))-->g_verbal(GV),g_nominal(GN).
 oracion_ccordinada(o(OS1,C,OS2))-->oracion_simple(OS1),conjuncion(C),oracion_simple(OS2).
 
 oracion_subordinada(o(GN,GV))-->g_nominal_sub(GN),g_verbal(GV).
-oracion_subordinada(o(GN))-->g_nominal(GN).
+%oracion_subordinada(o(GN))-->g_nominal(GN).
 
-g_nominal(gn(N))-->nombre(N).
-g_nominal(gn(PN))-->pronombre(PN).
-g_nominal(gn(N,A))-->nombre(N),adjetivo(A).
-g_nominal(gn(N1,N2))-->nombre(N1),nombre(N2).
-g_nominal(gn(A,N))-->adjetivo(A),nombre(N).
-g_nominal(gn(D,A,N))-->determinante(D),adjetivo(A),nombre(N).
-g_nominal(gn(D,N))-->determinante(D),nombre(N).
-g_nominal(gn(D,N,A))-->determinante(D),nombre(N),adjetivo(A).
-g_nominal(gn(D,N,GP))-->determinante(D),nombre(N),g_preposicional(GP).
-g_nominal(gn(N,C,O))-->nombre(N),conjuncion(C),oracion_simple(O).
+g_nom(gn(N))-->nombre(N).
+g_nom(gn(PN))-->pronombre(PN).
+g_nom(gn(N,A))-->nombre(N),g_adjetivo(A).
+g_nom(gn(N1,N2))-->nombre(N1),nombre(N2).
+g_nom(gn(A,N))-->adjetivo(A),nombre(N).
+g_nom(gn(D,A,N))-->determinante(D),adjetivo(A),nombre(N).
+g_nom(gn(D,N))-->determinante(D),nombre(N).
+g_nom(gn(D,N,A))-->determinante(D),nombre(N),adjetivo(A).
 
-g_nominal(gn(GN1,C,GN2,GAD))-->g_nominal(GN1),conjuncion(C),g_nominal(GN2),g_adjetival(GAD).
-g_nominal(gn(GN1,C,GN2))-->g_nominal(GN1),conjuncion(C),g_nominal(GN2).
+g_nominal(GN)-->g_nom(GN).
+g_nominal(gn(GN1,C,GN2))-->g_nom(GN1),conjuncion(C),g_nom(GN2).
+g_nominal(gn(GN1,C,GP))-->g_nom(GN1),conjuncion(C),g_preposicional(GP).
+g_nominal(gn(GN1,OR))-->g_nom(GN1),o_relativo(OR).
+
+o_relativo(or(C,OS))-->conjuncion(C),oracion_simple(OS).
 
 g_nominal_sub(gn(D,N,C,O))-->determinante(D),nombre(N),conjuncion(C),oracion_simple(O).
 g_nominal_sub(gn(D,N,GP,C,O))-->determinante(D),nombre(N),g_preposicional(GP),conjuncion(C),oracion_simple(O).

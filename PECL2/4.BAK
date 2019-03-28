@@ -112,6 +112,7 @@ n(pantalon).
 n(corbata).
 n(hector).
 n(patata).
+n(cerveza).
 
 n(hombres).
 n(tenedores).
@@ -136,6 +137,7 @@ n(mesas).
 n(pantalones).
 n(corbatas).
 n(patatas).
+n(cervezas).
 
 verbo(v(X))-->[X],{v(X)}.
 v(ama).
