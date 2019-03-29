@@ -115,6 +115,8 @@ n(hector).
 n(patata).
 n(cerveza).
 
+n(raton).
+
 n(hombres).
 n(tenedores).
 n(cuchillos).
@@ -139,6 +141,8 @@ n(pantalones).
 n(corbatas).
 n(patatas).
 n(cervezas).
+
+n(ratones).
 
 verbo(v(X))-->[X],{v(X)}.
 v(ama).
@@ -213,6 +217,8 @@ p(con).
 p(de).
 p(en).
 p(para).
+
+p(a).
 
 conjuncion(c(X))-->[X],{c(X)}.
 c(y).
