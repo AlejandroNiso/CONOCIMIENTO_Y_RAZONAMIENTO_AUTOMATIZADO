@@ -10,7 +10,7 @@ oracion(Input):-
     atom_string(Atom,String),
     split_string(String,"()","( ) ",List),
     write(List),nl,
-    write(Output), draw(Output),validate_inicio(List,X),
+    write(Output), draw(Output),validate(Input,[],X),
     write(X),!.
 
 %Reglasgramaticales

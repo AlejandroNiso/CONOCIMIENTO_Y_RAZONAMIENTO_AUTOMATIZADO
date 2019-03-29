@@ -29,28 +29,37 @@ g(p, ["los","unos","las","unas","sus","mis","manzanas","hombres","mujeres","juan
 
 g(c, ["gn","gv","c"]).
 
-validate([Elemento|Lista],Memoria,Final,R):-
+validate([Elemento|Lista],Memoria,R):-
    (g(c,Listado),member(Elemento,Listado)->
          write("Corte: "),write(Memoria),write(Elemento),
          validate_inicio(Memoria,ListaGenero),
          revisar(ListaGenero,[],Error),
          length(Error,Longitud),
+         write("longitud: "),write(Longitud),
          (Longitud == 0 ->
-               validate(Lista,[Elemento|Memoria],Final,R);
+               validate(Lista,[Elemento|Memoria],R);
+               write("entra arriba"),
                validate(Error,R));
-         write(Memoria),
-         validate(Lista,[Elemento|Memoria],Final,R)).
-validate(_,Memoria,Final,R):-
+         write("memoria: "),write(Memoria),
+         validate(Lista,[Elemento|Memoria],R)).
+         
+validate(_,Memoria,R):-
      validate_inicio(Memoria,ListaGenero),
          revisar(ListaGenero,[],Error),
          length(Error,Longitud),
+         write("longitud: "),write(Longitud),
          (Longitud == 0 ->
-               validate(Final,R);
+               write("entra abajo"),
+               validate([],R),!;
+               write("entra abajo abajo"),
                validate(Error,R)).
-validate(Final,Final).
+               
+validate(Final,Final):-write("Ha terminado"),!.
 
 revisar(ListaGenero,Resultado,Error):-
-    write(ListaGenero),write(Error),write(Resultado).
+    write("revisar"),asignarVacio([],Error).
+    
+asignarVacio(A,A).
 
 validate_inicio(Input,Output):-validatem(Input,[],R),reverse(R,Output).
 
