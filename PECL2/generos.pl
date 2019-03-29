@@ -27,6 +27,8 @@ g(p, ["los","unos","las","unas","sus","mis","manzanas","hombres","mujeres","juan
         "redacciones","leches","ropas","victorias","sirven","recogen","toman","toman","compren","beben","saltan","sonrien","delicados","delicadas","potentes",
         "morenos","morenas","alegres","herramientas","utensilios","mesas","taburetes","corbatas","trajes","patatas","tuberculos","cervezas","wiskys","altas","altos"]).
 
+g(c, ["gn","gv","c"]).
+
 validate([Elemento|Lista],E,[],R):-
     write("").
 validate(_,R,R).
