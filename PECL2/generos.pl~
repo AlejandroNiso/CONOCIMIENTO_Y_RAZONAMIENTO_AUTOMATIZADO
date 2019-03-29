@@ -140,14 +140,14 @@ ad(muy).
 ad(lejos).
 ad(claramente).
 
-g(m, ["el","los","un","unos","mi","mis","su","sus","hombre","juan","gato","naranja","naranjas","raton","alumno","colegio","tenedor",
+g(m, ["el","los","un","unos","mi","mis","su","sus","hombre","juan","gato","naranja","naranjas","raton","ratones","alumno","colegio","tenedor",
            "trabajo","cuchillo","canario","vuelo","madrid","reflejo","nino","lugar","naciminetio","profesor","hombres",
            "tenedores","cuchillos","canarios","vuelos","reflejos","ninos","lugares","profesores","negro","grande","gris",
            "pequeño","lento","grandes","lentos","deseo","vivo","trabajos","deseos","vivos","colegios","rojo","pequeño","blanco",
            "grandes","rojos","bancos","ellos","el","procesador","texto","documento","cafe","pantalon","hector","delicado","potente","moreno","alegre",
            "pepe","utensilio","taburete","taburetes","","traje","tuberculo","tuberculos","wisky","alto","altos"]).
 
-g(f, ["la","las","una","unas","mi","mis","su","sus","mujer","maria","gata","manzana","manzanas","rata","alumna","universidad","cuchara",
+g(f, ["la","las","una","unas","mi","mis","su","sus","mujer","maria","gata","manzana","manzanas","rata","ratas","alumna","universidad","cuchara",
           "practica","navaja","paloma","travesia","madrid","refleja","nina","plaza","celebracion","profesora","mujeres",
           "cucharas","navajas","palomas","travasias","reflejas","ninas","plazas","profesoras","negra","pequeña","gis",
           "pequeña","lenta","grandes","lentas","esperanza","vida","practicas","esperanzas","vidas","universidades","roja","grande","blanca",
