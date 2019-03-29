@@ -31,8 +31,6 @@ validate([Elemento|Lista],E,[],R):-
     write("").
 validate(_,R,R).
 
-validate_inicio(Input,Output):-validatem(Input,[],R),reverse(R,Output).
-
 validatem([Elemento|List],Genero,R) :-
     (g(m,Listado),member(Elemento,Listado)->
          validatef([Elemento|List],[m|Genero],R);validatef([Elemento|List],Genero,R)).
