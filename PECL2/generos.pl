@@ -29,9 +29,20 @@ g(p, ["los","unos","las","unas","sus","mis","manzanas","hombres","mujeres","juan
 
 g(c, ["gn","gv","c"]).
 
-validate([Elemento|Lista],E,[],R):-
-    write("").
-validate(_,R,R).
+validate([Elemento|Lista],Memoria,Final,R):-
+   (g(c,Listado),member(Elemento,Listado)->
+         write("Corte: "),write(Listado),write(Elemento),
+         validate_inicio(Memoria,ListaGenero),
+         revisar(ListaGenero,[],Error),
+         length(Error,Longitud),
+         (Longitud == 0 ->
+               validate(Lista,[Elemento|Memoria],Final,R);
+               validate(_,_,Error,R));
+         validate(Lista,[Elemento|Memoria],Final,R)).
+validate(_,_,Final,Final).
+
+revisar(ListaGenero,Resultado,Error):-
+    write(ListaGenero),write(Error),write(Resultado).
 
 validate_inicio(Input,Output):-validatem(Input,[],R),reverse(R,Output).
 
