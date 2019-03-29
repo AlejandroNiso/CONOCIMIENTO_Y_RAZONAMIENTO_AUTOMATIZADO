@@ -13,7 +13,6 @@ oracion(Input):-
 
 %Reglasgramaticales
 oracion(Output,Input,[]):- oracion_simple(Output,Input,[]).
-oracion(Output,Input,[]):- oracion_subordinada(Output,Input,[]).
 oracion(Output,Input,[]):- oracion_ccordinada(Output,Input,[]).
 oracion_simple(o(GV))-->g_verbal(GV).
 oracion_simple(o(GN,GV))-->g_nominal(GN),g_verbal(GV).
@@ -23,7 +22,6 @@ oracion_ccordinada(o(OS1,C,OS2))-->oracion_simple(OS1),conjuncion(C),oracion_sim
 oracion_ccordinada(o(OS1,C1,OS2,C2,OS3))-->oracion_simple(OS1),conjuncion(C1),oracion_simple(OS2),conjuncion(C2),oracion_simple(OS3).
 
 oracion_subordinada(o(GN,GV))-->g_nominal_sub(GN),g_verbal(GV).
-%oracion_subordinada(o(GN))-->g_nominal(GN).
 
 g_nom(gn(N))-->nombre(N).
 g_nom(gn(PN))-->pronombre(PN).
@@ -40,12 +38,10 @@ g_nominal(gn(GN1,C,GN2))-->g_nom(GN1),conjuncion(C),g_nom(GN2).
 %g_nominal(gn(GN1,C,GN2,A))-->g_nom(GN1),conjuncion(C),g_nom(GN2),adjetivo(A).
 g_nominal(gn(GN1,GP))-->g_nom(GN1),g_preposicional(GP).
 g_nominal(gn(GN1,GA))-->g_nom(GN1),g_adjetival(GA).
+g_nominal(gn(GN1,OR))-->g_nom(GN1),o_relativo(OR).
 g_nominal(gn(GN1,GA,OR))-->g_nom(GN1),g_adjetival(GA),o_relativo(OR).
 
 o_relativo(or(PR,OS))-->p_relativo(PR),oracion_simple(OS).
-
-g_nominal_sub(gn(D,N,C,O))-->determinante(D),nombre(N),conjuncion(C),oracion_simple(O).
-g_nominal_sub(gn(D,N,GP,C,O))-->determinante(D),nombre(N),g_preposicional(GP),conjuncion(C),oracion_simple(O).
 
 g_verbal(gv(V))-->verbo(V).
 g_verbal(gv(V,GN))-->verbo(V),g_nominal(GN).
