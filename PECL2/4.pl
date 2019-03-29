@@ -1,6 +1,7 @@
 %consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL2/4.pl').
 :-consult(draw).
 :-consult(oraciones).
+:-consult(generos).
 :-consult(graphviz).
 
 oracion(Input):-
@@ -9,7 +10,8 @@ oracion(Input):-
     atom_string(Atom,String),
     split_string(String,"()","( ) ",List),
     write(List),nl,
-    write(Output), draw(Output),!.
+    write(Output), draw(Output),validate_inicio(List,X),
+    write(X),!.
 
 %Reglasgramaticales
 oracion(Output,Input,[]):- oracion_simple(Output,Input,[]).
@@ -116,7 +118,6 @@ n(corbata).
 n(hector).
 n(patata).
 n(cerveza).
-
 n(raton).
 
 n(hombres).
@@ -149,7 +150,6 @@ n(pantalones).
 n(corbatas).
 n(patatas).
 n(cervezas).
-
 n(ratones).
 
 verbo(v(X))-->[X],{v(X)}.
@@ -212,7 +212,6 @@ a(frita).
 a(frito).
 a(alegre).
 
-
 a(grandes).
 a(rojas).
 a(rojos).
@@ -235,7 +234,6 @@ p(con).
 p(de).
 p(en).
 p(para).
-
 p(a).
 
 conjuncion(c(X))-->[X],{c(X)}.
