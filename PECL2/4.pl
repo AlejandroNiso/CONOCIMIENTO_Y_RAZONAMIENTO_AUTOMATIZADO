@@ -75,6 +75,7 @@ det(unas).
 det(su).
 det(sus).
 det(mi).
+det(mis).
 
 nombre(n(X))-->[X],{n(X)}.
 n(hombre).
@@ -102,6 +103,7 @@ n(nino).
 n(lugar).
 n(nacimiento).
 n(profesor).
+n(profesora).
 n(procesador).
 n(texto).
 n(herramienta).
@@ -118,6 +120,11 @@ n(cerveza).
 n(raton).
 
 n(hombres).
+n(mujeres).
+n(manzano).
+n(manzanos).
+n(gatos).
+n(gata).
 n(tenedores).
 n(cuchillos).
 n(practicas).
@@ -130,6 +137,7 @@ n(vidas).
 n(ninos).
 n(lugares).
 n(profesores).
+n(profesoras).
 n(universidades).
 n(procesadores).
 n(textos).
@@ -184,32 +192,42 @@ v(beben).
 
 adjetivo(a(X))-->[X],{a(X)}.
 a(roja).
+a(rojo).
 a(negro).
+a(negra).
 a(grande).
 a(gris).
 a(pequeno).
+a(pequena).
 a(blanca).
 a(lento).
+a(lenta).
 a(delicado).
 a(delicada).
 a(potente).
 a(moreno).
 a(alta).
-a(negro).
+a(alto).
 a(frita).
+a(frito).
 a(alegre).
 
 
 a(grandes).
 a(rojas).
+a(rojos).
 a(blancas).
+a(blancos).
 a(lentos).
 a(delicados).
 a(delicadas).
 a(potentes).
 a(morenos).
+a(morenas).
 a(altas).
+a(altos).
 a(negros).
+a(negras).
 a(fritas).
 
 preposicion(p(X))-->[X],{p(X)}.
@@ -231,6 +249,8 @@ pr(que).
 pronombre(pn(X))-->[X],{pn(X)}.
 pn(ella).
 pn(el).
+pn(ellas).
+pn(ellos).
 
 adverbio(ad(X))-->[X],{ad(X)}.
 ad(muy).
