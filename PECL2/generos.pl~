@@ -31,7 +31,7 @@ g(c, ["gn","gv","c"]).
 
 validate([Elemento|Lista],Memoria,Final,R):-
    (g(c,Listado),member(Elemento,Listado)->
-         write("Corte: "),write(Listado),write(Elemento),
+         write("Corte: "),write(Memoria),write(Elemento),
          validate_inicio(Memoria,ListaGenero),
          revisar(ListaGenero,[],Error),
          length(Error,Longitud),
