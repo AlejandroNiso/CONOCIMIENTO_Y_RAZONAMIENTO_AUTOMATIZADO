@@ -37,10 +37,17 @@ validate([Elemento|Lista],Memoria,Final,R):-
          length(Error,Longitud),
          (Longitud == 0 ->
                validate(Lista,[Elemento|Memoria],Final,R);
-               validate(_,_,Error,R));
+               validate(Error,R));
          write(Memoria),
          validate(Lista,[Elemento|Memoria],Final,R)).
-validate(_,_,Final,Final).
+validate(_,Memoria,Final,R):-
+     validate_inicio(Memoria,ListaGenero),
+         revisar(ListaGenero,[],Error),
+         length(Error,Longitud),
+         (Longitud == 0 ->
+               validate(Final,R);
+               validate(Error,R)).
+validate(Final,Final).
 
 revisar(ListaGenero,Resultado,Error):-
     write(ListaGenero),write(Error),write(Resultado).

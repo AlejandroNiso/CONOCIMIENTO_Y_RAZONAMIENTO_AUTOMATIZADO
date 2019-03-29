@@ -38,6 +38,7 @@ validate([Elemento|Lista],Memoria,Final,R):-
          (Longitud == 0 ->
                validate(Lista,[Elemento|Memoria],Final,R);
                validate(_,_,Error,R));
+         write(Memoria),
          validate(Lista,[Elemento|Memoria],Final,R)).
 validate(_,_,Final,Final).
 
