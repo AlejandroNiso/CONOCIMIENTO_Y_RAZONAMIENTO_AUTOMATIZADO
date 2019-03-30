@@ -37,7 +37,7 @@ validate([Elemento|Lista],Memoria,R):-
          length(Error,Longitud),
          write("longitud: "),write(Longitud),
          (Longitud == 0 ->
-               validate(Lista,[Elemento|Memoria],Final,R);
+               validate(Lista,[Elemento|Memoria],R);
                write("entra arriba"),
                validate(Error,R));
          write("memoria: "),write(Memoria),
@@ -50,7 +50,7 @@ validate(_,Memoria,R):-
          write("longitud: "),write(Longitud),
          (Longitud == 0 ->
                write("entra abajo"),
-               validate([],R);
+               validate([],R),!;
                write("entra abajo abajo"),
                validate(Error,R)).
                

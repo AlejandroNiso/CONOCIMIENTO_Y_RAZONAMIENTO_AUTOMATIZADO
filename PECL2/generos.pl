@@ -37,6 +37,7 @@ validate([Elemento|Lista],Memoria,R):-
          length(Error,Longitud),
          write("longitud: "),write(Longitud),
          (Longitud == 0 ->
+                   %Con lo analizado ahora no hay error, seguimos validando
                validate(Lista,[Elemento|Memoria],R);
                write("entra arriba"),
                validate(Error,R));
