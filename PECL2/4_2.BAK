@@ -1,8 +1,7 @@
 %consult('/Users/mr.blissfulgrin/Documents/UAH_2018_2019/RAZONAMIENTO/LAB/PECL2/4.pl').
 :-consult(draw).
 :-consult(oraciones).
-:-consult(generos).
-:-consult(graphviz).
+%:-consult(graphviz).
 
 oracion(Input):-
     oracion(Output,Input,[]),
@@ -10,62 +9,62 @@ oracion(Input):-
     atom_string(Atom,String),
     split_string(String,"()","( ) ",List),
     write(List),nl,
-    write(Output), draw(Output),validate(Input,[],X),
-    write(X),!.
+    write(Output), draw(Output),!.
 
 %Reglasgramaticales
 oracion(Output,Input,[]):- oracion_simple(Output,Input,[]).
 oracion(Output,Input,[]):- oracion_ccordinada(Output,Input,[]).
-oracion_simple(o(GV))-->g_verbal(GV).
-oracion_simple(o(GN,GV))-->g_nominal(GN),g_verbal(GV).
-oracion_simple(o(GV,GN))-->g_verbal(GV),g_nominal(GN).
+oracion_simple(o(GV))-->g_verbal(GV,_,_).
+%oracion_simple(o(GN))-->g_nominal(GN,_,_).
+oracion_simple(o(GN,GV))-->g_nominal(GN,Gen,Num),g_verbal(GV,Gen,Num).
+oracion_simple(o(GV,GN))-->g_verbal(GV,Gen,Num),g_nominal(GN,Gen,Num).
 
 oracion_ccordinada(o(OS1,C,OS2))-->oracion_simple(OS1),conjuncion(C),oracion_simple(OS2).
 oracion_ccordinada(o(OS1,C1,OS2,C2,OS3))-->oracion_simple(OS1),conjuncion(C1),oracion_simple(OS2),conjuncion(C2),oracion_simple(OS3).
 
-oracion_subordinada(o(GN,GV))-->g_nominal_sub(GN),g_verbal(GV).
+g_nom(gn(N),Gen,Num)-->nombre(N,Gen,Num).
+g_nom(gn(PN),Gen,Num)-->pronombre(PN,Gen,Num).
+g_nom(gn(N,A),Gen,Num)-->nombre(N,Gen,Num),adjetivo(A,Gen,Num).
+g_nom(gn(N1,N2),Gen,_)-->nombre(N1,Gen,_),nombre(N2,Gen,_).
 
-g_nom(gn(N))-->nombre(N).
-g_nom(gn(PN))-->pronombre(PN).
-g_nom(gn(N,A))-->nombre(N),adjetivo(A).
-g_nom(gn(N1,N2))-->nombre(N1),nombre(N2).
+g_nom(gn(A,N),Gen,Num)-->adjetivo(A,Gen,Num),nombre(N,Gen,Num).
+g_nom(gn(D,A,N),Gen,Num)-->determinante(D,Gen,Num),adjetivo(A,Gen,Num),nombre(N,Gen,Num).
+g_nom(gn(D,N),Gen,Num)-->determinante(D,Gen,Num),nombre(N,Gen,Num).
+g_nom(gn(D,N,A),Gen,Num)-->determinante(D,Gen,Num),nombre(N,Gen,Num),adjetivo(A,Gen,Num).
 
-g_nom(gn(A,N))-->adjetivo(A),nombre(N).
-g_nom(gn(D,A,N))-->determinante(D),adjetivo(A),nombre(N).
-g_nom(gn(D,N))-->determinante(D),nombre(N).
-g_nom(gn(D,N,A))-->determinante(D),nombre(N),adjetivo(A).
+g_nominal(GN,Gen,Num)-->g_nom(GN,Gen,Num).
+g_nominal(gn(GN1,C,GN2),_,p)-->g_nom(GN1,_,_),conjuncion(C),g_nom(GN2,_,_).
+g_nominal(gn(GN1,C,GN2,A),_,p)-->g_nom(GN1,_,_),conjuncion(C),g_nom(GN2,_,_),adjetivo(A,_,p).
+g_nominal(gn(GN1,GP),_,Num)-->g_nom(GN1,_,Num),g_preposicional(GP,_,_).
+g_nominal(gn(GN1,GA),Gen,Num)-->g_nom(GN1,Gen,Num),g_adjetival(GA,Gen,Num).
+g_nominal(gn(GN1,OR),Gen,Num)-->g_nom(GN1,Gen,Num),o_relativo(OR,_,_).
+g_nominal(gn(GN1,GA,OR),Gen,Num)-->g_nom(GN1,Gen,Num),g_adjetival(GA,Gen,Num),o_relativo(OR,_,_).
 
-g_nominal(GN)-->g_nom(GN).
-g_nominal(gn(GN1,C,GN2))-->g_nom(GN1),conjuncion(C),g_nom(GN2).
-%g_nominal(gn(GN1,C,GN2,A))-->g_nom(GN1),conjuncion(C),g_nom(GN2),adjetivo(A).
-g_nominal(gn(GN1,GP))-->g_nom(GN1),g_preposicional(GP).
-g_nominal(gn(GN1,GA))-->g_nom(GN1),g_adjetival(GA).
-g_nominal(gn(GN1,OR))-->g_nom(GN1),o_relativo(OR).
-g_nominal(gn(GN1,GA,OR))-->g_nom(GN1),g_adjetival(GA),o_relativo(OR).
+o_relativo(or(PR,OS),_,_)-->p_relativo(PR),oracion_simple(OS).
 
-o_relativo(or(PR,OS))-->p_relativo(PR),oracion_simple(OS).
+g_verbal(gv(V),_,Num)-->verbo(V,Num,_).
+g_verbal(gv(V,GN),_,Num)-->verbo(V,Num,c),g_nominal(GN,_,Num).
+g_verbal(gv(V,GN),_,Num)-->verbo(V,Num,n),g_nominal(GN,_,_).
+g_verbal(gv(V,GN,GP),Gen,Num)-->verbo(V,Num,_),g_nominal(GN,Gen,_),g_preposicional(GP,Gen,Num).
+g_verbal(gv(V,GN,GA),Gen,Num)-->verbo(V,Num,_),g_nominal(GN,Gen,_),g_adjetival(GA,Gen,Num).
+g_verbal(gv(V,A),Gen,Num)-->verbo(V,Num,_),adjetivo(A,Gen,Num).
+g_verbal(gv(V,GP),_,Num)-->verbo(V,Num,_),g_preposicional(GP,_,_).
+g_verbal(gv(V,GA),Gen,Num)-->verbo(V,Num,_),g_adverbial(GA,Gen,_).
+g_verbal(gv(V,GA,GN),Gen,Num)-->verbo(V,Num,c),g_adverbial(GA,_,_),g_nominal(GN,Gen,Num).
+g_verbal(gv(V,GA,GN),_,Num)-->verbo(V,Num,n),g_adverbial(GA,_,_),g_nominal(GN,_,_).
+g_verbal(gv(V,GAD),Gen,Num)-->verbo(V,Num,_),g_adjetival(GAD,Gen,Num).
 
-g_verbal(gv(V))-->verbo(V).
-g_verbal(gv(V,GN))-->verbo(V),g_nominal(GN).
-g_verbal(gv(V,GN,GP))-->verbo(V),g_nominal(GN),g_preposicional(GP).
-g_verbal(gv(V,GN,GA))-->verbo(V),g_nominal(GN),g_adjetival(GA).
-g_verbal(gv(V,A))-->verbo(V),adjetivo(A).
-g_verbal(gv(V,GP))-->verbo(V),g_preposicional(GP).
-g_verbal(gv(V,GA))-->verbo(V),g_adverbial(GA).
-g_verbal(gv(V,GA,GN))-->verbo(V),g_adverbial(GA),g_nominal(GN).
-g_verbal(gv(V,GAD))-->verbo(V),g_adjetival(GAD).
+g_preposicional(gp(P,GN),Gen,Num)-->preposicion(P),g_nominal(GN,Gen,Num).
 
-g_preposicional(gp(P,GN))-->preposicion(P),g_nominal(GN).
+g_adverbial(gad(AD1,AD2,GP),Gen,Num)-->adverbio(AD1),adverbio(AD2),g_preposicional(GP,Gen,Num).
+g_adverbial(gad(AD1,AD2),_,_)-->adverbio(AD1),adverbio(AD2).
+g_adverbial(gad(ADV),_,_)-->adverbio(ADV).
 
-g_adverbial(gad(AD1,AD2,GP))-->adverbio(AD1),adverbio(AD2),g_preposicional(GP).
-g_adverbial(gad(AD1,AD2))-->adverbio(AD1),adverbio(AD2).
-g_adverbial(gad(ADV))-->adverbio(ADV).
-
-g_adjetival(gaj(AD,GP))-->adjetivo(AD),g_preposicional(GP).
-g_adjetival(gaj(ADV,ADJ))-->adverbio(ADV),adjetivo(ADJ).
+g_adjetival(gaj(AD,GP),Gen,Num)-->adjetivo(AD,Gen,Num),g_preposicional(GP,_,_).
+g_adjetival(gaj(ADV,ADJ),Gen,Num)-->adverbio(ADV),adjetivo(ADJ,Gen,Num).
 
 %Diccionario
-determinante(det(X))-->[X],{det(X)}.
+determinante(det(X),Gen,Num)-->[X],{det(X,Gen,Num)}.
 det(el,m,s).
 det(la,f,s).
 det(los,m,p).
@@ -74,12 +73,16 @@ det(un,m,s).
 det(una,f,s).
 det(unos,m,p).
 det(unas,f,p).
-det(su,a,s).
-det(sus,a,p).
-det(mi,a,s).
-det(mis,a,p).
+det(su,f,s).
+det(su,m,s).
+det(sus,m,p).
+det(sus,f,p).
+det(mi,m,s).
+det(mi,f,s).
+det(mis,m,p).
+det(mis,f,p).
 
-nombre(n(X))-->[X],{n(X)}.
+nombre(n(X),Gen,Num)-->[X],{n(X,Gen,Num)}.
 n(hombre,m,s).
 n(mujer,f,s).
 n(juan,m,s).
@@ -97,7 +100,8 @@ n(practica,f,s).
 n(canario,m,s).
 n(paloma,f,s).
 n(vuelo,m,s).
-n(madrid,a,s).
+n(madrid,f,s).
+n(madrid,m,s).
 n(reflejo,m,s).
 n(esperanza,f,s).
 n(vida,f,s).
@@ -109,7 +113,8 @@ n(profesora,f,s).
 n(procesador,m,s).
 n(texto,m,s).
 n(herramienta,f,s).
-n(escribir,a,s).
+n(escribir,f,s).
+n(escribir,m,s).
 n(documento,m,s).
 n(cafe,m,s).
 n(mesa,f,s).
@@ -152,51 +157,54 @@ n(patatas,f,p).
 n(cervezas,f,p).
 n(ratones,m,p).
 
-verbo(v(X))-->[X],{v(X)}.
-v(ama,s).
-v(come,s).
-v(estudia,s).
-v(era,s).
-v(cazo,s).
-v(hace,s).
-v(canta,s).
-v(alzo,s).
-v(esta,s).
-v(es,s).
-v(habla,s).
-v(depende,s).
-v(vi,s).
-v(sirve,s).
-v(recoge,s).
-v(toma,s).
-v(compre,s).
-v(bebe,s).
-v(salta,s).
-v(sonrie,s).
+verbo(v(X),Num,Cop)-->[X],{v(X,Num,Cop)}.
+v(ama,s,n).
+v(come,s,n).
+v(estudia,s,n).
+v(era,s,c).
+v(cazo,s,n).
+v(hace,s,n).
+v(canta,s,n).
+v(alzo,s,n).
+v(esta,s,c).
+v(es,s,c).
+v(habla,s,n).
+v(depende,s,n).
+v(vi,s,n).
+v(sirve,s,n).
+v(recoge,s,n).
+v(toma,s,n).
+v(compre,s,n).
+v(bebe,s,n).
+v(salta,s,n).
+v(sonrie,s,n).
+v(somos,p,c).
 
-v(saltan,p).
-v(comen,p).
-v(hacen,p).
-v(cantan,p).
-v(alzaron,p).
-v(estan,p).
-v(son,p).
-v(hablan,p).
-v(dependen,p).
-v(vimos,p).
-v(sirven,p).
-v(recogen,p).
-v(toman,p).
-v(compraron,p).
-v(beben,p).
+v(saltan,p,n).
+v(comen,p,n).
+v(hacen,p,n).
+v(cantan,p,n).
+v(alzaron,p,n).
+v(estan,p,c).
+v(son,p,c).
+v(hablan,p,n).
+v(dependen,p,n).
+v(vimos,p,n).
+v(sirven,p,n).
+v(recogen,p,n).
+v(toman,p,n).
+v(compraron,p,n).
+v(beben,p,n).
 
-adjetivo(a(X))-->[X],{a(X)}.
+adjetivo(a(X),Gen,Num)-->[X],{a(X,Gen,Num)}.
 a(roja,f,s).
 a(rojo,m,s).
 a(negro,m,s).
 a(negra,f,s).
-a(grande,a,s).
-a(gris,a,s).
+a(grande,m,s).
+a(grande,f,s).
+a(gris,m,s).
+a(gris,f,s).
 a(pequeno,m,s).
 a(pequena,f,s).
 a(blanca,f,s).
@@ -210,9 +218,11 @@ a(alta,f,s).
 a(alto,m,s).
 a(frita,f,s).
 a(frito,m,s).
-a(alegre,a,s).
+a(alegre,f,s).
+a(alegre,m,s).
 
-a(grandes,a,p).
+a(grandes,f,p).
+a(grandes,m,p).
 a(rojas,f,p).
 a(rojos,m,p).
 a(blancas,f,p).
@@ -220,7 +230,8 @@ a(blancos,m,p).
 a(lentos,m,p).
 a(delicados,m,p).
 a(delicadas,f,p).
-a(potentes,a,p).
+a(potentes,m,p).
+a(potentes,f,p).
 a(morenos,m,p).
 a(morenas,f,p).
 a(altas,f,p).
@@ -244,7 +255,7 @@ c(pero).
 p_relativo(pr(X))-->[X],{pr(X)}.
 pr(que).
 
-pronombre(pn(X))-->[X],{pn(X)}.
+pronombre(pn(X),Gen,Num)-->[X],{pn(X,Gen,Num)}.
 pn(ella,f,s).
 pn(el,m,s).
 pn(ellas,f,p).

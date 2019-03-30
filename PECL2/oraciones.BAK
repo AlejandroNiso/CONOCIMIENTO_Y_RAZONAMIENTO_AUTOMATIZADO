@@ -19,3 +19,13 @@ o(17, [juan,y,hector,comen,patatas,fritas,y,beben,cerveza]).
 o(18, [irene,canta,y,salta,mientras,juan,estudia]).
 o(19, [irene,canta,y,salta,y,sonrie,alegre]).
 o(20, [el,procesador,de,textos,es,una,herramienta,muy,potente,que,sirve,para,escribir,documentos,pero,es,bastante,lento]).
+o(21, [el,hombre,come,una,manzana]).
+o(22, [la,mujer,come,manzanas]).
+o(23, [maria,come,una,manzana,roja]).
+o(24, [juan,ama,a,maria]).
+o(25, [el,gato,grande,come,un,raton,gris]).
+o(26, [juan,estudia,en,la,universidad]).
+o(27, [el,alumno,ama,la,universidad]).
+o(28, [el,alumno,come,ratones]).
+o(29, [el,raton,que,cazo,el,gato,era,gris]).
+o(30, [la,universidad,es,grande]).
