@@ -29,21 +29,44 @@ g(p, ["los","unos","las","unas","sus","mis","manzanas","hombres","mujeres","juan
 
 g(c, ["gn","gv","c"]).
 
-validate([Elemento|Lista],Memoria,Final,R):-
+validate([Elemento|Lista],Memoria,R):-
    (g(c,Listado),member(Elemento,Listado)->
          write("Corte: "),write(Memoria),write(Elemento),
          validate_inicio(Memoria,ListaGenero),
          revisar(ListaGenero,[],Error),
          length(Error,Longitud),
+         write("longitud: "),write(Longitud),
          (Longitud == 0 ->
-               validate(Lista,[Elemento|Memoria],Final,R);
-               validate(_,_,Error,R));
-         write(Memoria),
-         validate(Lista,[Elemento|Memoria],Final,R)).
-validate(_,_,Final,Final).
+               validate(Lista,[Elemento|Memoria],R);
+               write("entra arriba"),
+               validate(Error,R));
+         write("memoria: "),write(Memoria),
+         validate(Lista,[Elemento|Memoria],R)).
 
-revisar(ListaGenero,Resultado,Error):-
-    write(ListaGenero),write(Error),write(Resultado).
+validate(_,Memoria,R):-
+     validate_inicio(Memoria,ListaGenero),
+         revisar(ListaGenero,[],Error),
+         length(Error,Longitud),
+         write("longitud: "),write(Longitud),
+         (Longitud == 0 ->
+               write("entra abajo"),
+               validate([],R),!;
+               write("entra abajo abajo"),
+               validate(Error,R)).
+
+validate(Final,Final):-write("Ha terminado"),!.
+
+revisar([p|ListaGenero],Resultado,Error):-
+   (member(s,ListaGenero)->revisar(_,[p],Error);revisar(ListaGenero,Resultado,Error)).
+revisar([s|ListaGenero],Resultado,Error):-
+   (member(p,ListaGenero)->revisar(_,[s],Error);revisar(ListaGenero,Resultado,Error)).
+revisar([m|ListaGenero],Resultado,Error):-
+   (member(f,ListaGenero)->revisar(_,[m],Error);revisar(ListaGenero,Resultado,Error)).
+revisar([f|ListaGenero],Resultado,Error):-
+   (member(m,ListaGenero)->revisar(_,[f],Error);revisar(ListaGenero,Resultado,Error)).
+
+
+revisar(_,A,A).
 
 validate_inicio(Input,Output):-validatem(Input,[],R),reverse(R,Output).
 

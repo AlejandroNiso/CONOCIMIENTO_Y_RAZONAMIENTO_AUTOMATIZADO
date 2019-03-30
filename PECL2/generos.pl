@@ -43,7 +43,7 @@ validate([Elemento|Lista],Memoria,R):-
                validate(Error,R));
          write("memoria: "),write(Memoria),
          validate(Lista,[Elemento|Memoria],R)).
-         
+
 validate(_,Memoria,R):-
      validate_inicio(Memoria,ListaGenero),
          revisar(ListaGenero,[],Error),
@@ -54,13 +54,20 @@ validate(_,Memoria,R):-
                validate([],R),!;
                write("entra abajo abajo"),
                validate(Error,R)).
-               
+
 validate(Final,Final):-write("Ha terminado"),!.
 
-revisar(ListaGenero,Resultado,Error):-
-    write("revisar"),asignarVacio([],Error).
-    
-asignarVacio(A,A).
+revisar([p|ListaGenero],Resultado,Error):-
+   (member(s,ListaGenero)->revisar(_,[p],Error),write("p nok");revisar(ListaGenero,Resultado,Error),write("p ok")).
+revisar([s|ListaGenero],Resultado,Error):-
+   (member(p,ListaGenero)->revisar(_,[s],Error),write("s nok");revisar(ListaGenero,Resultado,Error),write("s ok")).
+revisar([m|ListaGenero],Resultado,Error):-
+   (member(f,ListaGenero)->revisar(_,[m],Error),write("m nok");revisar(ListaGenero,Resultado,Error),write("m ok")).
+revisar([f|ListaGenero],Resultado,Error):-
+   (member(m,ListaGenero)->revisar(_,[f],Error,write("f nok"));revisar(ListaGenero,Resultado,Error),write("f ok")).
+
+
+revisar(_,A,A).
 
 validate_inicio(Input,Output):-validatem(Input,[],R),reverse(R,Output).
 
