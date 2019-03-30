@@ -23,6 +23,8 @@ oracion_simple(o(GV,GN))-->g_verbal(GV),g_nominal(GN).
 oracion_ccordinada(o(OS1,C,OS2))-->oracion_simple(OS1),conjuncion(C),oracion_simple(OS2).
 oracion_ccordinada(o(OS1,C1,OS2,C2,OS3))-->oracion_simple(OS1),conjuncion(C1),oracion_simple(OS2),conjuncion(C2),oracion_simple(OS3).
 
+oracion_subordinada(o(GN,GV))-->g_nominal_sub(GN),g_verbal(GV).
+
 g_nom(gn(N))-->nombre(N).
 g_nom(gn(PN))-->pronombre(PN).
 g_nom(gn(N,A))-->nombre(N),adjetivo(A).
