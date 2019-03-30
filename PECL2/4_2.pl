@@ -2,6 +2,13 @@
 :-consult(draw).
 :-consult(oraciones).
 
+oracion:-
+    write("Ponga entrada (numero/lista/q): "),
+    read(Input),
+    (Input==q -> !;
+    (number(Input)->oracion(n,Input);oracion(l,Input)),
+    oracion).
+
 oracion(n,Numero):-
      o(Numero,Input),
      oracion(l,Input).
