@@ -93,6 +93,9 @@ n(patatas,f,p).
 n(cervezas,f,p).
 n(ratones,m,p).
 
+n(cuchilla,f,s).
+n(cuchillas,f,p).
+
 verbo(v(X),Num,Cop)-->[X],{v(X,Num,Cop)}.
 v(ama,s,n).
 v(come,s,n).

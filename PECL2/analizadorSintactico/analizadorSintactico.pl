@@ -5,7 +5,7 @@
 :-consult(reglasSimples).
 :-consult(reglasConcordancia).
 
-oracion:-
+analisis:-
     write("Ponga entrada (numero/lista/q): "),
     read(Input),
     (Input==q -> nl,write("FIN DEL ANALISIS"),nl,nl,!;
@@ -15,11 +15,6 @@ oracion:-
 oracion(n,Numero):-
      o(Numero,Input),
      oracion(l,Input).
-
-oracion(s,String):-
-    split_string(String," "," ",List),
-    write(List),
-    oracion(l,List).
 
 oracion(l,Input):-
     (oracion2(Output1,Input,[])->
