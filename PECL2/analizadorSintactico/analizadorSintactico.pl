@@ -10,7 +10,7 @@ analisis:-
     read(Input),
     (Input==q -> nl,write("FIN DEL ANALISIS"),nl,nl,!;
     (number(Input)->oracion(n,Input);oracion(l,Input)),
-    oracion).
+    analisis).
 
 oracion(n,Numero):-
      o(Numero,Input),

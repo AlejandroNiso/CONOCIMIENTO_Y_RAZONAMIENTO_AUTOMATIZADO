@@ -11,7 +11,7 @@ analisis:-
     read(Input),
     (Input==q -> nl,write("FIN DEL ANALISIS"),nl,nl,!;
     (number(Input)->oracion(n,Input);oracion(l,Input)),
-    oracion).
+    analisis).
 
 oracion(n,Numero):-
      o(Numero,Input),
@@ -24,8 +24,10 @@ oracion(l,Input):-
             nl,write("*** ORACION CORRECTA ***"),nl,nl,!;
             nl,write("*** FALTA CONCORDANCIA ***"),nl,draw(Output1),
             nl,write("*** FALTA CONCORDANCIA ***"),nl,nl,
-            (recorrerFrase(Input,[],Resultado)-> write("* SUSTITUCION:"),
-            write(Resultado),nl,!;nl,write("*** NO SUSTITUCION CORRECTA ***"),nl,!),!);
+            (recorrerFrase(Input,[],Resultado,_,PalabraCambio)->
+            write("*** SUSTITUCION: "), write(PalabraCambio), write(" -> "),
+            write(Resultado),write(" ***"),nl,nl,!;
+            nl,write("*** NO SUSTITUCION CORRECTA ***"),nl,!),!);
         nl, write("*** NO HAY VOCABULARIO ***"),nl,nl,!).
         
 oracion(p,Input):-
@@ -42,15 +44,15 @@ probarSustituciones([PrimeraSustitucion|RestoSustituciones],RestoFrase,NuevaFras
 
 probarSustituciones(PrimeraSustitucion,PrimeraSustitucion).
     
-recorrerFrase([PalabraEvaluar|RestoFrase],NuevaFrase,Resultado):-
+recorrerFrase([PalabraEvaluar|RestoFrase],NuevaFrase,Resultado,_,P2):-
     obtenerSustituciones(PalabraEvaluar,Sustituciones),
     probarSustituciones(Sustituciones,NuevaFrase,RestoFrase,NuevaPalabra),
     append(NuevaFrase,[NuevaPalabra],FraseBien),
-    append(RestoFrase,FraseBien,FraseResultado),
-    recorrerFrase(FraseResultado,Resultado).
+    append(FraseBien,RestoFrase,FraseResultado),
+    recorrerFrase(FraseResultado,Resultado,NuevaPalabra,P2).
     
-recorrerFrase([PalabraEvaluar|RestoFrase],NuevaFrase,Resultado):-
+recorrerFrase([PalabraEvaluar|RestoFrase],NuevaFrase,Resultado,P1,P2):-
     append(NuevaFrase,[PalabraEvaluar],FraseR),
-    recorrerFrase(RestoFrase, FraseR, Resultado).
+    recorrerFrase(RestoFrase, FraseR, Resultado,P1,P2).
     
-recorrerFrase(NuevaFrase,NuevaFrase).
+recorrerFrase(NuevaFrase,NuevaFrase,NuevaPalabra,NuevaPalabra).
