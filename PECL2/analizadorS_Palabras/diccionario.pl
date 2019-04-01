@@ -144,7 +144,7 @@ n(escribir,m,s).
 n(tomate,m,s).
 n(tomates,m,s).
 n(patata,f,s).
-n(patata,f,p).
+n(patatas,f,p).
 
 n(cafe,m,s).
 n(cafes,m,p).

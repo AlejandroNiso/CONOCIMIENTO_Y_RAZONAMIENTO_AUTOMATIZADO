@@ -24,10 +24,10 @@ g_nominal(gn(GN1,C,GN2),_,p)-->g_nom(GN1,_,_),conjuncion(C),g_nom(GN2,_,_).
 g_nominal(gn(GN1,C,GN2,A),_,p)-->g_nom(GN1,_,_),conjuncion(C),g_nom(GN2,_,_),g_adjetival(A,_,p).
 g_nominal(gn(GN1,GP),_,Num)-->g_nom(GN1,_,Num),g_preposicional(GP,_,_).
 g_nominal(gn(GN1,GA),Gen,Num)-->g_nom(GN1,Gen,Num),g_adjetival(GA,Gen,Num).
-g_nominal(gn(GN1,OR),Gen,Num)-->g_nom(GN1,Gen,Num),o_relativo(OR,_,_).
-g_nominal(gn(GN1,GA,OR),Gen,Num)-->g_nom(GN1,Gen,Num),g_adjetival(GA,Gen,Num),o_relativo(OR,_,_).
+g_nominal(gn(GN1,OR),Gen,Num)-->g_nom(GN1,Gen,Num),o_relativo(OR).
+g_nominal(gn(GN1,GA,OR),Gen,Num)-->g_nom(GN1,Gen,Num),g_adjetival(GA,Gen,Num),o_relativo(OR).
 
-o_relativo(or(PR,OS),_,_)-->p_relativo(PR),oracion_simple(OS).
+o_relativo(or(PR,OS))-->p_relativo(PR),oracion_simple(OS).
 
 g_verbal(gv(V),_,Num)-->verbo(V,Num,_).
 g_verbal(gv(V,GN),_,Num)-->verbo(V,Num,c),g_nominal(GN,_,Num).
