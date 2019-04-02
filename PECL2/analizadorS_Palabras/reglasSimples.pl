@@ -13,7 +13,6 @@ g_nom2(gn(N))-->nombre(N,_,_,_).
 g_nom2(gn(PN))-->pronombre(PN,_,_,_).
 g_nom2(gn(N,A))-->nombre(N,_,_,_),g_adjetival2(A).
 g_nom2(gn(N1,N2))-->nombre(N1,_,_,_),nombre(N2,_,_,_).
-
 g_nom2(gn(A,N))-->g_adjetival2(A),nombre(N,_,_,_).
 g_nom2(gn(D,A,N))-->determinante(D,_,_),g_adjetival2(A),nombre(N,_,_,_).
 g_nom2(gn(D,N))-->determinante(D,_,_),nombre(N,_,_,_).
