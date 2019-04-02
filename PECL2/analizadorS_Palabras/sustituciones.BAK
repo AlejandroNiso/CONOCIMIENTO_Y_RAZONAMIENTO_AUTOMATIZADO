@@ -33,28 +33,6 @@ sustitucion([manzano,manzanos,palmera,palmeras]).
 sustitucion([mesa,mesas,taburete,taburetes]).
 sustitucion([pantalon,pantalones,corbata,corbatas]).
 
-<<<<<<< HEAD
-sustitucion([ama,aman]).
-sustitucion([come,comen]).
-sustitucion([estudia,estudian]).
-sustitucion([era,eran]).
-sustitucion([cazo,cazaron]).
-sustitucion([hace,hacen]).
-sustitucion([canta,cantan]).
-sustitucion([alzo,alzaron]).
-sustitucion([esta,estan]).
-sustitucion([es,son,somos]).
-sustitucion([habla,hablan]).
-sustitucion([depende,dependen]).
-sustitucion([vi,vimos,vieron]).
-sustitucion([sirve,sirven]).
-sustitucion([recoge,recogen]).
-sustitucion([toma,toman]).
-sustitucion([compre,compraron]).
-sustitucion([bebe,beben]).
-sustitucion([salta,saltan]).
-sustitucion([sonrie,sonrien]).
-=======
 sustitucion([ama,aman,amamos,amo]).
 sustitucion([come,comen,comemos,como]).
 sustitucion([estudia,estudian,estudiamos,estudio]).
@@ -75,7 +53,6 @@ sustitucion([compre,compraron,compraron,compro]).
 sustitucion([bebe,beben,bebemos,bebo]).
 sustitucion([salta,saltan,saltamos,salto]).
 sustitucion([sonrie,sonrien,sonreimos,sonrio]).
->>>>>>> 76dffc96ac74a435102e0988b171a7cbdee4eb6b
 
 sustitucion([rojo,rojos,roja,rojas]).
 sustitucion([negro,negros,negra,negras]).
