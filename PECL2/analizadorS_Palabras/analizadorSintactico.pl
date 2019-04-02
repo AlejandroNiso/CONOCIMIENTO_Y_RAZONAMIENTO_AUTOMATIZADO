@@ -9,7 +9,7 @@
 analisis:-
     write("Ponga entrada (numero/lista/q): "),
     read(Input),
-    (Input==q -> nl,write("FIN DEL ANALISIS"),nl,nl,!;
+    (Input==q -> nl,write("--- FIN DEL ANALISIS ---"),nl,nl,!;
     oracion(Input),
     analisis).
     
@@ -21,7 +21,8 @@ oracion(n,Numero):-
      oracion(l,Input).
 
 oracion(l,Input):-
-    (oracion2(Output1,Input,[])->
+    (comprobarVocabulario(Input)->
+      (oracion2(Output1,Input,[])->
         (oracion(Output2,Input,[])->
             nl,write("*** ORACION CORRECTA ***"),nl,draw(Output2),
             nl,write("*** ORACION CORRECTA ***"),nl,nl,!;
@@ -31,11 +32,27 @@ oracion(l,Input):-
             write("*** SUSTITUCION: "), write(PalabraCambio), write(" -> "),
             write(Resultado),write(" ***"),nl,nl,!;
             nl,write("*** NO SUSTITUCION CORRECTA ***"),nl,!),!);
-        nl, write("*** NO HAY VOCABULARIO ***"),nl,nl,!).
+          nl, write("*** LA ESTRUCTURA NO ES CORRECTA ***"),nl,nl,!);
+        nl, write("*** FALTA VOCABULARIO ***"),nl,nl,!).
         
 oracion(p,Input):-
     oracion(Output2,Input,[]),
     nl,write("*** ORACION CORRECTA ***"),nl,draw(Output2),!.
+    
+comprobarVocabulario([PrimeraPalabra|RestoFrase]):-
+    existe(PrimeraPalabra),comprobarVocabulario(RestoFrase).
+
+comprobarVocabulario([]).
+    
+existe(Palabra):- det(Palabra,_,_).
+existe(Palabra):- n(Palabra,_,_,_).
+existe(Palabra):- v(Palabra,_,_,_).
+existe(Palabra):- a(Palabra,_,_).
+existe(Palabra):- p(Palabra).
+existe(Palabra):- c(Palabra).
+existe(Palabra):- pr(Palabra).
+existe(Palabra):- pn(Palabra,_,_,_).
+existe(Palabra):- ad(Palabra).
         
 obtenerSustituciones(Palabra,Resultado):-
     sustitucion(X),member(Palabra,X),delete(X,Palabra,Resultado).

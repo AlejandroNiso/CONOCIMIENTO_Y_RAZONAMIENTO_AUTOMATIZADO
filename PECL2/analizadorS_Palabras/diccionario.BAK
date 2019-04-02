@@ -22,7 +22,6 @@ det(mis,m,p).
 det(mis,f,p).
 
 nombre(n(X),Gen,Num,Per)-->[X],{n(X,Gen,Num,Per)}.
-
 n(hombre,m,s,t).
 n(mujer,f,s,t).
 n(hombres,m,p,t).
@@ -175,6 +174,7 @@ n(corbatas,f,p,t).
 verbo(v(X),Num,Cop,Per)-->[X],{v(X,Num,Cop,Per)}.
 v(ama,s,n,t).
 v(aman,p,n,t).
+
 v(amamos,p,n,pr).
 v(amo,s,n,pr).
 v(amas,s,n,se).
@@ -195,14 +195,12 @@ v(estudias,s,n,se).
 v(estudiais,p,n,se).
 
 v(era,s,c,t).
-v(era,s,c,pr).
 v(eran,p,c,t).
 v(eramos,p,c,pr).
 v(eras,s,c,se).
 v(erias,p,c,se).
 
 v(cazo,s,n,t).
-v(cazo,s,n,pr).
 v(cazaron,p,n,t).
 v(cazamos,s,n,pr).
 v(cazas,s,n,se).
@@ -258,7 +256,7 @@ v(dependes,s,n,se).
 v(dependeis,p,n,se).
 
 v(vimos,p,n,pr).
-v(vi,s,n,t).
+v(vio,s,n,t).
 v(vieron,p,n,t).
 v(vi,s,n,pr).
 v(viste,s,n,se).
@@ -400,6 +398,7 @@ pn(ella,f,s,t).
 pn(el,m,s,t).
 pn(ellas,f,p,t).
 pn(ellos,m,p,t).
+
 pn(yo,m,s,pr).
 pn(yo,f,s,pr).
 pn(nosotros,m,p,pr).

@@ -13,7 +13,6 @@ g_nom(gn(N),Gen,Num,Per)-->nombre(N,Gen,Num,Per).
 g_nom(gn(PN),Gen,Num,Per)-->pronombre(PN,Gen,Num,Per).
 g_nom(gn(N,A),Gen,Num,Per)-->nombre(N,Gen,Num,Per),g_adjetival(A,Gen,Num).
 g_nom(gn(N1,N2),Gen,_,_)-->nombre(N1,Gen,_,_),nombre(N2,Gen,_,_).
-
 g_nom(gn(A,N),Gen,Num,Per)-->g_adjetival(A,Gen,Num),nombre(N,Gen,Num,Per).
 g_nom(gn(D,A,N),Gen,Num,Per)-->determinante(D,Gen,Num),g_adjetival(A,Gen,Num),nombre(N,Gen,Num,Per).
 g_nom(gn(D,N),Gen,Num,Per)-->determinante(D,Gen,Num),nombre(N,Gen,Num,Per).
