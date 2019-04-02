@@ -12,7 +12,7 @@ analisis:-
     (Input==q -> nl,write("--- FIN DEL ANALISIS ---"),nl,nl,!;
     oracion(Input),
     analisis).
-
+    
 oracion(Input):-
     (number(Input)->oracion(n,Input);oracion(l,Input)).
 
@@ -34,15 +34,16 @@ oracion(l,Input):-
             nl,write("*** NO SUSTITUCION CORRECTA ***"),nl,!),!);
           nl, write("*** LA ESTRUCTURA NO ES CORRECTA ***"),nl,nl,!);
         nl, write("*** FALTA VOCABULARIO ***"),nl,nl,!).
-
+        
 oracion(p,Input):-
     oracion(Output2,Input,[]),
     nl,write("*** ORACION CORRECTA ***"),nl,draw(Output2),!.
-
+    
 comprobarVocabulario([PrimeraPalabra|RestoFrase]):-
     existe(PrimeraPalabra),comprobarVocabulario(RestoFrase).
-comprobarVocabulario([]).
 
+comprobarVocabulario([]).
+    
 existe(Palabra):- det(Palabra,_,_).
 existe(Palabra):- n(Palabra,_,_,_).
 existe(Palabra):- v(Palabra,_,_,_).
@@ -52,26 +53,26 @@ existe(Palabra):- c(Palabra).
 existe(Palabra):- pr(Palabra).
 existe(Palabra):- pn(Palabra,_,_,_).
 existe(Palabra):- ad(Palabra).
-
+        
 obtenerSustituciones(Palabra,Resultado):-
     sustitucion(X),member(Palabra,X),delete(X,Palabra,Resultado).
-
+    
 probarSustituciones([PrimeraSustitucion|RestoSustituciones],RestoFrase,NuevaFrase,PalabraResultado):-
     append(RestoFrase,[PrimeraSustitucion|NuevaFrase],FraseAnalizar),
     (oracion(p,FraseAnalizar)-> probarSustituciones(PrimeraSustitucion,PalabraResultado),!;
     probarSustituciones(RestoSustituciones,RestoFrase,NuevaFrase,PalabraResultado)).
 
 probarSustituciones(PrimeraSustitucion,PrimeraSustitucion).
-
+    
 recorrerFrase([PalabraEvaluar|RestoFrase],NuevaFrase,Resultado,_,P2):-
     obtenerSustituciones(PalabraEvaluar,Sustituciones),
     probarSustituciones(Sustituciones,NuevaFrase,RestoFrase,NuevaPalabra),
     append(NuevaFrase,[NuevaPalabra],FraseBien),
     append(FraseBien,RestoFrase,FraseResultado),
     recorrerFrase(FraseResultado,Resultado,NuevaPalabra,P2).
-
+    
 recorrerFrase([PalabraEvaluar|RestoFrase],NuevaFrase,Resultado,P1,P2):-
     append(NuevaFrase,[PalabraEvaluar],FraseR),
     recorrerFrase(RestoFrase, FraseR, Resultado,P1,P2).
-
+    
 recorrerFrase(NuevaFrase,NuevaFrase,NuevaPalabra,NuevaPalabra).
