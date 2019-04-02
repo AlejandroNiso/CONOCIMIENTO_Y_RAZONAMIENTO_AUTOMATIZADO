@@ -175,64 +175,141 @@ verbo(v(X),Num,Cop,Per)-->[X],{v(X,Num,Cop,Per)}.
 v(ama,s,n,t).
 v(aman,p,n,t).
 
+v(amamos,p,n,pr).
+v(amo,s,n,pr).
+v(amas,s,n,se).
+v(amais,p,n,se).
+
 v(come,s,n,t).
 v(comen,p,n,t).
+v(comemos,p,n,pr).
+v(como,s,n,pr).
+v(comes,s,n,se).
+v(comeis,p,n,se).
 
 v(estudia,s,n,t).
 v(estudian,p,n,t).
+v(estudiamos,p,n,pr).
+v(estudio,s,n,pr).
+v(estudias,s,n,se).
+v(estudiais,p,n,se).
 
 v(era,s,c,t).
 v(eran,p,c,t).
+v(eramos,p,c,pr).
+v(eras,s,c,se).
+v(erias,p,c,se).
 
 v(cazo,s,n,t).
 v(cazaron,p,n,t).
+v(cazamos,s,n,pr).
+v(cazas,s,n,se).
+v(cazais,p,n,se).
 
 v(hace,s,n,t).
 v(hacen,p,n,t).
+v(hacemos,p,n,pr).
+v(hago,s,n,pr).
+v(haces,s,n,se).
+v(haceis,p,n,se).
 
 v(canta,s,n,t).
 v(cantan,p,n,t).
+v(cantamos,p,n,pr).
+v(canto,s,n,pr).
+v(cantas,s,n,se).
+v(cantais,p,n,se).
 
 v(alzo,s,n,t).
 v(alzaron,p,n,t).
+v(alzamos,p,n,pr).
+v(alce,s,n,pr).
+v(alzas,s,n,se).
+v(alzais,p,n,se).
 
 v(esta,s,c,t).
 v(estan,p,c,t).
+v(estamos,p,c,pr).
+v(estoy,s,c,pr).
+v(estas,s,c,se).
+v(estais,p,c,se).
 
 v(es,s,c,t).
 v(son,p,c,t).
 v(somos,p,c,pr).
+v(soy,s,c,pr).
+v(eres,s,c,se).
+v(sois,p,c,se).
 
 v(habla,s,n,t).
 v(hablan,p,n,t).
+v(hablamos,p,n,pr).
+v(hablo,s,n,pr).
+v(hablas,s,n,se).
+v(hablais,p,n,se).
 
 v(depende,s,n,t).
 v(dependen,p,n,t).
+v(dependemos,p,n,pr).
+v(dependo,s,n,pr).
+v(dependes,s,n,se).
+v(dependeis,p,n,se).
 
 v(vimos,p,n,pr).
-v(vi,s,n,t).
+v(vio,s,n,t).
 v(vieron,p,n,t).
+v(vi,s,n,pr).
+v(viste,s,n,se).
+v(visteis,p,n,se).
 
 v(sirve,s,n,t).
 v(sirven,p,n,t).
+v(servimos,p,n,pr).
+v(sirvo,s,n,pr).
+v(sirves,s,n,se).
+v(servis,p,n,se).
 
 v(recoge,s,n,t).
 v(recogen,p,n,t).
+v(recogemos,p,n,pr).
+v(recojo,s,n,pr).
+v(recoges,s,n,se).
+v(recogeis,p,n,se).
 
 v(toma,s,n,t).
 v(toman,p,n,t).
+v(tomamos,p,n,pr).
+v(tomo,s,n,pr).
+v(tomas,s,n,se).
+v(tomais,p,n,se).
 
 v(compre,s,n,pr).
 v(compraron,p,n,t).
+v(compramos,p,n,pr).
+v(compro,s,n,t).
+v(compraste,s,n,se).
+v(comprasteis,p,n,se).
 
 v(bebe,s,n,t).
 v(beben,p,n,t).
+v(bebemos,p,n,pr).
+v(bebo,s,n,pr).
+v(bebes,s,n,se).
+v(bebeis,p,n,se).
 
 v(salta,s,n,t).
 v(saltan,p,n,t).
+v(saltamos,p,n,pr).
+v(salto,s,n,pr).
+v(saltas,s,n,se).
+v(saltais,p,n,se).
 
 v(sonrie,s,n,t).
 v(sonrien,p,n,t).
+v(sonreimos,p,n,pr).
+v(sonrio,s,n,pr).
+v(sonries,s,n,se).
+v(sonreis,p,n,se).
 
 adjetivo(a(X),Gen,Num)-->[X],{a(X,Gen,Num)}.
 a(roja,f,s).
@@ -321,6 +398,15 @@ pn(ella,f,s,t).
 pn(el,m,s,t).
 pn(ellas,f,p,t).
 pn(ellos,m,p,t).
+
+pn(yo,m,s,pr).
+pn(yo,f,s,pr).
+pn(nosotros,m,p,pr).
+pn(nosotras,f,p,pr).
+pn(tu,m,s,se).
+pn(tu,f,s,se).
+pn(vosotros,m,p,se).
+pn(vosotras,f,p,se).
 
 adverbio(ad(X))-->[X],{ad(X)}.
 ad(muy).
