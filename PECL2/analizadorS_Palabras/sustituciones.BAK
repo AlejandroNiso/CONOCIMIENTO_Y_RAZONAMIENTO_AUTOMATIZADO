@@ -59,4 +59,13 @@ sustitucion([negro,negros,negra,negras]).
 sustitucion([grande,grandes]).
 sustitucion([blanco,blancos,blanca,blancas]).
 sustitucion([gris,grises]).
-sustitucion([]).
+sustitucion([pequeno,pequena,pequenos,pequenas]).
+sustitucion([lento,lenta,lentos,lentas]).
+sustitucion([delicado,delicada,delicados,delicadas]).
+sustitucion([potente,potentes]).
+sustitucion([moreno,morena,morenos,morenas]).
+sustitucion([alto,alta,altos,altas]).
+sustitucion([frito,fritos,frita,fritas]).
+sustitucion([alegre,alegres]).
+
+sustitucion([ella,el,ellas,ellos]).

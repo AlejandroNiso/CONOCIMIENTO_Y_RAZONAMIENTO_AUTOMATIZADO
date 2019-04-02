@@ -21,219 +21,219 @@ det(mi,f,s).
 det(mis,m,p).
 det(mis,f,p).
 
-nombre(n(X),Gen,Num)-->[X],{n(X,Gen,Num)}.
+nombre(n(X),Gen,Num,Per)-->[X],{n(X,Gen,Num,Per)}.
 
-n(hombre,m,s).
-n(mujer,f,s).
-n(hombres,m,p).
-n(mujeres,f,p).
+n(hombre,m,s,t).
+n(mujer,f,s,t).
+n(hombres,m,p,t).
+n(mujeres,f,p,t).
 
-n(juan,m,s).
-n(hector,m,s).
-n(maria,f,s).
-n(irene,f,s).
+n(juan,m,s,t).
+n(hector,m,s,t).
+n(maria,f,s,t).
+n(irene,f,s,t).
 
-n(platano,m,s).
-n(platanos,m,p).
-n(manzana,f,s).
-n(manzanas,f,p).
+n(platano,m,s,t).
+n(platanos,m,p,t).
+n(manzana,f,s,t).
+n(manzanas,f,p,t).
 
-n(gato,m,s).
-n(gatos,m,p).
-n(zebra,f,s).
-n(zebras,f,p).
+n(gato,m,s,t).
+n(gatos,m,p,t).
+n(zebra,f,s,t).
+n(zebras,f,p,t).
 
-n(raton,m,s).
-n(ratones,m,p).
-n(rata,f,s).
-n(ratas,f,p).
+n(raton,m,s,t).
+n(ratones,m,p,t).
+n(rata,f,s,t).
+n(ratas,f,p,t).
 
-n(alumno,m,s).
-n(alumnos,m,p).
-n(alumna,f,s).
-n(alumnas,f,p).
+n(alumno,m,s,t).
+n(alumnos,m,p,t).
+n(alumna,f,s,t).
+n(alumnas,f,p,t).
 
-n(colegio,m,s).
-n(colegios,m,p).
-n(universidad,f,s).
-n(universidads,f,p).
+n(colegio,m,s,t).
+n(colegios,m,p,t).
+n(universidad,f,s,t).
+n(universidads,f,p,t).
 
-n(tenedor,m,s).
-n(tenedores,m,p).
-n(cuchara,f,s).
-n(cucharas,f,p).
+n(tenedor,m,s,t).
+n(tenedores,m,p,t).
+n(cuchara,f,s,t).
+n(cucharas,f,p,t).
 
-n(cuchillo,m,s).
-n(cuchillo,m,p).
-n(sierra,f,s).
-n(sierras,f,p).
+n(cuchillo,m,s,t).
+n(cuchillo,m,p,t).
+n(sierra,f,s,t).
+n(sierras,f,p,t).
 
-n(practica,f,s).
-n(practicas,f,p).
-n(trabajo,m,s).
-n(trabajos,m,p).
+n(practica,f,s,t).
+n(practicas,f,p,t).
+n(trabajo,m,s,t).
+n(trabajos,m,p,t).
 
-n(canario,m,s).
-n(canarios,m,p).
-n(paloma,f,s).
-n(palomas,f,p).
+n(canario,m,s,t).
+n(canarios,m,p,t).
+n(paloma,f,s,t).
+n(palomas,f,p,t).
 
-n(vuelo,m,s).
-n(vuelos,m,p).
-n(travesia,f,s).
-n(travesias,f,p).
+n(vuelo,m,s,t).
+n(vuelos,m,p,t).
+n(travesia,f,s,t).
+n(travesias,f,p,t).
 
-n(madrid,f,s).
-n(madrid,m,s).
+n(madrid,f,s,t).
+n(madrid,m,s,t).
 
-n(reflejo,m,s).
-n(reflejos,m,p).
-n(velocidad,f,s).
-n(velocidades,f,p).
+n(reflejo,m,s,t).
+n(reflejos,m,p,t).
+n(velocidad,f,s,t).
+n(velocidades,f,p,t).
 
-n(esperanza,f,s).
-n(esperanzas,f,p).
-n(deseo,m,s).
-n(deseos,m,s).
+n(esperanza,f,s,t).
+n(esperanzas,f,p,t).
+n(deseo,m,s,t).
+n(deseos,m,s,t).
 
-n(entusiasmo,m,s).
-n(entusiasmos,m,p).
-n(vida,f,s).
-n(vidas,f,p).
+n(entusiasmo,m,s,t).
+n(entusiasmos,m,p,t).
+n(vida,f,s,t).
+n(vidas,f,p,t).
 
-n(nino,m,s).
-n(ninos,m,p).
-n(nina,f,s).
-n(ninas,f,p).
+n(nino,m,s,t).
+n(ninos,m,p,t).
+n(nina,f,s,t).
+n(ninas,f,p,t).
 
-n(lugar,m,s).
-n(lugares,m,p).
-n(zona,f,s).
-n(zonas,f,p).
+n(lugar,m,s,t).
+n(lugares,m,p,t).
+n(zona,f,s,t).
+n(zonas,f,p,t).
 
-n(nacimiento,m,s).
-n(nacimientos,m,p).
-n(salida,f,s).
-n(salidas,f,s).
+n(nacimiento,m,s,t).
+n(nacimientos,m,p,t).
+n(salida,f,s,t).
+n(salidas,f,s,t).
 
-n(profesor,m,s).
-n(profesores,m,p).
-n(profesora,f,s).
-n(profesoras,f,p).
+n(profesor,m,s,t).
+n(profesores,m,p,t).
+n(profesora,f,s,t).
+n(profesoras,f,p,t).
 
-n(procesador,m,s).
-n(procesadores,m,p).
-n(procesadora,f,s).
-n(procesadoras,f,p).
+n(procesador,m,s,t).
+n(procesadores,m,p,t).
+n(procesadora,f,s,t).
+n(procesadoras,f,p,t).
 
-n(texto,m,s).
-n(textos,m,p).
-n(documento,m,s).
-n(documentos,m,p).
-n(redaccion,f,s).
-n(redacciones,f,p).
+n(texto,m,s,t).
+n(textos,m,p,t).
+n(documento,m,s,t).
+n(documentos,m,p,t).
+n(redaccion,f,s,t).
+n(redacciones,f,p,t).
 
-n(utensilio,m,s).
-n(utensilios,m,p).
-n(herramienta,f,s).
-n(herramientas,f,p).
+n(utensilio,m,s,t).
+n(utensilios,m,p,t).
+n(herramienta,f,s,t).
+n(herramientas,f,p,t).
 
-n(escribir,f,s).
-n(escribir,m,s).
+n(escribir,f,s,t).
+n(escribir,m,s,t).
 
-n(tomate,m,s).
-n(tomates,m,s).
-n(patata,f,s).
-n(patatas,f,p).
+n(tomate,m,s,t).
+n(tomates,m,s,t).
+n(patata,f,s,t).
+n(patatas,f,p,t).
 
-n(cafe,m,s).
-n(cafes,m,p).
-n(agua,f,s).
-n(aguas,f,p).
-n(cerveza,f,s).
-n(cervezas,f,p).
+n(cafe,m,s,t).
+n(cafes,m,p,t).
+n(agua,f,s,t).
+n(aguas,f,p,t).
+n(cerveza,f,s,t).
+n(cervezas,f,p,t).
 
-n(mesa,f,s).
-n(pantalon,m,s).
-n(corbata,f,s).
+n(mesa,f,s,t).
+n(pantalon,m,s,t).
+n(corbata,f,s,t).
 
-n(manzano,m,s).
-n(manzanos,m,p).
-n(palmera,f,s).
-n(palmeras,f,p).
+n(manzano,m,s,t).
+n(manzanos,m,p,t).
+n(palmera,f,s,t).
+n(palmeras,f,p,t).
 
-n(taburete,m,s).
-n(taburetes,m,p).
-n(mesa,f,s).
-n(mesas,f,p).
+n(taburete,m,s,t).
+n(taburetes,m,p,t).
+n(mesa,f,s,t).
+n(mesas,f,p,t).
 
-n(pantalon,m,s).
-n(pantalones,m,p).
-n(corbata,f,s).
-n(corbatas,f,p).
+n(pantalon,m,s,t).
+n(pantalones,m,p,t).
+n(corbata,f,s,t).
+n(corbatas,f,p,t).
 
-verbo(v(X),Num,Cop)-->[X],{v(X,Num,Cop)}.
-v(ama,s,n).
-v(aman,p,n).
+verbo(v(X),Num,Cop,Per)-->[X],{v(X,Num,Cop,Per)}.
+v(ama,s,n,t).
+v(aman,p,n,t).
 
-v(come,s,n).
-v(comen,p,n).
+v(come,s,n,t).
+v(comen,p,n,t).
 
-v(estudia,s,n).
-v(estudian,p,n).
+v(estudia,s,n,t).
+v(estudian,p,n,t).
 
-v(era,s,c).
-v(eran,p,c).
+v(era,s,c,t).
+v(eran,p,c,t).
 
-v(cazo,s,n).
-v(cazaron,p,n).
+v(cazo,s,n,t).
+v(cazaron,p,n,t).
 
-v(hace,s,n).
-v(hacen,p,n).
+v(hace,s,n,t).
+v(hacen,p,n,t).
 
-v(canta,s,n).
-v(cantan,p,n).
+v(canta,s,n,t).
+v(cantan,p,n,t).
 
-v(alzo,s,n).
-v(alzaron,p,n).
+v(alzo,s,n,t).
+v(alzaron,p,n,t).
 
-v(esta,s,c).
-v(estan,p,c).
+v(esta,s,c,t).
+v(estan,p,c,t).
 
-v(es,s,c).
-v(son,p,c).
-v(somos,p,c).
+v(es,s,c,t).
+v(son,p,c,t).
+v(somos,p,c,pr).
 
-v(habla,s,n).
-v(hablan,p,n).
+v(habla,s,n,t).
+v(hablan,p,n,t).
 
-v(depende,s,n).
-v(dependen,p,n).
+v(depende,s,n,t).
+v(dependen,p,n,t).
 
-v(vimos,p,n).
-v(vi,s,n).
+v(vimos,p,n,pr).
+v(vi,s,n,t).
+v(vieron,p,n,t).
 
-v(sirve,s,n).
-v(sirven,p,n).
+v(sirve,s,n,t).
+v(sirven,p,n,t).
 
-v(recoge,s,n).
-v(recogen,p,n).
+v(recoge,s,n,t).
+v(recogen,p,n,t).
 
-v(toma,s,n).
-v(toman,p,n).
+v(toma,s,n,t).
+v(toman,p,n,t).
 
-v(compre,s,n).
-v(compraron,p,n).
+v(compre,s,n,pr).
+v(compraron,p,n,t).
 
-v(bebe,s,n).
-v(beben,p,n).
+v(bebe,s,n,t).
+v(beben,p,n,t).
 
-v(salta,s,n).
-v(saltan,p,n).
+v(salta,s,n,t).
+v(saltan,p,n,t).
 
-v(sonrie,s,n).
-v(sonrien,p,n).
-
+v(sonrie,s,n,t).
+v(sonrien,p,n,t).
 
 adjetivo(a(X),Gen,Num)-->[X],{a(X,Gen,Num)}.
 a(roja,f,s).
@@ -317,11 +317,11 @@ c(pero).
 p_relativo(pr(X))-->[X],{pr(X)}.
 pr(que).
 
-pronombre(pn(X),Gen,Num)-->[X],{pn(X,Gen,Num)}.
-pn(ella,f,s).
-pn(el,m,s).
-pn(ellas,f,p).
-pn(ellos,m,p).
+pronombre(pn(X),Gen,Num,Per)-->[X],{pn(X,Gen,Num,Per)}.
+pn(ella,f,s,t).
+pn(el,m,s,t).
+pn(ellas,f,p,t).
+pn(ellos,m,p,t).
 
 adverbio(ad(X))-->[X],{ad(X)}.
 ad(muy).
