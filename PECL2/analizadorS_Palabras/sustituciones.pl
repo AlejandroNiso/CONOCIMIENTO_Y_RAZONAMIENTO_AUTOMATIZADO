@@ -33,26 +33,26 @@ sustitucion([manzano,manzanos,palmera,palmeras]).
 sustitucion([mesa,mesas,taburete,taburetes]).
 sustitucion([pantalon,pantalones,corbata,corbatas]).
 
-sustitucion([ama,aman]).
-sustitucion([come,comen]).
-sustitucion([estudia,estudian]).
-sustitucion([era,eran]).
-sustitucion([cazo,cazaron]).
-sustitucion([hace,hacen]).
-sustitucion([canta,cantan]).
-sustitucion([alzo,alzaron]).
-sustitucion([esta,estan]).
-sustitucion([es,son,somos]).
-sustitucion([habla,hablan]).
-sustitucion([depende,dependen]).
+sustitucion([ama,aman,amamos,amo]).
+sustitucion([come,comen,comemos,como]).
+sustitucion([estudia,estudian,estudiamos,estudio]).
+sustitucion([era,eran,eramos]).
+sustitucion([cazo,cazaron,cazamos]).
+sustitucion([hace,hacen,hacemos,hago]).
+sustitucion([canta,cantan,cantamos,canto]).
+sustitucion([alzo,alzaron,alzamos,alce]).
+sustitucion([esta,estan,estamos,estoy]).
+sustitucion([es,son,somos,soy]).
+sustitucion([habla,hablan,hablamos,hablo]).
+sustitucion([depende,dependen,dependemos,dependo]).
 sustitucion([vi,vimos,vieron]).
-sustitucion([sirve,sirven]).
-sustitucion([recoge,recogen]).
-sustitucion([toma,toman]).
-sustitucion([compre,compraron]).
-sustitucion([bebe,beben]).
-sustitucion([salta,saltan]).
-sustitucion([sonrie,sonrien]).
+sustitucion([sirve,sirven,servimos,sirvo]).
+sustitucion([recoge,recogen,recogemos,recojo]).
+sustitucion([toma,toman,tomamos,tomo]).
+sustitucion([compre,compraron,compraron,compro]).
+sustitucion([bebe,beben,bebemos,bebo]).
+sustitucion([salta,saltan,saltamos,salto]).
+sustitucion([sonrie,sonrien,sonreimos,sonrio]).
 
 sustitucion([rojo,rojos,roja,rojas]).
 sustitucion([negro,negros,negra,negras]).
@@ -68,4 +68,4 @@ sustitucion([alto,alta,altos,altas]).
 sustitucion([frito,fritos,frita,fritas]).
 sustitucion([alegre,alegres]).
 
-sustitucion([ella,el,ellas,ellos]).
+sustitucion([ella,el,ellas,ellos,yo,nosotros,nosotras]).
