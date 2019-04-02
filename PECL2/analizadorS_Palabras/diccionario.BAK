@@ -201,7 +201,7 @@ v(esta,s,c,t).
 v(estan,p,c,t).
 
 v(es,s,c,t).
-v(son,p,c,pr).
+v(son,p,c,t).
 v(somos,p,c,pr).
 
 v(habla,s,n,t).

@@ -10,8 +10,11 @@ analisis:-
     write("Ponga entrada (numero/lista/q): "),
     read(Input),
     (Input==q -> nl,write("FIN DEL ANALISIS"),nl,nl,!;
-    (number(Input)->oracion(n,Input);oracion(l,Input)),
+    oracion(Input),
     analisis).
+    
+oracion(Input):-
+    (number(Input)->oracion(n,Input);oracion(l,Input)).
 
 oracion(n,Numero):-
      o(Numero,Input),
