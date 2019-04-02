@@ -33,26 +33,26 @@ sustitucion([manzano,manzanos,palmera,palmeras]).
 sustitucion([mesa,mesas,taburete,taburetes]).
 sustitucion([pantalon,pantalones,corbata,corbatas]).
 
-sustitucion([ama,aman,amamos,amo]).
-sustitucion([come,comen,comemos,como]).
-sustitucion([estudia,estudian,estudiamos,estudio]).
-sustitucion([era,eran,eramos]).
-sustitucion([cazo,cazaron,cazamos]).
-sustitucion([hace,hacen,hacemos,hago]).
-sustitucion([canta,cantan,cantamos,canto]).
-sustitucion([alzo,alzaron,alzamos,alce]).
-sustitucion([esta,estan,estamos,estoy]).
-sustitucion([es,son,somos,soy]).
-sustitucion([habla,hablan,hablamos,hablo]).
-sustitucion([depende,dependen,dependemos,dependo]).
-sustitucion([vi,vimos,vieron]).
-sustitucion([sirve,sirven,servimos,sirvo]).
-sustitucion([recoge,recogen,recogemos,recojo]).
-sustitucion([toma,toman,tomamos,tomo]).
-sustitucion([compre,compraron,compraron,compro]).
-sustitucion([bebe,beben,bebemos,bebo]).
-sustitucion([salta,saltan,saltamos,salto]).
-sustitucion([sonrie,sonrien,sonreimos,sonrio]).
+sustitucion([ama,aman,amamos,amo,amas,amais]).
+sustitucion([come,comen,comemos,como,comen,comeis]).
+sustitucion([estudia,estudian,estudiamos,estudio,estudias,estudiais]).
+sustitucion([era,eran,eramos,eras,erais]).
+sustitucion([cazo,cazaron,cazamos,cazas,cazais]).
+sustitucion([hace,hacen,hacemos,hago,haces,haceis]).
+sustitucion([canta,cantan,cantamos,canto,cantas,cantais]).
+sustitucion([alzo,alzaron,alzamos,alce,alzas,alzais]).
+sustitucion([esta,estan,estamos,estoy,estas,estais]).
+sustitucion([es,son,somos,soy,eres,sois]).
+sustitucion([habla,hablan,hablamos,hablo,hablas,hablais]).
+sustitucion([depende,dependen,dependemos,dependo,dependes,dependeis]).
+sustitucion([vi,vimos,vieron,viste,visteis]).
+sustitucion([sirve,sirven,servimos,sirvo,sirves,servis]).
+sustitucion([recoge,recogen,recogemos,recojo,recoges,recogeis]).
+sustitucion([toma,toman,tomamos,tomo,tomas,tomais]).
+sustitucion([compre,compraron,compraron,compro,compraste,comprasteis]).
+sustitucion([bebe,beben,bebemos,bebo,bebes,bebeis]).
+sustitucion([salta,saltan,saltamos,salto,saltas,saltais]).
+sustitucion([sonrie,sonrien,sonreimos,sonrio,sonries,sonreis]).
 
 sustitucion([rojo,rojos,roja,rojas]).
 sustitucion([negro,negros,negra,negras]).
@@ -68,4 +68,4 @@ sustitucion([alto,alta,altos,altas]).
 sustitucion([frito,fritos,frita,fritas]).
 sustitucion([alegre,alegres]).
 
-sustitucion([ella,el,ellas,ellos,yo,nosotros,nosotras]).
+sustitucion([ella,el,ellas,ellos,yo,nosotros,nosotras,tu,vosotros,vosotras]).
