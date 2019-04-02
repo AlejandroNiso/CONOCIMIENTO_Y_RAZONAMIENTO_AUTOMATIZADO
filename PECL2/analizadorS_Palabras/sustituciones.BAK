@@ -45,7 +45,7 @@ sustitucion([esta,estan]).
 sustitucion([es,son,somos]).
 sustitucion([habla,hablan]).
 sustitucion([depende,dependen]).
-sustitucion([vi,vimos]).
+sustitucion([vi,vimos,vieron]).
 sustitucion([sirve,sirven]).
 sustitucion([recoge,recogen]).
 sustitucion([toma,toman]).
