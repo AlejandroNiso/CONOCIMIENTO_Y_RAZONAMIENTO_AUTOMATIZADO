@@ -9,7 +9,7 @@
 analisis:-
     write("Ponga entrada (numero/lista/q): "),
     read(Input),
-    (Input==q -> nl,write("FIN DEL ANALISIS"),nl,nl,!;
+    (Input==q -> nl,write("--- FIN DEL ANALISIS ---"),nl,nl,!;
     oracion(Input),
     analisis).
     
