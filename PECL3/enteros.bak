@@ -1,6 +1,3 @@
-#lang racket
-(provide (all-defined-out))
-
 ; Booleanos. Son los únicos lambda términos no currificados.
 
 (define true (lambda (x y) x))
@@ -475,31 +472,3 @@
                  (lambda (s)
                    ((cocienteent ((prodent r) s)) ((mcdent r) s)))))
 
-;; ********** MATRICES **********
-(define testmatrices (lambda (m)
-                        (list (list (testenteros (primero (primero m))) (testenteros (segundo (primero m))))
-                              (list (testenteros (primero (segundo m))) (testenteros (segundo (segundo m))))
-                        )
-                      )
-)
-
-
-
-(define matriz (lambda (a)
-                         (lambda (b)
-                           (lambda (c)
-                             (lambda (d)
-                               ((par ((par a) b)) ((par c) d)))))))
-
-
-(define identidad ((((matriz uno) cero) cero) uno))
-
-(define matriz_nula ((((matriz cero) cero) cero) cero))
-
-(define matriz_prueba1 ((((matriz dos) cuatro) -uno) cinco))
-
-(define matriz_prueba2 ((((matriz uno) dos) dos) tres))
-
-(define matriz_prueba3 ((((matriz dos) uno) -tres) dos))
-
-(define matriz_prueba4 ((((matriz uno) -tres) cero) cuatro))
