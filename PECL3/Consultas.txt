@@ -1,0 +1,119 @@
+NATURALES
+
+(escero trois)
+#<procedure:false>
+((esmenornat cinq) trois)
+#<procedure:false>
+((esmenornat cinq) six)
+#<procedure:true>
+
+
+(comprobar((sumnat trois) quatre))
+7
+(comprobar((restonat sept) cinq))
+2
+(comprobar(primero ((par trois) deux)))
+3
+(comprobar(sucesor trois))
+4
+(comprobar((prodnat sept) cinq))
+35
+(comprobar((restonat sept) cinq))
+2
+
+
+ENTEROS
+
+((esmenorent cinco) tres)
+#<procedure:false>
+((esmayorent cinco) tres)
+#<procedure:true>
+
+
+(testenteros(segundo ((par cinco) siete)))
+7
+(testenteros(absoluto siete))
+7
+(testenteros(absoluto -once))
+11
+(testenteros((sument -once) quince))
+4
+(testenteros((mcdent dieciseis) cuatro))
+4
+
+
+ENTEROS MODULARES
+
+
+COPIAR------------------------------------------------------------------------------------------------
+
+
+(define testmatrices (lambda (m)
+                        (list (list (testenteros (primero (primero m))) (testenteros (segundo (primero m))))
+                              (list (testenteros (primero (segundo m))) (testenteros (segundo (segundo m))))
+                        )
+                      )
+)
+
+
+
+(define matriz (lambda (a)
+                         (lambda (b)
+                           (lambda (c)
+                             (lambda (d)
+                               ((par ((par a) b)) ((par c) d)))))))
+
+
+(define identidad ((((matriz uno) cero) cero) uno))
+
+(define matriz_nula ((((matriz cero) cero) cero) cero))
+
+(define matriz_prueba1 ((((matriz dos) cuatro) -uno) cinco))
+
+(define matriz_prueba2 ((((matriz uno) dos) dos) tres))
+
+(define matriz_prueba3 ((((matriz dos) uno) -tres) dos))
+
+(define matriz_prueba4 ((((matriz uno) -tres) cero) cuatro))
+
+------------------------------------------------------------------------------------------------------
+
+((escero_p tres)dos)
+#<procedure:false>
+
+
+(testenteros(((suma_p cinco) nueve) tres))
+2
+(testenteros(((resta_p siete) nueve) tres))
+1
+(testenteros(((prod_p siete) cuatro) tres))
+1
+(testenteros((inverso_p dieciocho) siete))
+2
+(testenteros((inverso_p cinco) nueve))
+2
+
+((inversa?_p matriz_prueba1)dos)
+#<procedure:false>
+((inversa?_p matriz_prueba1)tres)
+#<procedure:true>
+
+(testenteros((determinante_p matriz_prueba1) tres))
+2
+(testenteros((rango_p matriz_prueba1) dos))
+1
+(testmatrices matriz_prueba1)
+((2 4) (-1 5))
+(testmatrices(((suma_matrices matriz_prueba1) matriz_prueba2) tres))
+((0 0) (1 2))
+(testmatrices(((prod_matrices matriz_prueba1) matriz_prueba2) tres))
+((0 2) (1 2))
+(testmatrices((cuadrado_matrices matriz_prueba1) tres))
+((0 1) (2 0))
+(testmatrices((inversa matriz_prueba1) tres))
+((1 1) (2 1))
+
+
+
+
+
