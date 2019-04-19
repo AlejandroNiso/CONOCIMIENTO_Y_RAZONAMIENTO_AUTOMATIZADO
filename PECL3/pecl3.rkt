@@ -23,17 +23,38 @@
 
 ;;(define _lista-funciones ((par ((par primero) primero)) ((par ((par primero) segundo)) ((par ((par segundo) primero)) ((par ((par segundo) segundo)) nil)))))
 
-(define lista-funciones ((par false) ((par ((par primero) primero)) ((par false) ((par ((par primero) segundo)) ((par false) ((par ((par segundo) primero)) ((par false) ((par ((par segundo) segundo)) nil)))))))))
+(define lista-acciones ((par false) ((par ((par primero) primero)) ((par false) ((par ((par primero) segundo)) ((par false) ((par ((par segundo) primero)) ((par false) ((par ((par segundo) segundo)) nil)))))))))
+(define (accion-siguiente acciones) (segundo (segundo acciones)))
+(define (accion-actual acciones) (primero (segundo acciones)))
+(define (elemento-actual accion matriz) ((segundo accion) ((primero accion)matriz)) )
 
 (define _suma-matrices (lambda (m1)
                          (lambda (m2)
                            (lambda (mod)
-                             (lambda (lista)
-                               ((esnil lista) matriz ((((_suma-matrices m1) m2) mod) (segundo (segundo lista-funciones)))))))))
+                             (lambda (lista-acciones)
+                               ( ((esnil lista-acciones)
+                                  (lambda (no_use) matriz)
+                                  (lambda (no_use) (((((_suma-matrices m1) m2) mod) (accion-siguiente lista-acciones))
+                                                    (((suma-mod (elemento-actual (accion-actual lista-acciones) m1)) (elemento-actual (accion-actual lista-acciones) m2)) mod)))
+                                 ) zero) )))))
 
-;;((((_suma-matrices m1) m2) mod) (segundo(segundo lista)))
+(define _prod-matrices (lambda (m1)
+                         (lambda (m2)
+                           (lambda (mod)
+                             (lambda (lista-acciones)
+                               ( ((esnil lista-acciones)
+                                  (lambda (no_use) matriz)
+                                  (lambda (no_use) (((((_suma-matrices m1) m2) mod) (accion-siguiente lista-acciones))
+                                                    (((prod-mod (elemento-actual (accion-actual lista-acciones) m1)) (elemento-actual (accion-actual lista-acciones) m2)) mod)))
+                                 ) zero) )))))
+
 
 (define suma-matrices (lambda (m1)
                         (lambda (m2)
                           (lambda (mod)
-                            ((((_suma-matrices m1) m2) mod) lista-funciones)))))
+                            ((((_suma-matrices m1) m2) mod) lista-acciones)))))
+
+(define prod-matrices (lambda (m1)
+                        (lambda (m2)
+                          (lambda (mod)
+                            ((((_prod-matrices m1) m2) mod) lista-acciones)))))
