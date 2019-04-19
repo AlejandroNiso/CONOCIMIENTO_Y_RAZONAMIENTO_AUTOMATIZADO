@@ -2,14 +2,24 @@
 (require "enteros.rkt")
 
 ;; ********** ARTIMETICA MODULAR **********
-(define (representante-canonico x mod)
-  ((restoent x) mod))
+(define representante-canonico (lambda (x)
+                                 (lambda (mod)
+                                   ((restoent x) mod))))
 
-(define (suma-mod n1 n2 mod)
-  (representante-canonico ((sument n1) n2) mod))
+(define suma-mod (lambda (x1)
+                   (lambda (x2)
+                     (lambda (mod)
+                       ((representante-canonico ((sument x1) x2)) mod)))))
 
-;(testenteros (prod-mod tres cinco cuatro))
-(define (prod-mod n1 n2 mod)
-  (representante-canonico ((prodent n1) n2) mod))
+(define prod-mod (lambda (x1)
+                   (lambda (x2)
+                     (lambda (mod)
+                       ((representante-canonico ((prodent x1) x2)) mod)))))
 
 ;; ****************************************
+(define esnil primero)
+
+(define nil (lambda (z) z))
+
+(define lista-funciones ((par ((par primero) primero)) ((par ((par primero) segundo)) ((par ((par segundo) primero)) ((par ((par segundo) segundo)) nil)))))
+
