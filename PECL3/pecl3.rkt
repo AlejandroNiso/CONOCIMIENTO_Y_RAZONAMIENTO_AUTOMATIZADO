@@ -26,7 +26,7 @@
 (define lista-acciones ((par false) ((par ((par primero) primero)) ((par false) ((par ((par primero) segundo)) ((par false) ((par ((par segundo) primero)) ((par false) ((par ((par segundo) segundo)) nil)))))))))
 (define (accion-siguiente acciones) (segundo (segundo acciones)))
 (define (accion-actual acciones) (primero (segundo acciones)))
-(define (elemento-actual accion matriz) ((segundo accion) ((primero accion)matriz)) )
+(define (elemento-actual accion matriz) ((segundo accion) ((primero accion)matriz)))
 
 (define _suma-matrices (lambda (m1)
                          (lambda (m2)
@@ -58,3 +58,13 @@
                         (lambda (m2)
                           (lambda (mod)
                             ((((_prod-matrices m1) m2) mod) lista-acciones)))))
+
+(define sumam (lambda (m1)
+               (lambda (m2)
+                 (lambda (mod)
+                   ((((matriz ((representante-canonico ((sument (primero (primero m1))) (primero (primero m2)))) mod))
+                      ((representante-canonico ((sument (segundo (primero m1))) (segundo (primero m2)))) mod))
+                     ((representante-canonico ((sument (primero (segundo m1))) (primero (segundo m2)))) mod))
+                    ((representante-canonico ((sument (segundo (segundo m1))) (segundo (segundo m2)))) mod))))))
+
+                           
