@@ -71,6 +71,13 @@
                     (((suma-mod ((prodent (primero (segundo m1))) (segundo (primero m2)))) ((prodent (segundo (segundo m1))) (segundo (segundo m2)))) mod))))))
 
 
+(define producto_em (lambda (m1)
+                      (lambda (n)
+                        (lambda (mod)
+                       ((((matriz (((prod-mod (primero (primero m1))) n) mod))
+                      (((prod-mod (segundo (primero m1))) n) mod))
+                     (((prod-mod (primero (segundo m1))) n) mod))
+                    (((prod-mod (segundo (segundo m1))) n) mod))))))
 
 (define determinante (lambda (m1)
                        (lambda (mod)
@@ -92,9 +99,23 @@
                                   (lambda (no_use)
                                     ((((esigualent mod) cero)
                                       (lambda (no_use) (print "** No tiene inverso ** ")-uno)
-                                      (lambda (no_use) (((_num-inverso n) ((restaent mod) uno)) mod_original))) zero))) zero) ))))
+                                      (lambda (no_use) (((_num-inverso n) ((restaent mod) uno)) mod_original))) zero))) zero)))))
 
 (define num-inverso (lambda (n)
                       (lambda (mod)
                         (((_num-inverso n) ((restaent mod) uno)) mod))))
+
+;(define _inversa-matriz (lambda (m1)
+ ;                         (lambda (det)
+  ;                          (lambda (mod)))))
+
+;(define inversa-matriz (lambda (m1)
+ ;                        (lambda (mod)
+  ;                         (((_inversa-matriz m1) ((determinante m1) mod)) mod))))
+
+(define inversa? (lambda (m1)
+                   (lambda (mod)
+                     (noesceroent ((determinante m1) mod)))))
+                            
+                          
                         
