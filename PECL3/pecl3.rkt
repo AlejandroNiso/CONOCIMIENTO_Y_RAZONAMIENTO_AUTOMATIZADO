@@ -32,33 +32,7 @@
 
 ;; ****************************************
 ;; *************** MATRICES ***************
-
-(define esnil primero)
-
-(define nil (lambda (z) z))
-
-(define lista-acciones ((par false) ((par ((par primero) primero)) ((par false) ((par ((par primero) segundo)) ((par false) ((par ((par segundo) primero)) ((par false) ((par ((par segundo) segundo)) nil)))))))))
-(define (accion-siguiente acciones) (segundo (segundo acciones)))
-(define (accion-actual acciones) (primero (segundo acciones)))
-(define (elemento-actual accion matriz) ((segundo accion) ((primero accion)matriz)))
-
-(define _suma-matrices (lambda (m1)
-                         (lambda (m2)
-                           (lambda (mod)
-                             (lambda (lista-acciones)
-                               ( ((esnil lista-acciones)
-                                  (lambda (no_use) matriz)
-                                  (lambda (no_use) (((((_suma-matrices m1) m2) mod) (accion-siguiente lista-acciones))
-                                                    (((suma-mod (elemento-actual (accion-actual lista-acciones) m1)) (elemento-actual (accion-actual lista-acciones) m2)) mod)))
-                                 ) zero) )))))
-
-
 (define suma-matrices (lambda (m1)
-                        (lambda (m2)
-                          (lambda (mod)
-                            ((((_suma-matrices m1) m2) mod) lista-acciones)))))
-
-(define sumam (lambda (m1)
                (lambda (m2)
                  (lambda (mod)
                    ((((matriz (((suma-mod (primero (primero m1))) (primero (primero m2))) mod))
@@ -66,7 +40,7 @@
                      (((suma-mod (primero (segundo m1))) (primero (segundo m2))) mod))
                     (((suma-mod (segundo (segundo m1))) (segundo (segundo m2))) mod))))))
 
-(define productom (lambda (m1)
+(define producto-matrices (lambda (m1)
                (lambda (m2)
                  (lambda (mod)
                    ((((matriz (((suma-mod ((prodent (primero (primero m1))) (primero (primero m2)))) ((prodent (segundo (primero m1))) (primero (segundo m2)))) mod))
@@ -130,7 +104,6 @@
                      (and (and ((esigualent (primero (primero matriz))) cero) ((esigualent (primero (segundo matriz))) cero))
                      (and ((esigualent (segundo (primero matriz))) cero) ((esigualent (segundo (segundo matriz))) cero)))))
 
-
 (define parent? (lambda (n)
                (esceroent ((restoent n) dos))))
 
@@ -141,11 +114,16 @@
                                    (((noesceroent potencia)
                                      (lambda (no_use)
                                        (((parent? potencia)
-                                         (lambda (no_use1) ((((_potencia-matrices (((productom matriz)matriz)mod)) z) ((cocienteent potencia)dos)) mod))
-                                         (lambda (no_use1) ((((_potencia-matrices matriz) (((productom matriz) z) mod)) ((restaent potencia)uno)) mod))) zero))
+                                         (lambda (no_use1) ((((_potencia-matrices (((producto-matrices matriz)matriz)mod)) z) ((cocienteent potencia)dos)) mod))
+                                         (lambda (no_use1) ((((_potencia-matrices matriz) (((producto-matrices matriz) z) mod)) ((restaent potencia)uno)) mod))) zero))
                                      (lambda (no_use) z)) zero))))))
 
 (define potencia-matriz (lambda (m1)
                           (lambda (potencia)
                             (lambda (mod)
                               ((((_potencia-matrices m1) identidad) potencia) mod)))))
+
+;;(testmatrices (((suma-matrices matriz_prueba1) matriz_prueba2) tres))
+;;(testmatrices (((producto-matrices matriz_prueba2) matriz_prueba1) tres))
+;;(testmatrices (((potencia-matriz matriz_prueba1) dos) tres))
+;;(testmatrices ((inversa-matriz matriz_prueba1) tres))
