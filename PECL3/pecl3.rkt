@@ -67,4 +67,11 @@
                      ((representante-canonico ((sument (primero (segundo m1))) (primero (segundo m2)))) mod))
                     ((representante-canonico ((sument (segundo (segundo m1))) (segundo (segundo m2)))) mod))))))
 
+(define determinante (lambda (m1)
+                       (lambda (mod)
+                         ((representante-canonico ((restaent ((prodent (primero (primero m1))) (segundo (segundo m1))))
+                                                            ((prodent (segundo (primero m1))) (primero (segundo m1))))) mod))))
+
+
+
                            
