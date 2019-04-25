@@ -16,12 +16,26 @@
                      (lambda (mod)
                        ((representante-canonico ((prodent x1) x2)) mod)))))
 
+(define _num-inverso (lambda (n)
+                      (lambda (mod)
+                        (lambda (mod_original)
+                          ((((esigualent (((prod-mod n) mod) mod_original)) uno)
+                                  (lambda (no_use) mod)
+                                  (lambda (no_use)
+                                    ((((esigualent mod) cero)
+                                      (lambda (no_use) (print "** Numero sin inverso ** ")-uno)
+                                      (lambda (no_use) (((_num-inverso n) ((restaent mod) uno)) mod_original))) zero))) zero)))))
+
+(define num-inverso (lambda (n)
+                      (lambda (mod)
+                        (((_num-inverso n) ((restaent mod) uno)) mod))))
+
 ;; ****************************************
+;; *************** MATRICES ***************
+
 (define esnil primero)
 
 (define nil (lambda (z) z))
-
-;;(define _lista-funciones ((par ((par primero) primero)) ((par ((par primero) segundo)) ((par ((par segundo) primero)) ((par ((par segundo) segundo)) nil)))))
 
 (define lista-acciones ((par false) ((par ((par primero) primero)) ((par false) ((par ((par primero) segundo)) ((par false) ((par ((par segundo) primero)) ((par false) ((par ((par segundo) segundo)) nil)))))))))
 (define (accion-siguiente acciones) (segundo (segundo acciones)))
@@ -36,16 +50,6 @@
                                   (lambda (no_use) matriz)
                                   (lambda (no_use) (((((_suma-matrices m1) m2) mod) (accion-siguiente lista-acciones))
                                                     (((suma-mod (elemento-actual (accion-actual lista-acciones) m1)) (elemento-actual (accion-actual lista-acciones) m2)) mod)))
-                                 ) zero) )))))
-
-(define _prod-matrices (lambda (m1)
-                         (lambda (m2)
-                           (lambda (mod)
-                             (lambda (lista-acciones)
-                               ( ((esnil lista-acciones)
-                                  (lambda (no_use) matriz)
-                                  (lambda (no_use) (((((_suma-matrices m1) m2) mod) (accion-siguiente lista-acciones))
-                                                    (((prod-mod (elemento-actual (accion-actual lista-acciones) m1)) (elemento-actual (accion-actual lista-acciones) m2)) mod)))
                                  ) zero) )))))
 
 
@@ -71,6 +75,11 @@
                     (((suma-mod ((prodent (primero (segundo m1))) (segundo (primero m2)))) ((prodent (segundo (segundo m1))) (segundo (segundo m2)))) mod))))))
 
 
+(define determinante (lambda (m1)
+                       (lambda (mod)
+                         ((representante-canonico ((restaent ((prodent (primero (primero m1))) (segundo (segundo m1))))
+                                                            ((prodent (segundo (primero m1))) (primero (segundo m1))))) mod))))
+
 (define producto_em (lambda (m1)
                       (lambda (n)
                         (lambda (mod)
@@ -79,10 +88,6 @@
                      (((prod-mod (primero (segundo m1))) n) mod))
                     (((prod-mod (segundo (segundo m1))) n) mod))))))
 
-(define determinante (lambda (m1)
-                       (lambda (mod)
-                         ((representante-canonico ((restaent ((prodent (primero (primero m1))) (segundo (segundo m1))))
-                                                            ((prodent (segundo (primero m1))) (primero (segundo m1))))) mod))))
 
 (define adjunto (lambda (m1)
                   (lambda (mod)
@@ -96,20 +101,6 @@
                          (primero (segundo m1)))
                         (segundo (primero m1)))
                         (segundo (segundo m1)))))
-
-(define _num-inverso (lambda (n)
-                      (lambda (mod)
-                        (lambda (mod_original)
-                          ((((esigualent (((prod-mod n) mod) mod_original)) uno)
-                                  (lambda (no_use) mod)
-                                  (lambda (no_use)
-                                    ((((esigualent mod) cero)
-                                      (lambda (no_use) (print "** Numero sin inverso ** ")-uno)
-                                      (lambda (no_use) (((_num-inverso n) ((restaent mod) uno)) mod_original))) zero))) zero)))))
-
-(define num-inverso (lambda (n)
-                      (lambda (mod)
-                        (((_num-inverso n) ((restaent mod) uno)) mod))))
 
 (define _inversa-matriz (lambda (m1)
                           (lambda (det)
@@ -138,6 +129,7 @@
 (define todos-cero (lambda (matriz)
                      (and (and ((esigualent (primero (primero matriz))) cero) ((esigualent (primero (segundo matriz))) cero))
                      (and ((esigualent (segundo (primero matriz))) cero) ((esigualent (segundo (segundo matriz))) cero)))))
+
 
 (define parent? (lambda (n)
                (esceroent ((restoent n) dos))))
