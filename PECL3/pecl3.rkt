@@ -54,24 +54,47 @@
                           (lambda (mod)
                             ((((_suma-matrices m1) m2) mod) lista-acciones)))))
 
-(define prod-matrices (lambda (m1)
-                        (lambda (m2)
-                          (lambda (mod)
-                            ((((_prod-matrices m1) m2) mod) lista-acciones)))))
-
 (define sumam (lambda (m1)
                (lambda (m2)
                  (lambda (mod)
-                   ((((matriz ((representante-canonico ((sument (primero (primero m1))) (primero (primero m2)))) mod))
-                      ((representante-canonico ((sument (segundo (primero m1))) (segundo (primero m2)))) mod))
-                     ((representante-canonico ((sument (primero (segundo m1))) (primero (segundo m2)))) mod))
-                    ((representante-canonico ((sument (segundo (segundo m1))) (segundo (segundo m2)))) mod))))))
+                   ((((matriz (((suma-mod (primero (primero m1))) (primero (primero m2))) mod))
+                      (((suma-mod (segundo (primero m1))) (segundo (primero m2))) mod))
+                     (((suma-mod (primero (segundo m1))) (primero (segundo m2))) mod))
+                    (((suma-mod (segundo (segundo m1))) (segundo (segundo m2))) mod))))))
+
+(define productom (lambda (m1)
+               (lambda (m2)
+                 (lambda (mod)
+                   ((((matriz (((suma-mod ((prodent (primero (primero m1))) (primero (primero m2)))) ((prodent (segundo (primero m1))) (primero (segundo m2)))) mod))
+                      (((suma-mod ((prodent (primero (primero m1))) (segundo (primero m2)))) ((prodent (segundo (primero m1))) (segundo (segundo m2)))) mod))
+                     (((suma-mod ((prodent (primero (segundo m1))) (primero (primero m2)))) ((prodent (segundo (segundo m1))) (primero (segundo m2)))) mod))
+                    (((suma-mod ((prodent (primero (segundo m1))) (segundo (primero m2)))) ((prodent (segundo (segundo m1))) (segundo (segundo m2)))) mod))))))
+
+
 
 (define determinante (lambda (m1)
                        (lambda (mod)
                          ((representante-canonico ((restaent ((prodent (primero (primero m1))) (segundo (segundo m1))))
                                                             ((prodent (segundo (primero m1))) (primero (segundo m1))))) mod))))
 
+(define adjunto (lambda (m1)
+                  (lambda (mod)
+                    ((((matriz ((representante-canonico (segundo (segundo m1))) mod))
+                       ((representante-canonico ((restaent cero) (segundo (primero m1)))) mod))
+                      ((representante-canonico (segundo (primero m1))) mod))
+                     ((representante-canonico((restaent cero) (primero (primero m1)))) mod )))))
 
+(define _num-inverso (lambda (n)
+                      (lambda (mod)
+                        (lambda (mod_original)
+                          ((((esigualent (((prod-mod n) mod) mod_original)) uno)
+                                  (lambda (no_use) mod)
+                                  (lambda (no_use)
+                                    ((((esigualent mod) cero)
+                                      (lambda (no_use) (print "** No tiene inverso ** ")-uno)
+                                      (lambda (no_use) (((_num-inverso n) ((restaent mod) uno)) mod_original))) zero))) zero) ))))
 
-                           
+(define num-inverso (lambda (n)
+                      (lambda (mod)
+                        (((_num-inverso n) ((restaent mod) uno)) mod))))
+                        
