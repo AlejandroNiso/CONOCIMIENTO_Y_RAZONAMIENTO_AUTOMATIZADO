@@ -21,14 +21,13 @@
                         (lambda (mod_original)
                           ((((esigualent (((prod-mod n) mod) mod_original)) uno)
                                   (lambda (no_use) mod)
-                                  (lambda (no_use)
-                                    ((((esigualent mod) cero)
-                                      (lambda (no_use) (print "** Numero sin inverso ** ")-uno)
-                                      (lambda (no_use) (((_num-inverso n) ((restaent mod) uno)) mod_original))) zero))) zero)))))
+                                  (lambda (no_use) (((_num-inverso n) ((restaent mod) uno)) mod_original))) zero)))))
 
 (define num-inverso (lambda (n)
                       (lambda (mod)
-                        (((_num-inverso n) ((restaent mod) uno)) mod))))
+                        ((((esigualent ((mcdent n) mod)) uno)
+                          (lambda (no_use) (((_num-inverso n) ((restaent mod) uno)) mod))
+                          (lambda (no_use) (print "** Numero sin inverso ** ")-uno)) zero))))
 
 ;; ****************************************
 ;; *************** MATRICES ***************
