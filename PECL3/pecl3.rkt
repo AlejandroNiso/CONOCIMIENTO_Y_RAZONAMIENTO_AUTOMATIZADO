@@ -103,7 +103,7 @@
                          (lambda (mod)
                            ((((inversa? m1) mod)
                               (lambda (no_use) (((_inversa-matriz m1) ((determinante m1) mod)) mod))
-                              (lambda (no_use) (print "** Matriz sin inversa ** ")-uno)) zero))))
+                              (lambda (no_use) (print "** Matriz sin inversa ** ")identidad)) zero))))
 
 (define todos-cero (lambda (matriz)
                      (and (and ((esigualent (primero (primero matriz))) cero) ((esigualent (primero (segundo matriz))) cero))
